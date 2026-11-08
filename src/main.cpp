@@ -18,6 +18,7 @@
 #include "core/cache.hpp"
 #include "core/config.hpp"
 #include "core/pipeline.hpp"
+#include "core/sparse_memory.hpp"
 
 #include <cstring>
 #include <format>
@@ -72,7 +73,7 @@ static BranchPredictor to_branch_pred(const std::string& s)
 
 struct SimSystem
 {
-    std::shared_ptr<FlatMemory>   main_mem;
+    std::shared_ptr<SparseMemory> main_mem;
     std::shared_ptr<Cache>        l3;
     std::shared_ptr<Cache>        l2;
     std::shared_ptr<Cache>        l1;
@@ -82,7 +83,7 @@ struct SimSystem
 static SimSystem build_system(const SimConfig& cfg)
 {
     SimSystem sys;
-    sys.main_mem = std::make_shared<FlatMemory>(0, cfg.mem_size_kb * 1024);
+    sys.main_mem = std::make_shared<SparseMemory>(0, cfg.mem_size_kb * 1024);
 
     std::shared_ptr<Memory> backing = sys.main_mem;
 
@@ -129,7 +130,7 @@ static SimSystem build_system(const SimConfig& cfg)
     return sys;
 }
 
-static void apply_mem_init(FlatMemory& mem, const std::vector<MemInitEntry>& inits)
+static void apply_mem_init(Memory& mem, const std::vector<MemInitEntry>& inits)
 {
     for (auto& entry : inits)
         switch(entry.kind)

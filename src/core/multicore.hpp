@@ -27,6 +27,7 @@
 #include "nic.hpp"
 #include "pipeline.hpp"
 #include "plic.hpp"
+#include "sparse_memory.hpp"
 #include "timer.hpp"
 #include "types.hpp"
 
@@ -135,7 +136,7 @@ private:
     MultiCoreConfig config_;
     addr_t device_base_ = 0;
 
-    std::shared_ptr<FlatMemory>                main_mem_;
+    std::shared_ptr<SparseMemory>                main_mem_;
     std::shared_ptr<Cache>                     l3_cache_;
     std::shared_ptr<Cache>                     l2_cache_;
     std::vector<std::shared_ptr<Cache>>        l1d_caches_;
