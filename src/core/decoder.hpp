@@ -10,7 +10,8 @@
  * helper that extracts register fields, reconstructs the sign-extended
  * immediate, and maps @c funct3 / @c funct7 to a concrete @c Op tag.
  *
- * @see RISC-V Unprivileged ISA Specification, Sections 2.1, 6.1.1, 12.1, 13.1, 30.1.
+ * @see RISC-V Unprivileged ISA Specification, Sections 2.1, 6.1.1, 12.1,
+ *      13.1, 30.1.
  */
 
 #pragma once

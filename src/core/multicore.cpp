@@ -25,7 +25,7 @@ MultiCoreCPU::MultiCoreCPU(MultiCoreConfig config)
 
     // ── Main memory ─────────────────────────────────────
 
-    main_mem_ = std::make_shared<FlatMemory>(0, config_.main_memory_size);
+    main_mem_ = std::make_shared<SparseMemory>(0, config_.main_memory_size);
 
     // ── Device MMIO base ────────────────────────────────
     // Immediately above main memory, page-aligned
