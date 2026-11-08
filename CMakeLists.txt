@@ -66,6 +66,7 @@ endif()
 add_library(rvsim_core STATIC
     src/core/decoder.cpp
     src/core/memory.cpp
+    src/core/sparse_memory.cpp
     src/core/executor.cpp
     src/core/cpu.cpp
     src/core/cache.cpp
@@ -116,6 +117,7 @@ add_executable(rvsim_tests
     test/test_multicore.cpp
     test/test_assembler.cpp
     test/test_config.cpp
+    test/test_sparse_memory.cpp
 )
  
 target_link_libraries(rvsim_tests PRIVATE rvsim_core)
