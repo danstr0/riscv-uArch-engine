@@ -5,13 +5,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [id="Node000000",label="std::runtime_error",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
-  Node0 -> Node1 [id="edge8_Node000000_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node1 [id="Node000001",label="riscv::CpuException",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1CpuException.html",tooltip="Base exception for all CPU-related faults."];
-  Node1 -> Node2 [id="edge9_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="riscv::IllegalInstruction\lException",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1IllegalInstructionException.html",tooltip="Unrecognized instruction encoding."];
-  Node1 -> Node3 [id="edge10_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node3 [id="Node000003",label="riscv::MemoryAccessException",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MemoryAccessException.html",tooltip="Memory read/write to an unmapped address."];
-  Node1 -> Node4 [id="edge11_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="riscv::MisalignedAccessException",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MisalignedAccessException.html",tooltip="Memory access violating natural alignment."];
+  Node0 [id="Node000000",label="riscv::VType",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structriscv_1_1VType.html",tooltip="Represents the vtype CSR."];
 }

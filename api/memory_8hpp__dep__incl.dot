@@ -46,8 +46,13 @@ digraph "src/core/memory.hpp"
   Node17 -> Node18 [id="edge23_Node000017_Node000018",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node18 [id="Node000018",label="src/core/plic.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$plic_8cpp.html",tooltip="Simplified PLIC implementation for single-hart RISC-V."];
   Node1 -> Node19 [id="edge24_Node000001_Node000019",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node19 [id="Node000019",label="src/core/timer.hpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$timer_8hpp.html",tooltip="Core Local Interruptor (CLINT) machine timer."];
+  Node19 [id="Node000019",label="src/core/sparse_memory.hpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$sparse__memory_8hpp.html",tooltip="Demand-allocated physical RAM backed by fixed-size pages."];
   Node19 -> Node6 [id="edge25_Node000019_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node19 -> Node20 [id="edge26_Node000019_Node000020",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node20 [id="Node000020",label="src/core/timer.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$timer_8cpp.html",tooltip="CLINT-style machine timer implementation."];
+  Node20 [id="Node000020",label="src/core/sparse_memory.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$sparse__memory_8cpp.html",tooltip="SparseMemory implementation."];
+  Node1 -> Node21 [id="edge27_Node000001_Node000021",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node21 [id="Node000021",label="src/core/timer.hpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$timer_8hpp.html",tooltip="Core Local Interruptor (CLINT) machine timer."];
+  Node21 -> Node6 [id="edge28_Node000021_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node21 -> Node22 [id="edge29_Node000021_Node000022",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node22 [id="Node000022",label="src/core/timer.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$timer_8cpp.html",tooltip="CLINT-style machine timer implementation."];
 }

@@ -95,11 +95,18 @@ digraph "src/core/multicore.hpp"
   Node28 -> Node5 [id="edge61_Node000028_Node000005",color="steelblue1",style="solid",tooltip=" "];
   Node28 -> Node17 [id="edge62_Node000028_Node000017",color="steelblue1",style="solid",tooltip=" "];
   Node1 -> Node29 [id="edge63_Node000001_Node000029",color="steelblue1",style="solid",tooltip=" "];
-  Node29 [id="Node000029",label="timer.hpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$timer_8hpp.html",tooltip="Core Local Interruptor (CLINT) machine timer."];
+  Node29 [id="Node000029",label="sparse_memory.hpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$sparse__memory_8hpp.html",tooltip="Demand-allocated physical RAM backed by fixed-size pages."];
   Node29 -> Node3 [id="edge64_Node000029_Node000003",color="steelblue1",style="solid",tooltip=" "];
-  Node29 -> Node4 [id="edge65_Node000029_Node000004",color="steelblue1",style="solid",tooltip=" "];
-  Node29 -> Node17 [id="edge66_Node000029_Node000017",color="steelblue1",style="solid",tooltip=" "];
-  Node1 -> Node4 [id="edge67_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
-  Node1 -> Node15 [id="edge68_Node000001_Node000015",color="steelblue1",style="solid",tooltip=" "];
-  Node1 -> Node16 [id="edge69_Node000001_Node000016",color="steelblue1",style="solid",tooltip=" "];
+  Node29 -> Node5 [id="edge65_Node000029_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node29 -> Node15 [id="edge66_Node000029_Node000015",color="steelblue1",style="solid",tooltip=" "];
+  Node29 -> Node20 [id="edge67_Node000029_Node000020",color="steelblue1",style="solid",tooltip=" "];
+  Node29 -> Node16 [id="edge68_Node000029_Node000016",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node30 [id="edge69_Node000001_Node000030",color="steelblue1",style="solid",tooltip=" "];
+  Node30 [id="Node000030",label="timer.hpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$timer_8hpp.html",tooltip="Core Local Interruptor (CLINT) machine timer."];
+  Node30 -> Node3 [id="edge70_Node000030_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node30 -> Node4 [id="edge71_Node000030_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node30 -> Node17 [id="edge72_Node000030_Node000017",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node4 [id="edge73_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node15 [id="edge74_Node000001_Node000015",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node16 [id="edge75_Node000001_Node000016",color="steelblue1",style="solid",tooltip=" "];
 }

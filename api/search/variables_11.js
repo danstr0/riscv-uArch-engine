@@ -4,7 +4,7 @@ var searchData=
   ['sew_1',['sew',['../structriscv_1_1VType.html#a8e03db6e8091caf6b0b087dade8a9422',1,'riscv::VType']]],
   ['shared_5fmem_5f_2',['shared_mem_',['../classriscv_1_1CoherenceController.html#a63d3d4fba89c424327ba8cbb6b690eeb',1,'riscv::CoherenceController']]],
   ['shared_5ftransfers_3',['shared_transfers',['../structriscv_1_1CoherenceStats.html#a992d1b6c845eed5853449122b749c5b4',1,'riscv::CoherenceStats']]],
-  ['size_4',['size',['../structriscv_1_1MMIOBus_1_1Region.html#ac75f641c91b77ccc09225cb46dd42b85',1,'riscv::MMIOBus::Region']]],
+  ['size_4',['size',['../structriscv_1_1MMIOBus_1_1Region.html#ac75f641c91b77ccc09225cb46dd42b85',1,'riscv::MMIOBus::Region::size'],['../structriscv_1_1SparseMemory_1_1Range.html#a1b4c8145f9cb102aa0d4dccc5d8c6944',1,'riscv::SparseMemory::Range::size']]],
   ['size_5fbytes_5',['size_bytes',['../structriscv_1_1CacheConfig.html#ab013a71fa86a7137706326ef4eddd91e',1,'riscv::CacheConfig']]],
   ['stages_5f_6',['stages_',['../classriscv_1_1PipelinedCPU.html#a846948ba209468a9a4a606cabe7567e4',1,'riscv::PipelinedCPU']]],
   ['stalls_5fcontrol_7',['stalls_control',['../structriscv_1_1PipelineStats.html#a25fb1c815b89d4ccdb2dc680b110946f',1,'riscv::PipelineStats']]],

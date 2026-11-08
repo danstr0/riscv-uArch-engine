@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['base_0',['base',['../structriscv_1_1MMIOBus_1_1Region.html#adc44435a4e3c87c738fde355b244b4d6',1,'riscv::MMIOBus::Region']]],
+  ['base_0',['base',['../structriscv_1_1SparseMemory_1_1Range.html#a38c408d00b64bebb28aa8e57032c74cc',1,'riscv::SparseMemory::Range::base'],['../structriscv_1_1MMIOBus_1_1Region.html#adc44435a4e3c87c738fde355b244b4d6',1,'riscv::MMIOBus::Region::base']]],
   ['base_5faddr_1',['base_addr',['../structriscv_1_1DescriptorRing.html#ad0d7b2376f3a05985608f0db9742c37c',1,'riscv::DescriptorRing']]],
   ['base_5faddr_5f_2',['base_addr_',['../classriscv_1_1FlatMemory.html#a2e431a858327c2458cc2ead1058a8062',1,'riscv::FlatMemory']]],
   ['bht_5f_3',['bht_',['../classriscv_1_1PipelinedCPU.html#ab492aa53e1fb189db449ba69b6b98db7',1,'riscv::PipelinedCPU']]],

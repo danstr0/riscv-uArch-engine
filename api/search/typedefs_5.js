@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['reg_5fidx_5ft_0',['reg_idx_t',['../namespaceriscv.html#a902c740ecd67f9de6c29f69fa7a3141c',1,'riscv']]]
+  ['page_0',['Page',['../classriscv_1_1SparseMemory.html#a0dfb7323728f9768832147907e6599d4',1,'riscv::SparseMemory']]]
 ];

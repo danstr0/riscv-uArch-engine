@@ -1,0 +1,13 @@
+digraph "riscv::SparseMemory::add_range"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="riscv::SparseMemory\l::add_range",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Add a RAM range. Ranges that touch an existing one are merged."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="riscv::SparseMemory\l::SparseMemory",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1SparseMemory.html#a88b6410c6198b2df2163f0e408677946",tooltip="Construct with a single RAM range."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="riscv::SparseMemory\l::SparseMemory",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1SparseMemory.html#ac4dec97302ceb42eef520767ac5a2577",tooltip="Construct with several RAM ranges."];
+}

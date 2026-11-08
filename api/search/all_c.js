@@ -3,7 +3,7 @@ var searchData=
   ['m_5fexternal_0',['M_EXTERNAL',['../namespaceriscv_1_1MCause.html#af7fd6e9529548fd83f98885259fcbdc9',1,'riscv::MCause']]],
   ['m_5fsoftware_1',['M_SOFTWARE',['../namespaceriscv_1_1MCause.html#a7041608269caff550663ed990b230ced',1,'riscv::MCause']]],
   ['m_5ftimer_2',['M_TIMER',['../namespaceriscv_1_1MCause.html#afabe6cf5a2e839d10921676c8887de78',1,'riscv::MCause']]],
-  ['main_5fmem_5f_3',['main_mem_',['../classriscv_1_1MultiCoreCPU.html#a2fac9bfcf7d3d10b2cf498f6bc31a16b',1,'riscv::MultiCoreCPU']]],
+  ['main_5fmem_5f_3',['main_mem_',['../classriscv_1_1MultiCoreCPU.html#a647988acdc16d0bd1f919c325f8bc9c8',1,'riscv::MultiCoreCPU']]],
   ['main_5fmemory_4',['main_memory',['../classriscv_1_1MultiCoreCPU.html#a69efa8c21e64cdbae032cf3f0676a3fb',1,'riscv::MultiCoreCPU']]],
   ['main_5fmemory_5f_5',['main_memory_',['../classriscv_1_1CacheHierarchy.html#a09f98e32d127bbbdc76320550499ed43',1,'riscv::CacheHierarchy']]],
   ['main_5fmemory_5fsize_6',['main_memory_size',['../structriscv_1_1MultiCoreConfig.html#a37de335688b3852b6d7bf3e81a7b1a96',1,'riscv::MultiCoreConfig']]],

@@ -6,5 +6,6 @@ var searchData=
   ['bits_3',['bits',['../namespaceriscv.html#a34eae22dc577b4a2be29549732fa9538',1,'riscv']]],
   ['branch_5faccuracy_4',['branch_accuracy',['../structriscv_1_1PipelineStats.html#ab0e49d14508d249b4bca12d6bc2c5636',1,'riscv::PipelineStats']]],
   ['branch_5fcheck_5',['branch_check',['../classriscv_1_1PipelinedCPU.html#afc9a8a7783464a6804f6949e2f786386',1,'riscv::PipelinedCPU']]],
-  ['branch_5ftaken_5frate_6',['branch_taken_rate',['../structriscv_1_1CpuStats.html#af7d1ab0b0310fad8160465ce5063c1e8',1,'riscv::CpuStats']]]
+  ['branch_5ftaken_5frate_6',['branch_taken_rate',['../structriscv_1_1CpuStats.html#af7d1ab0b0310fad8160465ce5063c1e8',1,'riscv::CpuStats']]],
+  ['bytes_5fallocated_7',['bytes_allocated',['../classriscv_1_1SparseMemory.html#af75893947fea0a35a6ade1d54f63b739',1,'riscv::SparseMemory']]]
 ];
