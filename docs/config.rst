@@ -82,9 +82,9 @@ determines how data is written.
 **Validation rules:**
 
 - ``u32`` arrays must be 4-byte aligned.
-- Data must not extend past the configured memory size.
-- In multicore mode, data must not overlap the device MMIO region
-  (which starts at ``align_up(memory_size, 0x1000)``).
+- Data must not extend past the configured memory size. Devices sit at
+  fixed addresses above RAM, so data that stays inside RAM can never
+  overlap them.
 
 **Example:**
 ::
@@ -455,12 +455,12 @@ Here is the complete list of checks, grouped by category.
 - No duplicate values within an axis.
 - Each value must pass the same validation as its static equivalent.
 
-**MMIO (multicore):**
+**Memory map (all CPU types):**
 
-- Device MMIO region (``device_base`` to ``device_base + 0x3000``)
-  must fit in 32-bit address space.
-- Memory init must not overlap the device MMIO region.
-
+- RAM starts at address 0, and devices sit at fixed addresses (CLINT at
+  0x0200_0000, PLIC at 0x0C00_0000, NIC at 0x1000_0000; see
+  :doc:`architecture`). Memory size must therefore be at most 32 MiB so
+  RAM ends before the CLINT.
 
 Complete Example
 ----------------
