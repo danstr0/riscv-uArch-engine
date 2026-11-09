@@ -41,6 +41,15 @@ bool CPU::step()
     if (halted_) [[unlikely]]
         return false;
 
+    // ── 0. Interrupts ───────────────────────────────────
+    auto& csrs = executor_.csrs();
+    if (const u32 cause = csrs.pending_cause(); cause != 0)
+    {
+        csrs.enter_trap(executor_.pc(), cause);
+        executor_.set_pc(csrs.trap_target(cause));
+        ++interrupts_taken_;
+    }
+
     // ── 1. Fetch ────────────────────────────────────────
     addr_t current_pc = executor_.pc();
     auto fetch_result = memory_->read32(current_pc);

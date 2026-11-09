@@ -53,7 +53,13 @@ public:
     /// @name Execution
     /// @{
 
-    /// Executes a single instruction. Returns @c false if halted.
+    /**
+     * @brief Executes a single instruction. Returns @c false if halted.
+     *
+     * Pending, enabled interrupts are taken at the instruction boundary
+     * before fetch: @c mepc receives the PC of the not-yet-executed
+     * instruction and execution continues at the @c mtvec handler.
+     */
     bool step();
 
     /**
@@ -111,6 +117,10 @@ public:
     [[nodiscard]] const DecodedInst&   last_instruction() const noexcept { return last_inst_; }
     [[nodiscard]] const ExecuteResult& last_result()      const noexcept { return last_result_; }
     void set_trace(bool enable) noexcept { executor_.set_trace(enable); }
+    [[nodiscard]] const CSRFile& csrs() const noexcept { return executor_.csrs(); }
+    [[nodiscard]]       CSRFile& csrs()       noexcept { return executor_.csrs(); }
+    /// Number of interupts taken.
+    [[nodiscard]] u64 interrupts_taken() const noexcept { return interrupts_taken_; }
     [[nodiscard]] Memory&       memory()       noexcept { return *memory_; }
     [[nodiscard]] const Memory& memory() const noexcept { return *memory_; }
     /// @}
@@ -123,6 +133,7 @@ private:
     DecodedInst   last_inst_{};
     ExecuteResult last_result_{};
     bool          halted_ = false;
+    u64           interrupts_taken_ = 0;
 };
 
 } // namespace riscv
