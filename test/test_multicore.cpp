@@ -151,20 +151,23 @@ TEST(mc_timer_ticks)
     auto sys = MultiCoreCPU(test_config(2));
 
     sys.run_cycles(100);
-    ASSERT_EQ(sys.timer().current_time(), 100u);
+    ASSERT_EQ(sys.clint().mtime(), 100u);
     return true;
 }
 
-TEST(mc_timer_sets_mip)
+TEST(mc_timer_sets_mip_per_hart)
 {
     auto sys = MultiCoreCPU(test_config(2));
 
-    sys.timer().set_compare(50);
+    // Each hart has its own comparator; only hart 1's fires
+    sys.clint().set_mtimecmp(1, 50);
     sys.run_cycles(60);
 
-    // Timer should have set MTIP on both cores
-    ASSERT(sys.core(0).csrs().mip() & MInterrupt::MTIE);
-    ASSERT(sys.core(1).csrs().mip() & MInterrupt::MTIE);
+    ASSERT(!(sys.core(0).csrs().mip() & MInterrupt::MTIP));
+    ASSERT(sys.core(1).csrs().mip() & MInterrupt::MTIP);
+
+    sys.clint().set_mtimecmp(0, 50);
+    ASSERT(sys.core(0).csrs().mip() & MInterrupt::MTIP);
     return true;
 }
 
