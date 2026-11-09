@@ -20,4 +20,6 @@ digraph "riscv::Memory::read16"
   Node7 [id="Node000007",label="riscv::CPU::run_until\l_ecall",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1CPU.html#a55c13112992b2c4d56f8bf3d9eca45cc",tooltip="Run until an ECALL is retired."];
   Node6 -> Node8 [id="edge7_Node000006_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node8 [id="Node000008",label="riscv::CPU::run_until_pc",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1CPU.html#a717c7629e59857e644cbafec837143a6",tooltip="Run until PC equals target."];
+  Node1 -> Node9 [id="edge8_Node000001_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node9 [id="Node000009",label="riscv::MMIOBus::read16",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MMIOBus.html#a213f1529623a4439f5e853a1e3c75e4f",tooltip=" "];
 }

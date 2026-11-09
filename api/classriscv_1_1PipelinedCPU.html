@@ -195,6 +195,9 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a846948ba209468a9a4a606cabe7567e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a556a8d8caf6d11d14fcd7fe31560e755" id="r_a556a8d8caf6d11d14fcd7fe31560e755"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#a556a8d8caf6d11d14fcd7fe31560e755">halted_</a> = false</td></tr>
 <tr class="separator:a556a8d8caf6d11d14fcd7fe31560e755"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0dbf9aeadc7a40a5dc053c387b5703c" id="r_af0dbf9aeadc7a40a5dc053c387b5703c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#af0dbf9aeadc7a40a5dc053c387b5703c">faulted_</a> = false</td></tr>
+<tr class="memdesc:af0dbf9aeadc7a40a5dc053c387b5703c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stopped by a memory/alignment fault.  <br /></td></tr>
+<tr class="separator:af0dbf9aeadc7a40a5dc053c387b5703c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3de152317be74aa7bb561afe15f7f15" id="r_ab3de152317be74aa7bb561afe15f7f15"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#ab3de152317be74aa7bb561afe15f7f15">flush_pipeline_</a> = false</td></tr>
 <tr class="separator:ab3de152317be74aa7bb561afe15f7f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7eaab7af5227bb97b03dd3a8ffb42af1" id="r_a7eaab7af5227bb97b03dd3a8ffb42af1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#a7eaab7af5227bb97b03dd3a8ffb42af1">flush_target_</a> = 0</td></tr>
@@ -446,11 +449,6 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classriscv_1_1PipelinedCPU_a2a50999a28b76d8c06adcb5c14c55bb3_icgraph.png" border="0" usemap="#aclassriscv_1_1PipelinedCPU_a2a50999a28b76d8c06adcb5c14c55bb3_icgraph" alt=""/></div>
-</div>
 
 </div>
 </div>
@@ -1476,6 +1474,30 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="af0dbf9aeadc7a40a5dc053c387b5703c" name="af0dbf9aeadc7a40a5dc053c387b5703c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0dbf9aeadc7a40a5dc053c387b5703c">&#9670;&#160;</a></span>faulted_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool riscv::PipelinedCPU::faulted_ = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stopped by a memory/alignment fault. </p>
 
 </div>
 </div>

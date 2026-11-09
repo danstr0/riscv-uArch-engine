@@ -14,7 +14,9 @@ var searchData=
   ['interrupt_5fmask_5f_11',['interrupt_mask_',['../classriscv_1_1NIC.html#a8c4042f7c08e0358c1414755acd7fe60',1,'riscv::NIC']]],
   ['interrupt_5fpending_5f_12',['interrupt_pending_',['../classriscv_1_1NIC.html#a9057e07c460d701519e894bdc8bd2917',1,'riscv::NIC']]],
   ['interrupts_5fraised_13',['interrupts_raised',['../structriscv_1_1NicStats.html#a75a2d696a61a76d618e88a9a5f5b0563',1,'riscv::NicStats']]],
-  ['invalidations_5fsent_14',['invalidations_sent',['../structriscv_1_1CoherenceStats.html#af84159c15d913591e7927f5ca7e46fb0',1,'riscv::CoherenceStats']]],
-  ['is_5fwrite_5f_15',['is_write_',['../classriscv_1_1MemoryAccessException.html#a98bc771825a1ea5d28abec3f01060ce2',1,'riscv::MemoryAccessException']]],
-  ['itr_16',['ITR',['../namespaceriscv_1_1NicReg.html#a5056ef17c6b172abf907fc302a515c13',1,'riscv::NicReg']]]
+  ['interrupts_5ftaken_14',['interrupts_taken',['../structriscv_1_1PipelineStats.html#a9ca4656762fbf925a50113ca593ca8ba',1,'riscv::PipelineStats']]],
+  ['interrupts_5ftaken_5f_15',['interrupts_taken_',['../classriscv_1_1CPU.html#a14634288002d73406d69287c509aa896',1,'riscv::CPU']]],
+  ['invalidations_5fsent_16',['invalidations_sent',['../structriscv_1_1CoherenceStats.html#af84159c15d913591e7927f5ca7e46fb0',1,'riscv::CoherenceStats']]],
+  ['is_5fwrite_5f_17',['is_write_',['../classriscv_1_1MemoryAccessException.html#a98bc771825a1ea5d28abec3f01060ce2',1,'riscv::MemoryAccessException']]],
+  ['itr_18',['ITR',['../namespaceriscv_1_1NicReg.html#a5056ef17c6b172abf907fc302a515c13',1,'riscv::NicReg']]]
 ];

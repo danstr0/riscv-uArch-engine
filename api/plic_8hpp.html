@@ -80,12 +80,13 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Simplified Platform-Level Interrupt Controller (PLIC) for RISC-V.  
+<p>Platform-Level Interrupt Controller (PLIC) for RISC-V.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="memory_8hpp_source.html">memory.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="types_8hpp_source.html">types.hpp</a>&quot;</code><br />
 <code>#include &lt;array&gt;</code><br />
 <code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for plic.hpp:</div>
 <div class="dyncontent">
@@ -107,6 +108,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PLIC.html">riscv::PLIC</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">MMIO-mapped Platform-Level Interrupt Controller.  <a href="classriscv_1_1PLIC.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1PLIC_1_1Context.html">riscv::PLIC::Context</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -114,9 +117,16 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Simplified Platform-Level Interrupt Controller (PLIC) for RISC-V. </p>
-<p>Models a single-hart PLIC conforming to the RISC-V PLIC Specification v1.0.0, supporting up to 31 interrupt sources (source 0 is reserved as "no interrupt").</p>
-<dl class="section user"><dt>Interrupt lifecycle</dt><dd>A device asserts an interrupt via <code>set_pending()</code>. If the source is enabled and its priority exceeds the threshold, the notify callback fires. The CPU claims the interrupt (returning the highest-priority pending ID and clearing the pending bit), services it, then writes the ID back to complete.</dd></dl>
+<div class="textblock"><p>Platform-Level Interrupt Controller (PLIC) for RISC-V. </p>
+<p>Models a PLIC with up to 31 interrupt sources (source 0 is reserved as "no interrupt") and one M-mode context per hart, following the register layout of the RISC-V PLIC Specification v1.0.0.</p>
+<dl class="section user"><dt>Interrupt lifecycle</dt><dd>A device asserts an interrupt via <code>set_pending()</code>. Each context sees the sources it has enabled whose priority exceeds its threshold; when any such source is pending the context's MEIP line is raised. A hart claims an interrupt (receiving the highest-priority pending ID and clearing its pending bit), services it, then writes the ID back to complete.</dd></dl>
+<dl class="section user"><dt>MMIO register map</dt><dd><div class="fragment"><div class="line">0x000000 + 4·src          priority[src]        (3 bits)</div>
+<div class="line">0x001000                  pending bits 0-31    (read-only)</div>
+<div class="line">0x002000 + 0x80·ctx       enable bits 0-31 <span class="keywordflow">for</span> context ctx</div>
+<div class="line">0x200000 + 0x1000·ctx     priority threshold <span class="keywordflow">for</span> context ctx</div>
+<div class="line">0x200004 + 0x1000·ctx     claim (read) / complete (write) <span class="keywordflow">for</span> context ctx</div>
+</div><!-- fragment --></dd></dl>
+<dl class="section user"><dt>Context API</dt><dd>Methods without a context argument operate on context 0, which keeps the single-hart use case terse.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>RISC-V PLIC Specification v1.0.0. </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->

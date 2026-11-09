@@ -79,23 +79,33 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Interrupt-pending bit positions for <code>mie</code> and <code>mip</code> registers.  
+<p>Interrupt-pending bit positions for the <code>mie</code> and <code>mip</code> registers.  
 <a href="namespaceriscv_1_1MInterrupt.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a68a67746d952f7d5860194a2a328b318" id="r_a68a67746d952f7d5860194a2a328b318"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceriscv_1_1MInterrupt.html#a68a67746d952f7d5860194a2a328b318">MSIE</a> = 1u &lt;&lt; 3</td></tr>
-<tr class="memdesc:a68a67746d952f7d5860194a2a328b318"><td class="mdescLeft">&#160;</td><td class="mdescRight">Machine software interrupt.  <br /></td></tr>
+<tr class="memdesc:a68a67746d952f7d5860194a2a328b318"><td class="mdescLeft">&#160;</td><td class="mdescRight">Machine software interrupt enable.  <br /></td></tr>
 <tr class="separator:a68a67746d952f7d5860194a2a328b318"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a347d60da4282e626fa8c56505779c6b4" id="r_a347d60da4282e626fa8c56505779c6b4"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceriscv_1_1MInterrupt.html#a347d60da4282e626fa8c56505779c6b4">MTIE</a> = 1u &lt;&lt; 7</td></tr>
-<tr class="memdesc:a347d60da4282e626fa8c56505779c6b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Machine timer interrupt.  <br /></td></tr>
+<tr class="memdesc:a347d60da4282e626fa8c56505779c6b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Machine timer interrupt enable.  <br /></td></tr>
 <tr class="separator:a347d60da4282e626fa8c56505779c6b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd9ab1cc8a0fe569ed191f443ddf6a2b" id="r_afd9ab1cc8a0fe569ed191f443ddf6a2b"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceriscv_1_1MInterrupt.html#afd9ab1cc8a0fe569ed191f443ddf6a2b">MEIE</a> = 1u &lt;&lt; 11</td></tr>
-<tr class="memdesc:afd9ab1cc8a0fe569ed191f443ddf6a2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Machine external interrupt.  <br /></td></tr>
+<tr class="memdesc:afd9ab1cc8a0fe569ed191f443ddf6a2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Machine external interrupt enable.  <br /></td></tr>
 <tr class="separator:afd9ab1cc8a0fe569ed191f443ddf6a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5a8cd79a10fa741155af7ed9757b021" id="r_ac5a8cd79a10fa741155af7ed9757b021"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceriscv_1_1MInterrupt.html#ac5a8cd79a10fa741155af7ed9757b021">MSIP</a> = <a class="el" href="namespaceriscv_1_1MInterrupt.html#a68a67746d952f7d5860194a2a328b318">MSIE</a></td></tr>
+<tr class="memdesc:ac5a8cd79a10fa741155af7ed9757b021"><td class="mdescLeft">&#160;</td><td class="mdescRight">Machine software interrupt pending.  <br /></td></tr>
+<tr class="separator:ac5a8cd79a10fa741155af7ed9757b021"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6333dbde509477c607fec6aac916b142" id="r_a6333dbde509477c607fec6aac916b142"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceriscv_1_1MInterrupt.html#a6333dbde509477c607fec6aac916b142">MTIP</a> = <a class="el" href="namespaceriscv_1_1MInterrupt.html#a347d60da4282e626fa8c56505779c6b4">MTIE</a></td></tr>
+<tr class="memdesc:a6333dbde509477c607fec6aac916b142"><td class="mdescLeft">&#160;</td><td class="mdescRight">Machine timer interrupt pending.  <br /></td></tr>
+<tr class="separator:a6333dbde509477c607fec6aac916b142"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54c9114c6c7cf0743b09fddd6d9a8646" id="r_a54c9114c6c7cf0743b09fddd6d9a8646"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceriscv_1_1MInterrupt.html#a54c9114c6c7cf0743b09fddd6d9a8646">MEIP</a> = <a class="el" href="namespaceriscv_1_1MInterrupt.html#afd9ab1cc8a0fe569ed191f443ddf6a2b">MEIE</a></td></tr>
+<tr class="memdesc:a54c9114c6c7cf0743b09fddd6d9a8646"><td class="mdescLeft">&#160;</td><td class="mdescRight">Machine external interrupt pending.  <br /></td></tr>
+<tr class="separator:a54c9114c6c7cf0743b09fddd6d9a8646"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Interrupt-pending bit positions for <code>mie</code> and <code>mip</code> registers. </p>
+<div class="textblock"><p>Interrupt-pending bit positions for the <code>mie</code> and <code>mip</code> registers. </p>
+<p>The enable bit (<code>mie.xIE</code>) and pending bit (<code>mip.xIP</code>) for a given interrupt share a bit position; use the <code>*IE</code> names with <code>mie</code> and the <code>*IP</code> names with <code>mip</code> so intent is clear at the call site. </p>
 </div><h2 class="groupheader">Variable Documentation</h2>
 <a id="afd9ab1cc8a0fe569ed191f443ddf6a2b" name="afd9ab1cc8a0fe569ed191f443ddf6a2b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afd9ab1cc8a0fe569ed191f443ddf6a2b">&#9670;&#160;</a></span>MEIE</h2>
@@ -117,7 +127,31 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Machine external interrupt. </p>
+<p>Machine external interrupt enable. </p>
+
+</div>
+</div>
+<a id="a54c9114c6c7cf0743b09fddd6d9a8646" name="a54c9114c6c7cf0743b09fddd6d9a8646"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54c9114c6c7cf0743b09fddd6d9a8646">&#9670;&#160;</a></span>MEIP</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> riscv::MInterrupt::MEIP = <a class="el" href="namespaceriscv_1_1MInterrupt.html#afd9ab1cc8a0fe569ed191f443ddf6a2b">MEIE</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Machine external interrupt pending. </p>
 
 </div>
 </div>
@@ -141,7 +175,31 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Machine software interrupt. </p>
+<p>Machine software interrupt enable. </p>
+
+</div>
+</div>
+<a id="ac5a8cd79a10fa741155af7ed9757b021" name="ac5a8cd79a10fa741155af7ed9757b021"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5a8cd79a10fa741155af7ed9757b021">&#9670;&#160;</a></span>MSIP</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> riscv::MInterrupt::MSIP = <a class="el" href="namespaceriscv_1_1MInterrupt.html#a68a67746d952f7d5860194a2a328b318">MSIE</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Machine software interrupt pending. </p>
 
 </div>
 </div>
@@ -165,7 +223,31 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Machine timer interrupt. </p>
+<p>Machine timer interrupt enable. </p>
+
+</div>
+</div>
+<a id="a6333dbde509477c607fec6aac916b142" name="a6333dbde509477c607fec6aac916b142"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6333dbde509477c607fec6aac916b142">&#9670;&#160;</a></span>MTIP</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> riscv::MInterrupt::MTIP = <a class="el" href="namespaceriscv_1_1MInterrupt.html#a347d60da4282e626fa8c56505779c6b4">MTIE</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Machine timer interrupt pending. </p>
 
 </div>
 </div>

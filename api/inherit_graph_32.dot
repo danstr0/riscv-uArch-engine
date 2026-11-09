@@ -5,5 +5,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [id="Node000000",label="riscv::MultiCoreCPU",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MultiCoreCPU.html",tooltip="Multi-core SoC simulation container."];
+  Node0 [id="Node000000",label="riscv::MultiCoreConfig",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structriscv_1_1MultiCoreConfig.html",tooltip="System-level configuration for the multi-core SoC."];
 }

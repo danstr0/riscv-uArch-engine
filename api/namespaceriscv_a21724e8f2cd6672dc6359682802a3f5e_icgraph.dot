@@ -46,8 +46,4 @@ digraph "riscv::bit"
   Node19 -> Node3 [id="edge20_Node000019_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node1 -> Node20 [id="edge21_Node000001_Node000020",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node20 [id="Node000020",label="riscv::CSRFile::set\l_mip_bit",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1CSRFile.html#adb2d00adaa12154ef30cb9ad497c0d72",tooltip="Assert an interrupt-pending bit in mip."];
-  Node20 -> Node21 [id="edge22_Node000020_Node000021",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node21 [id="Node000021",label="riscv::MultiCoreCPU\l::wire_interrupts",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MultiCoreCPU.html#a1c16098dc4e23d656c20537bab96d20e",tooltip="Wire timer and PLIC interrupt lines to core CSR files."];
-  Node21 -> Node22 [id="edge23_Node000021_Node000022",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node22 [id="Node000022",label="riscv::MultiCoreCPU\l::MultiCoreCPU",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MultiCoreCPU.html#a69263b775059b963523849ec3542484e",tooltip=" "];
 }

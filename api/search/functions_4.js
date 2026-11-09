@@ -1,7 +1,7 @@
 var searchData=
 [
   ['emit_5fword_0',['emit_word',['../classriscv_1_1Assembler.html#a564570095575e225315bf350e30ae432',1,'riscv::Assembler']]],
-  ['enabled_1',['enabled',['../classriscv_1_1PLIC.html#ac99ba298e26eac71ec10d502f22e52b8',1,'riscv::PLIC']]],
+  ['enabled_1',['enabled',['../classriscv_1_1PLIC.html#ab18a312ff157f679d5a26d4c3dad5d9e',1,'riscv::PLIC::enabled(u32 ctx, u32 source) const'],['../classriscv_1_1PLIC.html#ac99ba298e26eac71ec10d502f22e52b8',1,'riscv::PLIC::enabled(u32 source) const']]],
   ['encode_2',['encode',['../structriscv_1_1VType.html#afcfadeec4f7cbd5b86403353532b3200',1,'riscv::VType']]],
   ['encode_5finstruction_3',['encode_instruction',['../classriscv_1_1Assembler.html#a8b7026e3463be6f1bea9a00859beb2ae',1,'riscv::Assembler']]],
   ['end_4',['end',['../structriscv_1_1SparseMemory_1_1Range.html#a2df7e8f50080149520195681ebe1c164',1,'riscv::SparseMemory::Range']]],

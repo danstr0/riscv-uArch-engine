@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['timer_2ecpp_0',['timer.cpp',['../timer_8cpp.html',1,'']]],
-  ['timer_2ehpp_1',['timer.hpp',['../timer_8hpp.html',1,'']]],
-  ['types_2ehpp_2',['types.hpp',['../types_8hpp.html',1,'']]]
+  ['types_2ehpp_0',['types.hpp',['../types_8hpp.html',1,'']]]
 ];

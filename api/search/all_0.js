@@ -55,7 +55,7 @@ var searchData=
   ['assembler_2ehpp_52',['assembler.hpp',['../assembler_8hpp.html',1,'']]],
   ['assembly_20syntax_53',['Assembly Syntax',['../assembler_8hpp.html#asm_syntax',1,'']]],
   ['associativity_54',['associativity',['../structriscv_1_1CacheConfig.html#a8d475c942ab49146d7280caed770794e',1,'riscv::CacheConfig']]],
-  ['attach_5fnic_55',['attach_nic',['../classriscv_1_1MultiCoreCPU.html#a9e3c9aa26ca5279e154141f92137f6c8',1,'riscv::MultiCoreCPU']]],
+  ['attach_5fnic_55',['attach_nic',['../classriscv_1_1Platform.html#ae8751edc46ede0f8396d5e27c283ed72',1,'riscv::Platform::attach_nic()'],['../classriscv_1_1MultiCoreCPU.html#a9e3c9aa26ca5279e154141f92137f6c8',1,'riscv::MultiCoreCPU::attach_nic()']]],
   ['auipc_56',['auipc',['../namespaceriscv.html#ab2f47fbabea19cd577ef7ab1dc9f3906a6235404c14f303c1857fa6c2889738e8',1,'riscv::AUIPC'],['../namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9a6235404c14f303c1857fa6c2889738e8',1,'riscv::AUIPC']]],
   ['available_57',['available',['../structriscv_1_1PipelinedCPU_1_1ForwardResult.html#adccaed7fb68250cd9d29b8479e7fe043',1,'riscv::PipelinedCPU::ForwardResult']]],
   ['avg_5flatency_58',['avg_latency',['../structriscv_1_1CacheHierarchy_1_1HierarchyStats.html#a76dfd5e8faff8006d82883d12dc0748e',1,'riscv::CacheHierarchy::HierarchyStats::avg_latency()'],['../structriscv_1_1CacheStats.html#a9a6124f40ecbba7451058be5af55363c',1,'riscv::CacheStats::avg_latency()']]],

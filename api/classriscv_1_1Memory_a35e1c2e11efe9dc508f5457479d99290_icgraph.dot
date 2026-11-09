@@ -24,4 +24,6 @@ digraph "riscv::Memory::write32"
   Node1 -> Node9 [id="edge9_Node000001_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node9 [id="Node000009",label="riscv::Executor::execute\l_vector",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1Executor.html#a403bdf50a5da798595afed5954f6d6d2",tooltip="Vector instruction dispatch."];
   Node9 -> Node2 [id="edge10_Node000009_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node10 [id="edge11_Node000001_Node000010",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node10 [id="Node000010",label="riscv::MMIOBus::write32",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MMIOBus.html#a35149a23f716db0a159472cff35f99df",tooltip=" "];
 }

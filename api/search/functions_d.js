@@ -11,14 +11,15 @@ var searchData=
   ['parse_5fmem_5foperand_8',['parse_mem_operand',['../classriscv_1_1Assembler.html#a9132d2a177275c9c05554cacd6ce203c',1,'riscv::Assembler']]],
   ['parse_5fregister_9',['parse_register',['../classriscv_1_1Assembler.html#a38bdc42e2e76679ebb4e346f0c986eda',1,'riscv::Assembler']]],
   ['parse_5fvreg_10',['parse_vreg',['../classriscv_1_1Assembler.html#a3cfb2ba53286655acb3e60d927ffb575',1,'riscv::Assembler']]],
-  ['pc_11',['pc',['../classriscv_1_1CPU.html#a0ca6cc87cfb2272c2275aba6a116ab3e',1,'riscv::CPU::pc()'],['../classriscv_1_1Executor.html#a60621d3c35ce69959ca771819d1bbce0',1,'riscv::Executor::pc()'],['../classriscv_1_1PipelinedCPU.html#a8e7c00cf73da9cc19f2ad28bcaad0628',1,'riscv::PipelinedCPU::pc()'],['../classriscv_1_1IllegalInstructionException.html#a33947319d2aa6175d601c986619b42c7',1,'riscv::IllegalInstructionException::pc()']]],
+  ['pc_11',['pc',['../classriscv_1_1Executor.html#a60621d3c35ce69959ca771819d1bbce0',1,'riscv::Executor::pc()'],['../classriscv_1_1IllegalInstructionException.html#a33947319d2aa6175d601c986619b42c7',1,'riscv::IllegalInstructionException::pc()'],['../classriscv_1_1CPU.html#a0ca6cc87cfb2272c2275aba6a116ab3e',1,'riscv::CPU::pc()'],['../classriscv_1_1PipelinedCPU.html#a8e7c00cf73da9cc19f2ad28bcaad0628',1,'riscv::PipelinedCPU::pc()']]],
   ['pending_5fcause_12',['pending_cause',['../classriscv_1_1CSRFile.html#aeeb158a9f4ef17ef24e11dd74fdbb1ca',1,'riscv::CSRFile']]],
   ['pipeline_5fempty_13',['pipeline_empty',['../classriscv_1_1PipelinedCPU.html#aed1a38cfe3dec71165251cbe519e8a8b',1,'riscv::PipelinedCPU']]],
   ['pipelinedcpu_14',['PipelinedCPU',['../classriscv_1_1PipelinedCPU.html#af2ef7d8ee4478457e1aa645e7a7bb343',1,'riscv::PipelinedCPU']]],
-  ['plic_15',['plic',['../classriscv_1_1PLIC.html#a263b68d5dbb995245711268ec272ed33',1,'riscv::PLIC::PLIC()'],['../classriscv_1_1MultiCoreCPU.html#a9e877ebce2b532f178b4b69a6b617e17',1,'riscv::MultiCoreCPU::plic()']]],
-  ['poll_5ftx_16',['poll_tx',['../classriscv_1_1NIC.html#a660e52650ea89028a452c3e2615a7627',1,'riscv::NIC']]],
-  ['predict_5fbranch_17',['predict_branch',['../classriscv_1_1PipelinedCPU.html#abfe3d3d8a513690e229ab65f3294ae58',1,'riscv::PipelinedCPU']]],
-  ['priority_18',['priority',['../classriscv_1_1PLIC.html#a61aa1b1412c6c294c550aad8843b0327',1,'riscv::PLIC']]],
-  ['process_5frx_5fqueue_19',['process_rx_queue',['../classriscv_1_1NIC.html#a88138af3432720324e80fd7b51fd84ad',1,'riscv::NIC']]],
-  ['process_5ftx_5fring_20',['process_tx_ring',['../classriscv_1_1NIC.html#a5aa044a603c013870f4ed1f905fbad2e',1,'riscv::NIC']]]
+  ['platform_15',['platform',['../classriscv_1_1Platform.html#a0a08e1785d6fb361dbc049d132b2c2c1',1,'riscv::Platform::Platform(PlatformConfig config={})'],['../classriscv_1_1Platform.html#a47b145f9408ce12bebbbfddb1bd7db07',1,'riscv::Platform::Platform(const Platform &amp;)=delete'],['../classriscv_1_1Platform.html#ab2b88caa120f672ebe23f568539bf8db',1,'riscv::Platform::Platform(Platform &amp;&amp;)=delete'],['../classriscv_1_1MultiCoreCPU.html#ae15abcca38e1bcd9d96c08ec8853a943',1,'riscv::MultiCoreCPU::platform()'],['../classriscv_1_1SingleCoreSystem.html#a1eb96a7ae52181d5f92accdd162e69a7',1,'riscv::SingleCoreSystem::platform()']]],
+  ['plic_16',['plic',['../classriscv_1_1PLIC.html#a97c425e330b62b5209b24cb5c3c7db71',1,'riscv::PLIC::PLIC()'],['../classriscv_1_1MultiCoreCPU.html#a9e877ebce2b532f178b4b69a6b617e17',1,'riscv::MultiCoreCPU::plic()'],['../classriscv_1_1Platform.html#abee5231411c68190f584c4f2ba063d85',1,'riscv::Platform::plic()']]],
+  ['poll_5ftx_17',['poll_tx',['../classriscv_1_1NIC.html#a660e52650ea89028a452c3e2615a7627',1,'riscv::NIC']]],
+  ['predict_5fbranch_18',['predict_branch',['../classriscv_1_1PipelinedCPU.html#abfe3d3d8a513690e229ab65f3294ae58',1,'riscv::PipelinedCPU']]],
+  ['priority_19',['priority',['../classriscv_1_1PLIC.html#a61aa1b1412c6c294c550aad8843b0327',1,'riscv::PLIC']]],
+  ['process_5frx_5fqueue_20',['process_rx_queue',['../classriscv_1_1NIC.html#a88138af3432720324e80fd7b51fd84ad',1,'riscv::NIC']]],
+  ['process_5ftx_5fring_21',['process_tx_ring',['../classriscv_1_1NIC.html#a5aa044a603c013870f4ed1f905fbad2e',1,'riscv::NIC']]]
 ];

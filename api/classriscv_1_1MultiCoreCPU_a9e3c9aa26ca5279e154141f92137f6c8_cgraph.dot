@@ -5,13 +5,7 @@ digraph "riscv::MultiCoreCPU::attach_nic"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node1 [id="Node000001",label="riscv::MultiCoreCPU\l::attach_nic",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Attch a nic: maps into the address space and wires its interrupt to the PLIC."];
+  Node1 [id="Node000001",label="riscv::MultiCoreCPU\l::attach_nic",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="riscv::MultiCoreCPU::nic",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MultiCoreCPU.html#a4133a300ece5b25cd6824ff51f09c419",tooltip=" "];
-  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
-  Node3 [id="Node000003",label="riscv::PLIC::set_pending",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1PLIC.html#af3c524f465d5b47d0808fa9d5a7d34bf",tooltip="Assert an interrupt from source source (1-31)."];
-  Node3 -> Node4 [id="edge3_Node000003_Node000004",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="riscv::PLIC::notify",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1PLIC.html#affe0ddaa669c86d85392c3bad02e744c",tooltip="Evaluate priority tree and invoke notify callback."];
-  Node4 -> Node5 [id="edge4_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
-  Node5 [id="Node000005",label="riscv::PLIC::interrupt\l_pending",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1PLIC.html#a5b314f85770dd8c224c5067759d395d2",tooltip=" "];
 }

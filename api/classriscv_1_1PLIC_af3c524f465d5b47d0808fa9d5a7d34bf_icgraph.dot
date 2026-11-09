@@ -7,5 +7,5 @@ digraph "riscv::PLIC::set_pending"
   rankdir="RL";
   Node1 [id="Node000001",label="riscv::PLIC::set_pending",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Assert an interrupt from source source (1-31)."];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="riscv::MultiCoreCPU\l::attach_nic",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MultiCoreCPU.html#a9e3c9aa26ca5279e154141f92137f6c8",tooltip="Attch a nic: maps into the address space and wires its interrupt to the PLIC."];
+  Node2 [id="Node000002",label="riscv::Platform::attach_nic",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1Platform.html#ae8751edc46ede0f8396d5e27c283ed72",tooltip=" "];
 }

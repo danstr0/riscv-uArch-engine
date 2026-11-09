@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['base_0',['base',['../structriscv_1_1SparseMemory_1_1Range.html#a38c408d00b64bebb28aa8e57032c74cc',1,'riscv::SparseMemory::Range::base'],['../structriscv_1_1MMIOBus_1_1Region.html#adc44435a4e3c87c738fde355b244b4d6',1,'riscv::MMIOBus::Region::base']]],
+  ['base_0',['base',['../structriscv_1_1Platform_1_1Region.html#a865767c367d5e9ca72c07a4ac87ad5c0',1,'riscv::Platform::Region::base'],['../structriscv_1_1SparseMemory_1_1Range.html#a38c408d00b64bebb28aa8e57032c74cc',1,'riscv::SparseMemory::Range::base'],['../structriscv_1_1MMIOBus_1_1Region.html#adc44435a4e3c87c738fde355b244b4d6',1,'riscv::MMIOBus::Region::base']]],
   ['base_5faddr_1',['base_addr',['../structriscv_1_1DescriptorRing.html#ad0d7b2376f3a05985608f0db9742c37c',1,'riscv::DescriptorRing']]],
   ['base_5faddr_5f_2',['base_addr_',['../classriscv_1_1FlatMemory.html#a2e431a858327c2458cc2ead1058a8062',1,'riscv::FlatMemory']]],
   ['bht_5f_3',['bht_',['../classriscv_1_1PipelinedCPU.html#ab492aa53e1fb189db449ba69b6b98db7',1,'riscv::PipelinedCPU']]],
@@ -16,6 +16,7 @@ var searchData=
   ['bubbles_13',['bubbles',['../structriscv_1_1PipelineStats.html#a4a910b1fcb0deedd8442d28ad8383f19',1,'riscv::PipelineStats']]],
   ['buffer_5faddr_14',['buffer_addr',['../structriscv_1_1RxDescriptor.html#af5b850891418ffd808b1315d88d3c84c',1,'riscv::RxDescriptor::buffer_addr'],['../structriscv_1_1TxDescriptor.html#a6d5ee709f5691cd370b960feba229656',1,'riscv::TxDescriptor::buffer_addr']]],
   ['buffer_5faddr_5fhi_15',['buffer_addr_hi',['../structriscv_1_1RxDescriptor.html#af10db1625a9130e3b9f8aca275495b36',1,'riscv::RxDescriptor::buffer_addr_hi'],['../structriscv_1_1TxDescriptor.html#adceda37995c38a73c806cd4b93ddd312',1,'riscv::TxDescriptor::buffer_addr_hi']]],
-  ['buses_5f_16',['buses_',['../classriscv_1_1MultiCoreCPU.html#a28e13eb993b2f113a9afd43d7e9ee6c7',1,'riscv::MultiCoreCPU']]],
-  ['bytes_17',['bytes',['../structriscv_1_1MemInitEntry.html#afe7c1823b8b852e37199095d23f09c10',1,'riscv::MemInitEntry']]]
+  ['bus_5f_16',['bus_',['../classriscv_1_1SingleCoreSystem.html#a32a604863c6b894cb9eab31d82c47152',1,'riscv::SingleCoreSystem']]],
+  ['buses_5f_17',['buses_',['../classriscv_1_1MultiCoreCPU.html#a28e13eb993b2f113a9afd43d7e9ee6c7',1,'riscv::MultiCoreCPU::buses_'],['../classriscv_1_1Platform.html#a1927a0a5fd66a11d372613419617d7ff',1,'riscv::Platform::buses_']]],
+  ['bytes_18',['bytes',['../structriscv_1_1MemInitEntry.html#afe7c1823b8b852e37199095d23f09c10',1,'riscv::MemInitEntry']]]
 ];

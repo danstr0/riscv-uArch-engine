@@ -2,7 +2,7 @@ var searchData=
 [
   ['b_0',['B',['../namespaceriscv.html#a57f41448525998d8e18c1bc40c8e42f8a9d5ed678fe57bcca610140957afab571',1,'riscv']]],
   ['backward_5ftaken_1',['BACKWARD_TAKEN',['../namespaceriscv.html#a9c0b96a86baddcbb496601a3bb40f185a9a57f0a5f4d1dedd3816c9fd7adbacbf',1,'riscv']]],
-  ['base_2',['base',['../structriscv_1_1SparseMemory_1_1Range.html#a38c408d00b64bebb28aa8e57032c74cc',1,'riscv::SparseMemory::Range::base'],['../classriscv_1_1FlatMemory.html#aef2fd3439db149c571524f54e0db3c39',1,'riscv::FlatMemory::base()'],['../structriscv_1_1MMIOBus_1_1Region.html#adc44435a4e3c87c738fde355b244b4d6',1,'riscv::MMIOBus::Region::base']]],
+  ['base_2',['base',['../structriscv_1_1Platform_1_1Region.html#a865767c367d5e9ca72c07a4ac87ad5c0',1,'riscv::Platform::Region::base'],['../structriscv_1_1SparseMemory_1_1Range.html#a38c408d00b64bebb28aa8e57032c74cc',1,'riscv::SparseMemory::Range::base'],['../classriscv_1_1FlatMemory.html#aef2fd3439db149c571524f54e0db3c39',1,'riscv::FlatMemory::base()'],['../structriscv_1_1MMIOBus_1_1Region.html#adc44435a4e3c87c738fde355b244b4d6',1,'riscv::MMIOBus::Region::base']]],
   ['base_5faddr_3',['base_addr',['../structriscv_1_1DescriptorRing.html#ad0d7b2376f3a05985608f0db9742c37c',1,'riscv::DescriptorRing']]],
   ['base_5faddr_5f_4',['base_addr_',['../classriscv_1_1FlatMemory.html#a2e431a858327c2458cc2ead1058a8062',1,'riscv::FlatMemory']]],
   ['beq_5',['BEQ',['../namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9a499629ce03b097953665c430ea737f6f',1,'riscv']]],
@@ -34,7 +34,9 @@ var searchData=
   ['bubbles_31',['bubbles',['../structriscv_1_1PipelineStats.html#a4a910b1fcb0deedd8442d28ad8383f19',1,'riscv::PipelineStats']]],
   ['buffer_5faddr_32',['buffer_addr',['../structriscv_1_1TxDescriptor.html#a6d5ee709f5691cd370b960feba229656',1,'riscv::TxDescriptor::buffer_addr'],['../structriscv_1_1RxDescriptor.html#af5b850891418ffd808b1315d88d3c84c',1,'riscv::RxDescriptor::buffer_addr']]],
   ['buffer_5faddr_5fhi_33',['buffer_addr_hi',['../structriscv_1_1TxDescriptor.html#adceda37995c38a73c806cd4b93ddd312',1,'riscv::TxDescriptor::buffer_addr_hi'],['../structriscv_1_1RxDescriptor.html#af10db1625a9130e3b9f8aca275495b36',1,'riscv::RxDescriptor::buffer_addr_hi']]],
-  ['buses_5f_34',['buses_',['../classriscv_1_1MultiCoreCPU.html#a28e13eb993b2f113a9afd43d7e9ee6c7',1,'riscv::MultiCoreCPU']]],
-  ['bytes_35',['bytes',['../structriscv_1_1MemInitEntry.html#afe7c1823b8b852e37199095d23f09c10',1,'riscv::MemInitEntry::bytes'],['../structriscv_1_1MemInitEntry.html#a02e1ec5533e1a9bf385d17dc2684fee2a9f1908a641ea399fd2e76f0905c88fcf',1,'riscv::MemInitEntry::BYTES']]],
-  ['bytes_5fallocated_36',['bytes_allocated',['../classriscv_1_1SparseMemory.html#af75893947fea0a35a6ade1d54f63b739',1,'riscv::SparseMemory']]]
+  ['bus_34',['bus',['../classriscv_1_1SingleCoreSystem.html#a9ac5999777b5fe6e97c9f1584627b7a7',1,'riscv::SingleCoreSystem']]],
+  ['bus_5f_35',['bus_',['../classriscv_1_1SingleCoreSystem.html#a32a604863c6b894cb9eab31d82c47152',1,'riscv::SingleCoreSystem']]],
+  ['buses_5f_36',['buses_',['../classriscv_1_1Platform.html#a1927a0a5fd66a11d372613419617d7ff',1,'riscv::Platform::buses_'],['../classriscv_1_1MultiCoreCPU.html#a28e13eb993b2f113a9afd43d7e9ee6c7',1,'riscv::MultiCoreCPU::buses_']]],
+  ['bytes_37',['bytes',['../structriscv_1_1MemInitEntry.html#a02e1ec5533e1a9bf385d17dc2684fee2a9f1908a641ea399fd2e76f0905c88fcf',1,'riscv::MemInitEntry::BYTES'],['../structriscv_1_1MemInitEntry.html#afe7c1823b8b852e37199095d23f09c10',1,'riscv::MemInitEntry::bytes']]],
+  ['bytes_5fallocated_38',['bytes_allocated',['../classriscv_1_1SparseMemory.html#af75893947fea0a35a6ade1d54f63b739',1,'riscv::SparseMemory']]]
 ];

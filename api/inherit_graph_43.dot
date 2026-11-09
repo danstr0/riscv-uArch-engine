@@ -5,5 +5,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [id="Node000000",label="riscv::PipelineReg",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structriscv_1_1PipelineReg.html",tooltip="State held in the latch between two pipeline stages."];
+  Node0 [id="Node000000",label="riscv::PipelinedCPU\l::ForwardResult",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structriscv_1_1PipelinedCPU_1_1ForwardResult.html",tooltip=" "];
 }

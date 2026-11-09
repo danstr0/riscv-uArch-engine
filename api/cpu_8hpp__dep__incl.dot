@@ -7,4 +7,6 @@ digraph "src/core/cpu.hpp"
   Node1 [id="Node000001",label="src/core/cpu.hpp",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Top-level single-cycle RISC-V hart controller."];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="src/core/cpu.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$cpu_8cpp.html",tooltip="Implementation of the top-level CPU fetch-decode-execute loop."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="src/core/system.hpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$system_8hpp.html",tooltip="A complete single-hart system."];
 }

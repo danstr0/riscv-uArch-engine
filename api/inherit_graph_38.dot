@@ -5,5 +5,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [id="Node000000",label="riscv::NicTiming",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structriscv_1_1NicTiming.html",tooltip="DMA and bus timing parameters."];
+  Node0 [id="Node000000",label="riscv::NicStats",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structriscv_1_1NicStats.html",tooltip="NIC performance counters."];
 }

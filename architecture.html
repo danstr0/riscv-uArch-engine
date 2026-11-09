@@ -68,7 +68,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#multi-core-system">Multi-Core System</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cache-modes">Cache modes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mesi-coherence-protocol">MESI coherence protocol</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#device-mmio">Device MMIO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#platform-and-device-mmio">Platform and device MMIO</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#devices">Devices</a></li>
 </ul>
 </li>
@@ -269,21 +269,40 @@ of control/status registers. <code class="docutils literal notranslate"><span cl
 <td><p>0x305</p></td>
 <td><p>Trap vector base address</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mepc</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mscratch</span></code></p></td>
+<td><p>0x340</p></td>
+<td><p>Scratch register for trap handlers</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mepc</span></code></p></td>
 <td><p>0x341</p></td>
 <td><p>Exception PC (saved on trap entry)</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mcause</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mcause</span></code></p></td>
 <td><p>0x342</p></td>
 <td><p>Trap cause code</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mip</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mip</span></code></p></td>
 <td><p>0x344</p></td>
-<td><p>Pending interrupt bits</p></td>
+<td><p>Pending interrupt bits (read-only)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mhartid</span></code></p></td>
+<td><p>0xF14</p></td>
+<td><p>Hart ID (read-only)</p></td>
 </tr>
 </tbody>
 </table>
-<p>Interrupt priority: external (MEIE) &gt; timer (MTIE) &gt; software (MSIE).</p>
+<p><code class="docutils literal notranslate"><span class="pre">mtvec</span></code> supports both MODE values: direct (all traps to BASE) and
+vectored (interrupts to BASE + 4 × cause). Reserved MODE values read back
+as direct</p>
+<p>Interrupt priority follows the privileged spec: external (MEI) &gt; software
+(MSI) &gt; timer (MTI).</p>
+<p>Interrupts are precise on both core models. The single-cycle CPU takes
+them between instructions. The pipeline takes them at the EX boundary:
+instructions in MEM and WB complete, the instructions in EX/ID/IF are
+squashed, and <code class="docutils literal notranslate"><span class="pre">mepc</span></code> holds the oldest squashed instruction, so <code class="docutils literal notranslate"><span class="pre">mret</span></code>
+resumes exactly where the program was interrupted.</p>
+<p>The CSR pseudo-instructions <code class="docutils literal notranslate"><span class="pre">csrr</span></code>, <code class="docutils literal notranslate"><span class="pre">csrw</span></code>, <code class="docutils literal notranslate"><span class="pre">csrs</span></code>, <code class="docutils literal notranslate"><span class="pre">csrc</span></code>,
+<code class="docutils literal notranslate"><span class="pre">csrwi</span></code>, <code class="docutils literal notranslate"><span class="pre">csrsi</span></code>, and <code class="docutils literal notranslate"><span class="pre">csrci</span></code> are supported by the assembler.</p>
 </section>
 </section>
 <section id="pipeline">
@@ -484,9 +503,11 @@ for isolating pipeline effects in benchmarks).</p>
 <h2>Multi-Core System<a class="headerlink" href="#multi-core-system" title="Link to this heading"></a></h2>
 <p>The multi-core system connects N pipelined cores through a shared
 memory hierarchy with hardware cache coherence.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Core 0 → MMIOBus → L1d[0] ──┐
-                            ├── Coherence Controller → L2 → L3 → Main Memory
-Core 1 → MMIOBus → L1d[1] ──┘
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Core 0 → MMIOBus ─┬─ RAM range → L1d[0] ──┐
+                  └─ devices (CLINT, PLIC, NIC)
+                                          ├── Coherence Controller → L2 → L3 → RAM
+Core 1 → MMIOBus ─┬─ RAM range → L1d[1] ──┘
+                  └─ devices
 </pre></div>
 </div>
 <section id="cache-modes">
@@ -540,59 +561,70 @@ before writing.</p></td>
 <li><p>invalidation = 2 cycles</p></li>
 </ul>
 </section>
-<section id="device-mmio">
-<h3>Device MMIO<a class="headerlink" href="#device-mmio" title="Link to this heading"></a></h3>
-<p>Devices are memory-mapped immediately above main memory at
-page-aligned addresses:</p>
+<section id="platform-and-device-mmio">
+<h3>Platform and device MMIO<a class="headerlink" href="#platform-and-device-mmio" title="Link to this heading"></a></h3>
+<p>All core models — the single-cycle CPU, the pipelined CPU, and the
+multi-core system — run on the same platform, which owns RAM, the devices,
+the physical memory map, and the interrupt wiring. Devices sit at fixed
+addresses that follow the common SiFive / QEMU <code class="docutils literal notranslate"><span class="pre">virt</span></code> layout and do not
+depend on RAM size:</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 20.0%" />
-<col style="width: 50.0%" />
-<col style="width: 30.0%" />
+<col style="width: 20.0%" />
+<col style="width: 60.0%" />
 </colgroup>
 <thead>
-<tr class="row-odd"><th class="head"><p>Offset</p></th>
-<th class="head"><p>Device</p></th>
+<tr class="row-odd"><th class="head"><p>Base</p></th>
 <th class="head"><p>Size</p></th>
+<th class="head"><p>Region</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>+0x0000</p></td>
-<td><p>PLIC (interrupt controller)</p></td>
-<td><p>8 KiB</p></td>
+<tr class="row-even"><td><p>+0x0000_0000</p></td>
+<td><p>RAM size</p></td>
+<td><p>RAM (demand-allocated; base is configurable)</p></td>
 </tr>
-<tr class="row-odd"><td><p>+0x1000</p></td>
-<td><p>Timer (CLINT-style)</p></td>
-<td><p>16 bytes</p></td>
+<tr class="row-odd"><td><p>0x0200_0000</p></td>
+<td><p>64 KiB</p></td>
+<td><p>CLINT: <code class="docutils literal notranslate"><span class="pre">msip[h]</span></code> at +0x0 _ 4·h, <code class="docutils literal notranslate"><span class="pre">mtimecmp[h]</span></code> at +0x4000 + 8·h,
+<code class="docutils literal notranslate"><span class="pre">mtime</span></code> at +0xBFF8</p></td>
 </tr>
-<tr class="row-even"><td><p>+0x2000</p></td>
-<td><p>NIC (network interface)</p></td>
-<td><p>256 bytes</p></td>
+<tr class="row-even"><td><p>0x0C00_0000</p></td>
+<td><p>64 MiB</p></td>
+<td><p>PLIC: priorities at +0x0, pending at +0x1000, enables at
++0x2000 + 0x80·h, threshold / claim at +0x200000 + 0x1000·h</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x1000_0000</p></td>
+<td><p>4 KiB</p></td>
+<td><p>NIC (only when a NIC is attached)</p></td>
 </tr>
 </tbody>
 </table>
-<p>The device base address is computed as
-<code class="docutils literal notranslate"><span class="pre">align_up(main_memory_size,</span> <span class="pre">0x1000)</span></code>. For 64 KiB memory, devices
-start at 0x10000.  MMIO accesses bypass the cache entirely — the
-per-core MMIO bus routes device addresses to the device objects
-directly, and only non-device addresses pass through to the L1 cache.</p>
+<p>With RAM at address 0, RAM can be at most 32 MiB before it would overlap
+the CLINT; the config validator enforces this. Accesses that hit no region
+fault. Device accesses bypass the caches: each hart’s bus routes device
+addresses straight to the device, and only the RAM range is forwarded to
+the hart’s L1 (or to RAM when caches are disabled).</p>
 </section>
 <section id="devices">
 <h3>Devices<a class="headerlink" href="#devices" title="Link to this heading"></a></h3>
 <ul class="simple">
-<li><p><strong>PLIC (Platform-Level Interrupt Controller)</strong> — routes external
-interrupt sources to cores.  Supports up to 31 sources with
-priority-based arbitration.  A source becomes pending, the core
-claims it (masking further interrupts from that source), services
-it, then completes the claim.</p></li>
-<li><p><strong>Timer (CLINT-style)</strong> — 64-bit free-running <code class="docutils literal notranslate"><span class="pre">mtime</span></code> counter
-incremented every cycle.  When <code class="docutils literal notranslate"><span class="pre">mtime</span> <span class="pre">≥</span> <span class="pre">mtimecmp</span></code>, a timer
-interrupt is raised on all cores (via <code class="docutils literal notranslate"><span class="pre">mip.MTIP</span></code>).</p></li>
+<li><p><strong>PLIC (Platform-Level Interrupt Controller)</strong> — routes up to 31
+external interrupt sources with priority-based arbitration. Each hart
+has its own M-mode context (enable bits, threshold, claim/complete), so
+external interrupts reach only the harts that enabled them.</p></li>
+<li><p><strong>CLINT (Core-Local Interruptor)</strong> — a shared 64-bit <code class="docutils literal notranslate"><span class="pre">mtime</span></code>
+counter, plus a per-hart <code class="docutils literal notranslate"><span class="pre">mtimecmp</span></code> (drives that hart’s <code class="docutils literal notranslate"><span class="pre">mip.MTIP</span></code>)
+and a per-hart <code class="docutils literal notranslate"><span class="pre">msip</span></code> (drivse <code class="docutils literal notranslate"><span class="pre">mip.MSIP</span></code>, for inter-processor
+interrupts). <code class="docutils literal notranslate"><span class="pre">mtime</span></code> advances once per core cycle by default; a
+timebase divider can make it slower than the core clock.</p></li>
 <li><p><strong>NIC (Network Interface Controller)</strong> — cycle-accurate DMA-based
 NIC with descriptor rings, interrupt coalescing, and RSS
 (Receive Side Scaling) for multi-queue packet distribution.
 Supports up to 8 RX/TX queues with configurable coalescing
-thresholds (packet count and timer-based).</p></li>
+thresholds (packet count and timer-based). NIC DMA reads and writes
+RAM directly and is not yet coherent with CPU caches.</p></li>
 </ul>
 </section>
 </section>

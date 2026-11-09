@@ -144,6 +144,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a32e0fafe084317f2219c840e5ec6cc22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6593e8fd273b41faadea12f15525a73" id="r_ae6593e8fd273b41faadea12f15525a73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#ae6593e8fd273b41faadea12f15525a73">set_trace</a> (bool enable) noexcept</td></tr>
 <tr class="separator:ae6593e8fd273b41faadea12f15525a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f5b500b1b5320de786c362c9ff1b61b" id="r_a3f5b500b1b5320de786c362c9ff1b61b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classriscv_1_1CSRFile.html">CSRFile</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#a3f5b500b1b5320de786c362c9ff1b61b">csrs</a> () const noexcept</td></tr>
+<tr class="separator:a3f5b500b1b5320de786c362c9ff1b61b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50fc34d06f9db45a278d40ea0f384c82" id="r_a50fc34d06f9db45a278d40ea0f384c82"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classriscv_1_1CSRFile.html">CSRFile</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#a50fc34d06f9db45a278d40ea0f384c82">csrs</a> () noexcept</td></tr>
+<tr class="separator:a50fc34d06f9db45a278d40ea0f384c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d7cceb2dc9fb3e71214f605ce308f92" id="r_a5d7cceb2dc9fb3e71214f605ce308f92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#a5d7cceb2dc9fb3e71214f605ce308f92">interrupts_taken</a> () const noexcept</td></tr>
+<tr class="memdesc:a5d7cceb2dc9fb3e71214f605ce308f92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of interupts taken.  <br /></td></tr>
+<tr class="separator:a5d7cceb2dc9fb3e71214f605ce308f92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f3e115805ea57a98377fc692767fe22" id="r_a7f3e115805ea57a98377fc692767fe22"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classriscv_1_1Memory.html">Memory</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#a7f3e115805ea57a98377fc692767fe22">memory</a> () noexcept</td></tr>
 <tr class="separator:a7f3e115805ea57a98377fc692767fe22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b67c30b6f98a2a0370bf7b90d87d012" id="r_a3b67c30b6f98a2a0370bf7b90d87d012"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classriscv_1_1Memory.html">Memory</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#a3b67c30b6f98a2a0370bf7b90d87d012">memory</a> () const noexcept</td></tr>
@@ -161,6 +168,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:aa6bf849d69e6e12af76248c900a45b07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7753981ee59e4bb0307a4241366448a5" id="r_a7753981ee59e4bb0307a4241366448a5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#a7753981ee59e4bb0307a4241366448a5">halted_</a> = false</td></tr>
 <tr class="separator:a7753981ee59e4bb0307a4241366448a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14634288002d73406d69287c509aa896" id="r_a14634288002d73406d69287c509aa896"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#a14634288002d73406d69287c509aa896">interrupts_taken_</a> = 0</td></tr>
+<tr class="separator:a14634288002d73406d69287c509aa896"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Single-cycle RISC-V <a class="el" href="classriscv_1_1CPU.html" title="Single-cycle RISC-V CPU implementing fetch-decode-execute.">CPU</a> implementing fetch-decode-execute. </p>
@@ -192,6 +201,71 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3f5b500b1b5320de786c362c9ff1b61b" name="a3f5b500b1b5320de786c362c9ff1b61b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f5b500b1b5320de786c362c9ff1b61b">&#9670;&#160;</a></span>csrs() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classriscv_1_1CSRFile.html">CSRFile</a> &amp; riscv::CPU::csrs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classriscv_1_1CPU_a3f5b500b1b5320de786c362c9ff1b61b_cgraph.png" border="0" usemap="#aclassriscv_1_1CPU_a3f5b500b1b5320de786c362c9ff1b61b_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classriscv_1_1CPU_a3f5b500b1b5320de786c362c9ff1b61b_icgraph.png" border="0" usemap="#aclassriscv_1_1CPU_a3f5b500b1b5320de786c362c9ff1b61b_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a50fc34d06f9db45a278d40ea0f384c82" name="a50fc34d06f9db45a278d40ea0f384c82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50fc34d06f9db45a278d40ea0f384c82">&#9670;&#160;</a></span>csrs() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classriscv_1_1CSRFile.html">CSRFile</a> &amp; riscv::CPU::csrs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classriscv_1_1CPU_a50fc34d06f9db45a278d40ea0f384c82_cgraph.png" border="0" usemap="#aclassriscv_1_1CPU_a50fc34d06f9db45a278d40ea0f384c82_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
 <a id="afd54567197073d711d24dbc1a8d69916" name="afd54567197073d711d24dbc1a8d69916"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afd54567197073d711d24dbc1a8d69916">&#9670;&#160;</a></span>cycles()</h2>
 
@@ -304,6 +378,33 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classriscv_1_1CPU_aba9646828b81137ce14995c4892c9ab5_cgraph.png" border="0" usemap="#aclassriscv_1_1CPU_aba9646828b81137ce14995c4892c9ab5_cgraph" alt=""/></div>
 </div>
+
+</div>
+</div>
+<a id="a5d7cceb2dc9fb3e71214f605ce308f92" name="a5d7cceb2dc9fb3e71214f605ce308f92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d7cceb2dc9fb3e71214f605ce308f92">&#9670;&#160;</a></span>interrupts_taken()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a> riscv::CPU::interrupts_taken </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of interupts taken. </p>
 
 </div>
 </div>
@@ -827,6 +928,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Executes a single instruction. Returns <code>false</code> if halted. </p>
+<p>Pending, enabled interrupts are taken at the instruction boundary before fetch: <code>mepc</code> receives the PC of the not-yet-executed instruction and execution continues at the <code>mtvec</code> handler. </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -874,6 +976,28 @@ Here is the caller graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname">bool riscv::CPU::halted_ = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a14634288002d73406d69287c509aa896" name="a14634288002d73406d69287c509aa896"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14634288002d73406d69287c509aa896">&#9670;&#160;</a></span>interrupts_taken_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a> riscv::CPU::interrupts_taken_ = 0</td>
         </tr>
       </table>
   </td>

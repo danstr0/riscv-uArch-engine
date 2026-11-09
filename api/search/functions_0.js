@@ -26,7 +26,7 @@ var searchData=
   ['apply_5fconfig_5fparam_23',['apply_config_param',['../namespaceriscv.html#af9d944ed52a985ec6876b597e1d2d9e9',1,'riscv']]],
   ['assemble_24',['assemble',['../classriscv_1_1Assembler.html#a130d1c5645b39d233ff12bc92a03febc',1,'riscv::Assembler']]],
   ['assemble_5flines_25',['assemble_lines',['../classriscv_1_1Assembler.html#a3c1fba5e556e25396b3d71cdc19637a9',1,'riscv::Assembler']]],
-  ['attach_5fnic_26',['attach_nic',['../classriscv_1_1MultiCoreCPU.html#a9e3c9aa26ca5279e154141f92137f6c8',1,'riscv::MultiCoreCPU']]],
+  ['attach_5fnic_26',['attach_nic',['../classriscv_1_1MultiCoreCPU.html#a9e3c9aa26ca5279e154141f92137f6c8',1,'riscv::MultiCoreCPU::attach_nic()'],['../classriscv_1_1Platform.html#ae8751edc46ede0f8396d5e27c283ed72',1,'riscv::Platform::attach_nic()']]],
   ['avg_5flatency_27',['avg_latency',['../structriscv_1_1CacheStats.html#a9a6124f40ecbba7451058be5af55363c',1,'riscv::CacheStats::avg_latency()'],['../structriscv_1_1CacheHierarchy_1_1HierarchyStats.html#a76dfd5e8faff8006d82883d12dc0748e',1,'riscv::CacheHierarchy::HierarchyStats::avg_latency()']]],
   ['avg_5frx_5flatency_28',['avg_rx_latency',['../structriscv_1_1NicStats.html#a6edcfc12f1b81d138a473713196851fc',1,'riscv::NicStats']]]
 ];

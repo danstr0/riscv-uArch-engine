@@ -21,5 +21,7 @@ digraph "riscv::Memory::write8"
   Node6 -> Node8 [id="edge7_Node000006_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node8 [id="Node000008",label="riscv::CPU::run_until_pc",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1CPU.html#a717c7629e59857e644cbafec837143a6",tooltip="Run until PC equals target."];
   Node1 -> Node9 [id="edge8_Node000001_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node9 [id="Node000009",label="riscv::Memory::write_line",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1Memory.html#a6e12ceb80395884bbbae359e84a862ef",tooltip="Bulk write from a buffer."];
+  Node9 [id="Node000009",label="riscv::MMIOBus::write8",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MMIOBus.html#a684908addea96bde495086c695d915ea",tooltip=" "];
+  Node1 -> Node10 [id="edge9_Node000001_Node000010",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node10 [id="Node000010",label="riscv::Memory::write_line",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1Memory.html#a6e12ceb80395884bbbae359e84a862ef",tooltip="Bulk write from a buffer."];
 }

@@ -93,6 +93,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a00f0ec70a516648c4410806742762127" id="r_a00f0ec70a516648c4410806742762127"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CSRFile.html#a00f0ec70a516648c4410806742762127">reset</a> () noexcept</td></tr>
 <tr class="memdesc:a00f0ec70a516648c4410806742762127"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset all CSRs to architectural power-on defaults.  <br /></td></tr>
 <tr class="separator:a00f0ec70a516648c4410806742762127"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81d42da9124f06dc9fbb8b3ec7da04c3" id="r_a81d42da9124f06dc9fbb8b3ec7da04c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CSRFile.html#a81d42da9124f06dc9fbb8b3ec7da04c3">set_hartid</a> (<a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> id) noexcept</td></tr>
+<tr class="memdesc:a81d42da9124f06dc9fbb8b3ec7da04c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the read-only <code>mhartid</code> value.  <br /></td></tr>
+<tr class="separator:a81d42da9124f06dc9fbb8b3ec7da04c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Architectural interface - software-driven CSR access</div></td></tr>
 <tr class="memitem:ab289f3618bbdf4c7c92ed511f8d41073" id="r_ab289f3618bbdf4c7c92ed511f8d41073"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CSRFile.html#ab289f3618bbdf4c7c92ed511f8d41073">read</a> (<a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> addr) const noexcept</td></tr>
 <tr class="memdesc:ab289f3618bbdf4c7c92ed511f8d41073"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a CSR value. Returns <code>0</code> for unimplemented addresses.  <br /></td></tr>
@@ -108,6 +111,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9f2d0b2d5dbde640f0fac02e7fa7e8da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeeb158a9f4ef17ef24e11dd74fdbb1ca" id="r_aeeb158a9f4ef17ef24e11dd74fdbb1ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CSRFile.html#aeeb158a9f4ef17ef24e11dd74fdbb1ca">pending_cause</a> () const noexcept</td></tr>
 <tr class="separator:aeeb158a9f4ef17ef24e11dd74fdbb1ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5644b37a9eb07e4d43752e3c282fb0b3" id="r_a5644b37a9eb07e4d43752e3c282fb0b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CSRFile.html#a5644b37a9eb07e4d43752e3c282fb0b3">trap_target</a> (<a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> cause) const noexcept</td></tr>
+<tr class="memdesc:a5644b37a9eb07e4d43752e3c282fb0b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handler address for a trap with the given <code>cause</code>.  <br /></td></tr>
+<tr class="separator:a5644b37a9eb07e4d43752e3c282fb0b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a4cf00e87914a87ba2b2ee2353e40da" id="r_a0a4cf00e87914a87ba2b2ee2353e40da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CSRFile.html#a0a4cf00e87914a87ba2b2ee2353e40da">enter_trap</a> (<a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a> pc, <a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> cause) noexcept</td></tr>
 <tr class="memdesc:a0a4cf00e87914a87ba2b2ee2353e40da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enter a trap: save MIE to MPIE, disable interrupts, record PC and cause.  <br /></td></tr>
 <tr class="separator:a0a4cf00e87914a87ba2b2ee2353e40da"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,6 +139,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab21691c1f3828c84c53b341591f526df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae097851d99953d20d27f6ffbd5e1aa97" id="r_ae097851d99953d20d27f6ffbd5e1aa97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CSRFile.html#ae097851d99953d20d27f6ffbd5e1aa97">mcause</a> () const noexcept</td></tr>
 <tr class="separator:ae097851d99953d20d27f6ffbd5e1aa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33714e76517de0ef358c3a6b2f71d861" id="r_a33714e76517de0ef358c3a6b2f71d861"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CSRFile.html#a33714e76517de0ef358c3a6b2f71d861">mscratch</a> () const noexcept</td></tr>
+<tr class="separator:a33714e76517de0ef358c3a6b2f71d861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9abaf0112e5e0b0e7e70e6bf4862db97" id="r_a9abaf0112e5e0b0e7e70e6bf4862db97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CSRFile.html#a9abaf0112e5e0b0e7e70e6bf4862db97">mhartid</a> () const noexcept</td></tr>
+<tr class="separator:a9abaf0112e5e0b0e7e70e6bf4862db97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -142,12 +152,16 @@ Private Attributes</h2></td></tr>
 <tr class="separator:add19b1d054f933df2827499cf1c0cb5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3ff9b0127d31634a5c9d1e71d5f29c8" id="r_ad3ff9b0127d31634a5c9d1e71d5f29c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CSRFile.html#ad3ff9b0127d31634a5c9d1e71d5f29c8">mtvec_</a> = 0</td></tr>
 <tr class="separator:ad3ff9b0127d31634a5c9d1e71d5f29c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3a29e9a310300cbe009a7f0e7b3815c" id="r_ae3a29e9a310300cbe009a7f0e7b3815c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CSRFile.html#ae3a29e9a310300cbe009a7f0e7b3815c">mscratch_</a> = 0</td></tr>
+<tr class="separator:ae3a29e9a310300cbe009a7f0e7b3815c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a818c9b9ec47e37b6e5638a0de3bf6ce8" id="r_a818c9b9ec47e37b6e5638a0de3bf6ce8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CSRFile.html#a818c9b9ec47e37b6e5638a0de3bf6ce8">mepc_</a> = 0</td></tr>
 <tr class="separator:a818c9b9ec47e37b6e5638a0de3bf6ce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae25177f5720b1c6a8f804c3c41890230" id="r_ae25177f5720b1c6a8f804c3c41890230"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CSRFile.html#ae25177f5720b1c6a8f804c3c41890230">mcause_</a> = 0</td></tr>
 <tr class="separator:ae25177f5720b1c6a8f804c3c41890230"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac438e67cba50e8129106685d9f0292a2" id="r_ac438e67cba50e8129106685d9f0292a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CSRFile.html#ac438e67cba50e8129106685d9f0292a2">mip_</a> = 0</td></tr>
 <tr class="separator:ac438e67cba50e8129106685d9f0292a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb87143a2be11c66444520ebd0910d09" id="r_abb87143a2be11c66444520ebd0910d09"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CSRFile.html#abb87143a2be11c66444520ebd0910d09">mhartid_</a> = 0</td></tr>
+<tr class="separator:abb87143a2be11c66444520ebd0910d09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Container for machine-mode CSR state. </p>
@@ -209,11 +223,6 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Deassert an interrupt-pending bit in <code>mip</code>. </p>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classriscv_1_1CSRFile_a26346d1b963350b5bb22920b5133a63a_icgraph.png" border="0" usemap="#aclassriscv_1_1CSRFile_a26346d1b963350b5bb22920b5133a63a_icgraph" alt=""/></div>
-</div>
 
 </div>
 </div>
@@ -292,11 +301,6 @@ Here is the caller graph for this function:</div>
 
 <p>Check if any enabled interrupt is pending. </p>
 <dl class="section return"><dt>Returns</dt><dd>True if mstatus.MIE is set and a bit is set in both <code>mip</code> and <code>mie</code>. </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classriscv_1_1CSRFile_a9f2d0b2d5dbde640f0fac02e7fa7e8da_icgraph.png" border="0" usemap="#aclassriscv_1_1CSRFile_a9f2d0b2d5dbde640f0fac02e7fa7e8da_icgraph" alt=""/></div>
-</div>
 
 </div>
 </div>
@@ -336,6 +340,31 @@ Here is the caller graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> riscv::CSRFile::mepc </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9abaf0112e5e0b0e7e70e6bf4862db97" name="a9abaf0112e5e0b0e7e70e6bf4862db97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9abaf0112e5e0b0e7e70e6bf4862db97">&#9670;&#160;</a></span>mhartid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> riscv::CSRFile::mhartid </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -433,6 +462,31 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a33714e76517de0ef358c3a6b2f71d861" name="a33714e76517de0ef358c3a6b2f71d861"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33714e76517de0ef358c3a6b2f71d861">&#9670;&#160;</a></span>mscratch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> riscv::CSRFile::mscratch </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a638fc371a4a750f6f6ba1b5f47d90183" name="a638fc371a4a750f6f6ba1b5f47d90183"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a638fc371a4a750f6f6ba1b5f47d90183">&#9670;&#160;</a></span>mstatus()</h2>
 
@@ -480,11 +534,6 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classriscv_1_1CSRFile_afbf190c3a21aad739dee9c919471001d_icgraph.png" border="0" usemap="#aclassriscv_1_1CSRFile_afbf190c3a21aad739dee9c919471001d_icgraph" alt=""/></div>
-</div>
 
 </div>
 </div>
@@ -510,7 +559,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>The <code>mcause</code> code for the highest-priority pending interrupt, or <code>0</code> if none. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <code>mcause</code> code for the highest-priority pending interrupt, or <code>0</code> if none.</dd></dl>
+<p>Priority follows the privileged spec: MEI &gt; MSI &gt; MTI. </p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -584,6 +634,39 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a81d42da9124f06dc9fbb8b3ec7da04c3" name="a81d42da9124f06dc9fbb8b3ec7da04c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81d42da9124f06dc9fbb8b3ec7da04c3">&#9670;&#160;</a></span>set_hartid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv::CSRFile::set_hartid </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the read-only <code>mhartid</code> value. </p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classriscv_1_1CSRFile_a81d42da9124f06dc9fbb8b3ec7da04c3_icgraph.png" border="0" usemap="#aclassriscv_1_1CSRFile_a81d42da9124f06dc9fbb8b3ec7da04c3_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
 <a id="adb2d00adaa12154ef30cb9ad497c0d72" name="adb2d00adaa12154ef30cb9ad497c0d72"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adb2d00adaa12154ef30cb9ad497c0d72">&#9670;&#160;</a></span>set_mip_bit()</h2>
 
@@ -614,10 +697,39 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classriscv_1_1CSRFile_adb2d00adaa12154ef30cb9ad497c0d72_cgraph.png" border="0" usemap="#aclassriscv_1_1CSRFile_adb2d00adaa12154ef30cb9ad497c0d72_cgraph" alt=""/></div>
 </div>
+
+</div>
+</div>
+<a id="a5644b37a9eb07e4d43752e3c282fb0b3" name="a5644b37a9eb07e4d43752e3c282fb0b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5644b37a9eb07e4d43752e3c282fb0b3">&#9670;&#160;</a></span>trap_target()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a> riscv::CSRFile::trap_target </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td>
+          <td class="paramname"><em>cause</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handler address for a trap with the given <code>cause</code>. </p>
+<p>In DIRECT mode every trap goes to BASE. In VECTORED mode interrupts go to BASE + 4 * (cause code) while synchronous exceptions still go to BASE. </p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classriscv_1_1CSRFile_adb2d00adaa12154ef30cb9ad497c0d72_icgraph.png" border="0" usemap="#aclassriscv_1_1CSRFile_adb2d00adaa12154ef30cb9ad497c0d72_icgraph" alt=""/></div>
+<div class="center"><img src="classriscv_1_1CSRFile_a5644b37a9eb07e4d43752e3c282fb0b3_icgraph.png" border="0" usemap="#aclassriscv_1_1CSRFile_a5644b37a9eb07e4d43752e3c282fb0b3_icgraph" alt=""/></div>
 </div>
 
 </div>
@@ -737,6 +849,28 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="abb87143a2be11c66444520ebd0910d09" name="abb87143a2be11c66444520ebd0910d09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb87143a2be11c66444520ebd0910d09">&#9670;&#160;</a></span>mhartid_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> riscv::CSRFile::mhartid_ = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="add19b1d054f933df2827499cf1c0cb5d" name="add19b1d054f933df2827499cf1c0cb5d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#add19b1d054f933df2827499cf1c0cb5d">&#9670;&#160;</a></span>mie_</h2>
 
@@ -770,6 +904,28 @@ Here is the caller graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> riscv::CSRFile::mip_ = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae3a29e9a310300cbe009a7f0e7b3815c" name="ae3a29e9a310300cbe009a7f0e7b3815c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3a29e9a310300cbe009a7f0e7b3815c">&#9670;&#160;</a></span>mscratch_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> riscv::CSRFile::mscratch_ = 0</td>
         </tr>
       </table>
   </td>

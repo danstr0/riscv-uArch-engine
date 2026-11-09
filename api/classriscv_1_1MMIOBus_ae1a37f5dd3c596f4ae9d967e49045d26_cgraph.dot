@@ -7,11 +7,5 @@ digraph "riscv::MMIOBus::write16"
   rankdir="LR";
   Node1 [id="Node000001",label="riscv::MMIOBus::write16",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="riscv::MMIOBus::find\l_region",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MMIOBus.html#aaae26b8beaf00c68746891db901ec007",tooltip="Route an absolute address to its target device, writing the relative offset to offset."];
-  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
-  Node3 [id="Node000003",label="riscv::MMIOBus::map",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MMIOBus.html#ab73d7c5a825663ab0e446144307b973c",tooltip="Map a device into the address space."];
-  Node3 -> Node4 [id="edge3_Node000003_Node000004",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="riscv::MMIOBus::unmap",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MMIOBus.html#a01cfa930f2e2751cc84b076a49a6e588",tooltip="Remove the mapping at base."];
-  Node4 -> Node3 [id="edge4_Node000004_Node000003",color="steelblue1",style="solid",tooltip=" "];
-  Node1 -> Node3 [id="edge5_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="riscv::Memory::write16",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1Memory.html#a73127feaaac8ea8a0b0ef78e8c6bbe57",tooltip=" "];
 }

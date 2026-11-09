@@ -112,6 +112,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab73d7c5a825663ab0e446144307b973c" id="r_ab73d7c5a825663ab0e446144307b973c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MMIOBus.html#ab73d7c5a825663ab0e446144307b973c">map</a> (<a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a> base, <a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a> size, std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt; device, std::string name=&quot;&quot;)</td></tr>
 <tr class="memdesc:ab73d7c5a825663ab0e446144307b973c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map a device into the address space.  <br /></td></tr>
 <tr class="separator:ab73d7c5a825663ab0e446144307b973c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f97bb23503d83c2d20f6a186f54e001" id="r_a6f97bb23503d83c2d20f6a186f54e001"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classriscv_1_1MMIOBus.html#ab73d7c5a825663ab0e446144307b973c">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MMIOBus.html#a6f97bb23503d83c2d20f6a186f54e001">map_passthrough</a> (<a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a> base, <a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a> size, std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt; <a class="el" href="classriscv_1_1MMIOBus.html#ab73d7c5a825663ab0e446144307b973c">target</a>, std::string name=&quot;&quot;)</td></tr>
+<tr class="memdesc:a6f97bb23503d83c2d20f6a186f54e001"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map a range whose target expects absolute addresses.  <br /></td></tr>
+<tr class="separator:a6f97bb23503d83c2d20f6a186f54e001"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01cfa930f2e2751cc84b076a49a6e588" id="r_a01cfa930f2e2751cc84b076a49a6e588"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classriscv_1_1MMIOBus.html#ab73d7c5a825663ab0e446144307b973c">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MMIOBus.html#a01cfa930f2e2751cc84b076a49a6e588">unmap</a> (<a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a> base)</td></tr>
 <tr class="memdesc:a01cfa930f2e2751cc84b076a49a6e588"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the mapping at <code>base</code>.  <br /></td></tr>
 <tr class="separator:a01cfa930f2e2751cc84b076a49a6e588"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -200,11 +203,6 @@ Private Attributes</h2></td></tr>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classriscv_1_1MMIOBus_aaae26b8beaf00c68746891db901ec007_cgraph.png" border="0" usemap="#aclassriscv_1_1MMIOBus_aaae26b8beaf00c68746891db901ec007_cgraph" alt=""/></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classriscv_1_1MMIOBus_aaae26b8beaf00c68746891db901ec007_icgraph.png" border="0" usemap="#aclassriscv_1_1MMIOBus_aaae26b8beaf00c68746891db901ec007_icgraph" alt=""/></div>
 </div>
 
 </div>
@@ -324,6 +322,54 @@ Here is the call graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classriscv_1_1MMIOBus_ab73d7c5a825663ab0e446144307b973c_icgraph.png" border="0" usemap="#aclassriscv_1_1MMIOBus_ab73d7c5a825663ab0e446144307b973c_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a6f97bb23503d83c2d20f6a186f54e001" name="a6f97bb23503d83c2d20f6a186f54e001"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f97bb23503d83c2d20f6a186f54e001">&#9670;&#160;</a></span>map_passthrough()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classriscv_1_1MMIOBus.html#ab73d7c5a825663ab0e446144307b973c">void</a> riscv::MMIOBus::map_passthrough </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a>&#160;</td>
+          <td class="paramname"><em>base</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt;&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Map a range whose target expects absolute addresses. </p>
+<p>Used for RAM (or a cache in front of RAM): accesses inside the range are forwarded unchanged instead of being rebased to zero. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classriscv_1_1MMIOBus_a6f97bb23503d83c2d20f6a186f54e001_cgraph.png" border="0" usemap="#aclassriscv_1_1MMIOBus_a6f97bb23503d83c2d20f6a186f54e001_cgraph" alt=""/></div>
 </div>
 
 </div>
@@ -544,11 +590,6 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if range [addr, addr+size) is accessible. </dd></dl>
 
 <p>Implements <a class="el" href="classriscv_1_1Memory.html#aba9e4d283bae468fc80908184304c899">riscv::Memory</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classriscv_1_1MMIOBus_a26990c6ac5f162922749ac2fe6db8d61_cgraph.png" border="0" usemap="#aclassriscv_1_1MMIOBus_a26990c6ac5f162922749ac2fe6db8d61_cgraph" alt=""/></div>
-</div>
 
 </div>
 </div>

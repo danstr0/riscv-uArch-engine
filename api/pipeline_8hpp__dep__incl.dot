@@ -11,4 +11,6 @@ digraph "src/core/pipeline.hpp"
   Node3 [id="Node000003",label="src/core/multicore.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$multicore_8cpp.html",tooltip="Multi-core CPU system implementation."];
   Node1 -> Node4 [id="edge3_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node4 [id="Node000004",label="src/core/pipeline.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$pipeline_8cpp.html",tooltip="5-stage pipeline implementation."];
+  Node1 -> Node5 [id="edge4_Node000001_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="src/core/system.hpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$system_8hpp.html",tooltip="A complete single-hart system."];
 }

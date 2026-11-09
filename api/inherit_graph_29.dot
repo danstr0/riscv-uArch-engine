@@ -5,5 +5,21 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [id="Node000000",label="riscv::MemoryResult",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structriscv_1_1MemoryResult.html",tooltip="Outcome of a memory transaction."];
+  Node0 [id="Node000000",label="riscv::Memory",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1Memory.html",tooltip="Abstract interface for all memory-mapped entities."];
+  Node0 -> Node1 [id="edge1_Node000000_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node1 [id="Node000001",label="riscv::CLINT",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1CLINT.html",tooltip=" "];
+  Node0 -> Node2 [id="edge2_Node000000_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="riscv::Cache",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1Cache.html",tooltip="Single cache level with configurable geometry, replacement, and write policies."];
+  Node0 -> Node3 [id="edge3_Node000000_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="riscv::CacheHierarchy",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1CacheHierarchy.html",tooltip="Multi-level cache chain backed by a main memory."];
+  Node0 -> Node4 [id="edge4_Node000000_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="riscv::FlatMemory",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1FlatMemory.html",tooltip="Contiguous, byte-addressable RAM region."];
+  Node0 -> Node5 [id="edge5_Node000000_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="riscv::MMIOBus",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MMIOBus.html",tooltip="Address-space router connecting the CPU to memory-mapped devices."];
+  Node0 -> Node6 [id="edge6_Node000000_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="riscv::NIC",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1NIC.html",tooltip="Cycle-accurate network interface controller."];
+  Node0 -> Node7 [id="edge7_Node000000_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="riscv::PLIC",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1PLIC.html",tooltip="MMIO-mapped Platform-Level Interrupt Controller."];
+  Node0 -> Node8 [id="edge8_Node000000_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="riscv::SparseMemory",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1SparseMemory.html",tooltip=" "];
 }

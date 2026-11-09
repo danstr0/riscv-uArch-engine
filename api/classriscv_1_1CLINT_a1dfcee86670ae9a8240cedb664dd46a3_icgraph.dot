@@ -1,0 +1,13 @@
+digraph "riscv::CLINT::decode_msip"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="riscv::CLINT::decode_msip",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="riscv::CLINT::read32",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1CLINT.html#a469e228cbd0ca2b97733e64c754ccfad",tooltip=" "];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="riscv::CLINT::write32",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1CLINT.html#af1c40db0e29e9a5edb3bdf3e8431a1d6",tooltip=" "];
+}

@@ -9,6 +9,8 @@ digraph "src/core/executor.hpp"
   Node2 [id="Node000002",label="src/core/cpu.hpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$cpu_8hpp.html",tooltip="Top-level single-cycle RISC-V hart controller."];
   Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node3 [id="Node000003",label="src/core/cpu.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$cpu_8cpp.html",tooltip="Implementation of the top-level CPU fetch-decode-execute loop."];
-  Node1 -> Node4 [id="edge3_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="src/core/executor.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$executor_8cpp.html",tooltip="Implementation of the RISC-V instruction executor."];
+  Node2 -> Node4 [id="edge3_Node000002_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="src/core/system.hpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$system_8hpp.html",tooltip="A complete single-hart system."];
+  Node1 -> Node5 [id="edge4_Node000001_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="src/core/executor.cpp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$executor_8cpp.html",tooltip="Implementation of the RISC-V instruction executor."];
 }

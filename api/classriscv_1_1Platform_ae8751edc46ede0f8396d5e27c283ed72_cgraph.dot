@@ -1,0 +1,24 @@
+digraph "riscv::Platform::attach_nic"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="riscv::Platform::attach_nic",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="riscv::Platform::nic",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1Platform.html#a729dab21c43766e13005ebc89a2272fe",tooltip=" "];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="riscv::Platform::plic",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1Platform.html#abee5231411c68190f584c4f2ba063d85",tooltip=" "];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="riscv::PLIC::set_pending",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1PLIC.html#af3c524f465d5b47d0808fa9d5a7d34bf",tooltip="Assert an interrupt from source source (1-31)."];
+  Node4 -> Node5 [id="edge4_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="riscv::PLIC::notify",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1PLIC.html#affe0ddaa669c86d85392c3bad02e744c",tooltip="Re-evaluate every context's MEIP line and invoke callbacks."];
+  Node5 -> Node6 [id="edge5_Node000005_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="riscv::PLIC::interrupt\l_pending",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1PLIC.html#a5b314f85770dd8c224c5067759d395d2",tooltip=" "];
+  Node6 -> Node6 [id="edge6_Node000006_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node5 -> Node7 [id="edge7_Node000005_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="riscv::PLIC::num_contexts",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1PLIC.html#a292e43abf5c07aea3812e4a0664dcf10",tooltip=" "];
+  Node4 -> Node8 [id="edge8_Node000004_Node000008",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="riscv::PLIC::valid\l_source",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1PLIC.html#a503e0181cd9f0672ae28fcbeed722e01",tooltip=" "];
+}

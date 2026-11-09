@@ -142,7 +142,7 @@ Registers</h2>
 <ul>
 <li>Integer: <code>x0-x31</code> or ABI names (<code>zero</code>, <code>ra</code>, <code>sp</code>, <code>gp</code>, <code>tp</code>, <code>t0-t6</code>, <code>s0-s11</code>, <code>a0-a7</code>, <code>fp</code>).</li>
 <li>Vector: <code>v0-v31</code>.</li>
-<li>CSR: named (<code>mstatus</code>, <code>mie</code>, <code>mtvec</code>, <code>mepc</code>, <code>mcause</code>, <code>mip</code>) or hexadecimal (<code>0x300</code>). Range 0x000-0xFFF.</li>
+<li>CSR: named (<code>mstatus</code>, <code>mie</code>, <code>mtvec</code>, <code>mscratch</code>, <code>mepc</code>, <code>mcause</code>, <code>mip</code>, <code>mhartid</code>) or hexadecimal (<code>0x300</code>). Range 0x000-0xFFF.</li>
 </ul>
 <h2><a class="anchor" id="asm_literals"></a>
 Numeric Literals</h2>
@@ -181,6 +181,7 @@ Supported Instructions</h2>
 <div class="line">┃             │ vmorn.mm, vmxor.mm, vmxnor.mm                              ┃</div>
 <div class="line">┠─────────────┼────────────────────────────────────────────────────────────┨</div>
 <div class="line">┃ Pseudo-ops  │ nop, li, mv, j, jr, ret, not, neg, beqz, bnez, seqz, snez, ┃</div>
+<div class="line">┃             │ csrr, csrw, csrs, csrc, csrwi, csrsi, csrci,               ┃</div>
 <div class="line">┃             │ vmmv.m, vmclr.m, vmset.m, vmnot.m                          ┃</div>
 <div class="line">┗━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛</div>
 </div><!-- fragment --><h2><a class="anchor" id="asm_encoding"></a>

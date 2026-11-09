@@ -88,9 +88,7 @@ $(function() {
 <code>#include &quot;<a class="el" href="memory_8hpp_source.html">memory.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="nic_8hpp_source.html">nic.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="pipeline_8hpp_source.html">pipeline.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="plic_8hpp_source.html">plic.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="sparse__memory_8hpp_source.html">sparse_memory.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="timer_8hpp_source.html">timer.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="platform_8hpp_source.html">platform.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="types_8hpp_source.html">types.hpp</a>&quot;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
@@ -126,15 +124,9 @@ Namespaces</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Synchronous multi-Core SoC simulation environment. </p>
-<p>Models a cycle-synchronous shared-memory multiprocessor with directory-based coherence, a shared cache hierarchy, and memory-mapped I/O devices (PLIC, Timer, NIC).</p>
-<dl class="section user"><dt>Memory layout</dt><dd>Device MMIO addresses are placed immediately above main memory:<ul>
-<li><code>device_base</code> = align_up(mem_size, 0x1000)</li>
-<li>PLIC: device_base + 0x0000</li>
-<li>Timer: device_base + 0x1000</li>
-<li>NIC: device_base + 0x2000</li>
-</ul>
-</dd></dl>
-<dl class="section user"><dt>Interrupt delivery</dt><dd>External devices signal the PLIC, which performs priority arbitration and asserts <code>MEIP</code> in the target core's <code>mip</code> register. </dd></dl>
+<p>Models a cycle-synchronous shared-memory multiprocessor with directory-based coherence, a shared cache hierarchy, and the memory-mapped devices of a <code>Platform</code> (CLINT, PLIC, optional NIC).</p>
+<dl class="section user"><dt>Memory layout</dt><dd>See <a class="el" href="platform_8hpp.html" title="The physical platform shared by all core models: RAM, devices, the physical memory map,...">platform.hpp</a>. Devices sit at fixed addresses (CLINT 0x0200_0000, PLIC 0x0C00_0000, NIC 0x1000_0000) independent of RAM size.</dd></dl>
+<dl class="section user"><dt>Interrupt delivery</dt><dd>Each hart has its own CLINT <code>mtimecmp</code> / <code>msip</code> and its own PLIC context, so timer, software (IPI), and external interrupts are routed per hart rather than broadcast. </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

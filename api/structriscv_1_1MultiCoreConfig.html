@@ -106,9 +106,13 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a68c17ae608f834a10c21d6ef65c8099e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set <code>size_bytes=0</code> to disable.  <br /></td></tr>
 <tr class="separator:a68c17ae608f834a10c21d6ef65c8099e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37de335688b3852b6d7bf3e81a7b1a96" id="r_a37de335688b3852b6d7bf3e81a7b1a96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1MultiCoreConfig.html#a37de335688b3852b6d7bf3e81a7b1a96">main_memory_size</a> = 64 * 1024</td></tr>
+<tr class="memdesc:a37de335688b3852b6d7bf3e81a7b1a96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bounds RAM at [0, size); demand-allocated.  <br /></td></tr>
 <tr class="separator:a37de335688b3852b6d7bf3e81a7b1a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1993b666b43032b682c5ad5d5b2b74d" id="r_ac1993b666b43032b682c5ad5d5b2b74d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1MultiCoreConfig.html#ac1993b666b43032b682c5ad5d5b2b74d">nic_plic_source</a> = 1</td></tr>
 <tr class="separator:ac1993b666b43032b682c5ad5d5b2b74d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7cb928997bfa324adbc04ffce3f1ac9" id="r_ae7cb928997bfa324adbc04ffce3f1ac9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1MultiCoreConfig.html#ae7cb928997bfa324adbc04ffce3f1ac9">mtime_cycles_per_tick</a> = 1</td></tr>
+<tr class="memdesc:ae7cb928997bfa324adbc04ffce3f1ac9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Core cycles per <a class="el" href="classriscv_1_1CLINT.html">CLINT</a> <code>mtime</code> increment.  <br /></td></tr>
+<tr class="separator:ae7cb928997bfa324adbc04ffce3f1ac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>System-level configuration for the multi-core SoC. </p>
@@ -172,6 +176,24 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Bounds RAM at [0, size); demand-allocated. </p>
+
+</div>
+</div>
+<a id="ae7cb928997bfa324adbc04ffce3f1ac9" name="ae7cb928997bfa324adbc04ffce3f1ac9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7cb928997bfa324adbc04ffce3f1ac9">&#9670;&#160;</a></span>mtime_cycles_per_tick</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> riscv::MultiCoreConfig::mtime_cycles_per_tick = 1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Core cycles per <a class="el" href="classriscv_1_1CLINT.html">CLINT</a> <code>mtime</code> increment. </p>
 
 </div>
 </div>

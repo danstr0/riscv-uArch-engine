@@ -183,9 +183,9 @@ determines how data is written.</p>
 <p><strong>Validation rules:</strong></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">u32</span></code> arrays must be 4-byte aligned.</p></li>
-<li><p>Data must not extend past the configured memory size.</p></li>
-<li><p>In multicore mode, data must not overlap the device MMIO region
-(which starts at <code class="docutils literal notranslate"><span class="pre">align_up(memory_size,</span> <span class="pre">0x1000)</span></code>).</p></li>
+<li><p>Data must not extend past the configured memory size. Devices sit at
+fixed addresses above RAM, so data that stays inside RAM can never
+overlap them.</p></li>
 </ul>
 <p><strong>Example:</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">memory</span><span class="o">.</span><span class="n">init</span><span class="p">]</span>
@@ -616,11 +616,12 @@ predictor, and CPU type must all be recognized values.</p></li>
 <li><p>No duplicate values within an axis.</p></li>
 <li><p>Each value must pass the same validation as its static equivalent.</p></li>
 </ul>
-<p><strong>MMIO (multicore):</strong></p>
+<p><strong>Memory map (all CPU types):</strong></p>
 <ul class="simple">
-<li><p>Device MMIO region (<code class="docutils literal notranslate"><span class="pre">device_base</span></code> to <code class="docutils literal notranslate"><span class="pre">device_base</span> <span class="pre">+</span> <span class="pre">0x3000</span></code>)
-must fit in 32-bit address space.</p></li>
-<li><p>Memory init must not overlap the device MMIO region.</p></li>
+<li><p>RAM starts at address 0, and devices sit at fixed addresses (CLINT at
+0x0200_0000, PLIC at 0x0C00_0000, NIC at 0x1000_0000; see
+<a class="reference internal" href="architecture.html"><span class="doc">Architecture</span></a>). Memory size must therefore be at most 32 MiB so
+RAM ends before the CLINT.</p></li>
 </ul>
 </section>
 <section id="complete-example">

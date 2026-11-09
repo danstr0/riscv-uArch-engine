@@ -7,7 +7,7 @@ var searchData=
   ['deliver_5fcycle_4',['deliver_cycle',['../structriscv_1_1NicLoopback_1_1DelayedPacket.html#a0c6c878c223b7471d02b936577ff8a9d',1,'riscv::NicLoopback::DelayedPacket']]],
   ['desc_5fidx_5',['desc_idx',['../structriscv_1_1NIC_1_1PendingDma.html#a7a075a0842c5faa4572531dcfde19017',1,'riscv::NIC::PendingDma']]],
   ['device_6',['device',['../structriscv_1_1MMIOBus_1_1Region.html#a1a8f5844b5836bf248a92636ec7aabac',1,'riscv::MMIOBus::Region']]],
-  ['device_5fbase_5f_7',['device_base_',['../classriscv_1_1MultiCoreCPU.html#aec2411a608477896f50834f512980e94',1,'riscv::MultiCoreCPU']]],
+  ['direct_7',['DIRECT',['../namespaceriscv_1_1MTvecMode.html#a20a552a0829bfc4c274a5bd72430b10c',1,'riscv::MTvecMode']]],
   ['directory_5f_8',['directory_',['../classriscv_1_1CoherenceController.html#a3fbe8070854bf8d8aaf9b2f1072ce108',1,'riscv::CoherenceController']]],
   ['dirty_9',['dirty',['../structriscv_1_1CacheLine.html#a3871aab70521e0c1bf4d24ee3ec1e4aa',1,'riscv::CacheLine']]],
   ['dirty_5fevictions_10',['dirty_evictions',['../structriscv_1_1CacheStats.html#aeb6e650400b8b7bd2c99d27107dbbd0b',1,'riscv::CacheStats']]],

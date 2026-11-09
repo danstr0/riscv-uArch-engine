@@ -12,8 +12,4 @@ digraph "riscv::MultiCoreCPU::core"
   Node3 [id="Node000003",label="riscv::MultiCoreCPU\l::run_cycles",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MultiCoreCPU.html#af4d821ea0d091cf8165c90dfb368085d",tooltip=" "];
   Node2 -> Node4 [id="edge3_Node000002_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node4 [id="Node000004",label="riscv::MultiCoreCPU\l::run_until_all_halted",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MultiCoreCPU.html#aebecd2359f8f3ebc8ae35d8a48566b09",tooltip=" "];
-  Node1 -> Node5 [id="edge4_Node000001_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node5 [id="Node000005",label="riscv::MultiCoreCPU\l::wire_interrupts",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MultiCoreCPU.html#a1c16098dc4e23d656c20537bab96d20e",tooltip="Wire timer and PLIC interrupt lines to core CSR files."];
-  Node5 -> Node6 [id="edge5_Node000005_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node6 [id="Node000006",label="riscv::MultiCoreCPU\l::MultiCoreCPU",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MultiCoreCPU.html#a69263b775059b963523849ec3542484e",tooltip=" "];
 }

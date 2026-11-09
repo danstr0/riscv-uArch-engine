@@ -5,5 +5,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [id="Node000000",label="riscv::ExecuteResult",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structriscv_1_1ExecuteResult.html",tooltip="Result returned by the executor after processing one instruction."];
+  Node0 [id="Node000000",label="riscv::DirectoryEntry",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structriscv_1_1DirectoryEntry.html",tooltip="Per-line directory entry tracking coherence state across all cores."];
 }
