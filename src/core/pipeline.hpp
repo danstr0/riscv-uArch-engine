@@ -127,6 +127,8 @@ struct PipelineStats
     u64 forwards_mem_ex    = 0;
     /// @}
 
+    u64 interrupts_taken   = 0;  ///< Asynchronous traps entered.
+
     [[nodiscard]] double ipc() const noexcept
     {
         return cycles > 0
@@ -225,6 +227,7 @@ private:
     std::array<PipelineReg, kNumStages> stages_{};
 
     bool   halted_         = false;
+    bool   faulted_        = false;  ///< Stopped by a memory/alignment fault.
     bool   flush_pipeline_ = false;
     addr_t flush_target_   = 0;
 
