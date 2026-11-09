@@ -93,8 +93,9 @@ bool Assembler::parse_csr(std::string_view name, u32& out)
     auto n = to_lower(name);
     static const std::unordered_map<std::string, u32> csrs =
     {
-        {"mstatus", 0x300}, {"mie", 0x304}, {"mtvec", 0x305},
-        {"mepc", 0x341}, {"mcause", 0x342}, {"mip", 0x344},
+        {"mstatus",  0x300}, {"mie",  0x304}, {"mtvec",  0x305},
+        {"mscratch", 0x340}, {"mepc", 0x341}, {"mcause", 0x342}, {"mip", 0x344},
+        {"mhartid",  0xF14},
     };
     auto it = csrs.find(n);
     if (it != csrs.end())
@@ -715,6 +716,50 @@ Assembler::encode_instruction(const ParsedLine& line,
                 if (!reg(2, rs1)) return err(std::format("{} rd, csr, rs1", m));
 
                 return ok1(enc_i(csr_addr, rs1, e.funct3, rd, OP_SYSTEM));
+            }
+    }
+
+    // ── CSR pseudo-instructions ─────────────────────────
+    // csrr  rd, csr    -> csrrs  rd, csr, x0
+    // csrw  csr, rs    -> csrrw  x0, csr, rs
+    // csrs  csr, rs    -> csrrs  x0, csr, rs
+    // csrc  csr, rs    -> csrrc  x0, csr, rs
+    // csrwi csr, zimm  -> csrrwi x0, csr, zimm   (likewise csrsi / csrci)
+
+    if (m == "csrr")
+    {
+        u32 rd, csr_addr;
+        if (nops != 2 || !reg(0, rd)) return err("csrr rd, csr");
+        if (!parse_csr(ops[1], csr_addr)) return err(std::format("unknown CSR: {}", ops[1]));
+        return ok1(enc_i(csr_addr, 0, 0b010, rd, OP_SYSTEM));
+    }
+    {
+        struct PEntry { const char* name; u32 funct3; bool is_imm; };
+        static const PEntry table[] =
+        {
+            {"csrw",  0b001, false}, {"csrs",  0b010, false}, {"csrc",  0b011, false},
+            {"csrwi", 0b101, true},  {"csrsi", 0b110, true},  {"csrci", 0b111, true},
+        };
+        for (auto& e : table)
+            if (m == e.name)
+            {
+                if (nops != 2) return err(std::format("{} requires 2 operands", m));
+
+                u32 csr_addr;
+                if (!parse_csr(ops[0], csr_addr))
+                    return err(std::format("unknown CSR: {}", ops[0]));
+
+                if (e.is_imm)
+                {
+                    i32 zimm;
+                    if (!imm(1, zimm)) return err(std::format("{} csr, zimm", m));
+                    if (zimm < 0 || zimm > 31)
+                        return err(std::format("{} zimm out of range", m));
+                    return ok1(enc_i(csr_addr, static_cast<u32>(zimm), e.funct3, 0, OP_SYSTEM));
+                }
+                u32 rs1;
+                if (!reg(1, rs1)) return err(std::format("{} csr, rs1", m));
+                return ok1(enc_i(csr_addr, rs1, e.funct3, 0, OP_SYSTEM));
             }
     }
 
