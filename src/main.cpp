@@ -18,7 +18,7 @@
 #include "core/cache.hpp"
 #include "core/config.hpp"
 #include "core/pipeline.hpp"
-#include "core/sparse_memory.hpp"
+#include "core/system.hpp"
 
 #include <cstring>
 #include <format>
@@ -71,63 +71,36 @@ static BranchPredictor to_branch_pred(const std::string& s)
 
 // ── Build system ───────────────────────────────────────────────────────
 
-struct SimSystem
-{
-    std::shared_ptr<SparseMemory> main_mem;
-    std::shared_ptr<Cache>        l3;
-    std::shared_ptr<Cache>        l2;
-    std::shared_ptr<Cache>        l1;
-    std::unique_ptr<PipelinedCPU> cpu;
-};
+using SimSystem = SingleCoreSystem<PipelinedCPU>;
 
-static SimSystem build_system(const SimConfig& cfg)
+static SystemConfig to_system_config(const SimConfig& cfg)
 {
-    SimSystem sys;
-    sys.main_mem = std::make_shared<SparseMemory>(0, cfg.mem_size_kb * 1024);
-
-    std::shared_ptr<Memory> backing = sys.main_mem;
+    SystemConfig s;
+    s.platform.ram_size = u64{cfg.mem_size_kb} * 1024;
 
     if (cfg.l3_size > 0)
-    {
-        CacheConfig c =
-        {
+        s.l3 = {
             .size_bytes = cfg.l3_size, .line_size = cfg.l1_line,
             .associativity = cfg.l3_assoc, .hit_latency = 30, .miss_penalty = 100,
         };
-        sys.l3 = std::make_shared<Cache>(c, backing);
-        backing = sys.l3;
-    }
     if (cfg.l2_size > 0)
-    {
-        CacheConfig c =
-        {
+        s.l2 = {
             .size_bytes = cfg.l2_size, .line_size = cfg.l1_line,
             .associativity = cfg.l2_assoc, .hit_latency = 12, .miss_penalty = 50,
         };
-        sys.l2 = std::make_shared<Cache>(c, backing);
-        backing = sys.l2;
-    }
-
     if (cfg.l1_size > 0)
-    {
-        CacheConfig c =
-        {
+        s.l1 = {
             .size_bytes = cfg.l1_size, .line_size = cfg.l1_line,
             .associativity = cfg.l1_assoc, .hit_latency = 4, .miss_penalty = 10,
             .replacement = to_replacement(cfg.l1_replacement),
             .write_pol = to_write_policy(cfg.l1_write),
             .write_alloc = to_alloc_policy(cfg.l1_write_alloc),
         };
-        sys.l1 = std::make_shared<Cache>(c, backing);
-        backing = sys.l1;
-    }
 
-    PipelineConfig p;
-    p.forwarding             = to_forwarding(cfg.forwarding);
-    p.predictor              = to_branch_pred(cfg.branch_pred);
-    p.branch_mispred_penalty = cfg.mispredict_penalty;
-    sys.cpu = std::make_unique<PipelinedCPU>(backing, p);
-    return sys;
+    s.pipeline.forwarding             = to_forwarding(cfg.forwarding);
+    s.pipeline.predictor              = to_branch_pred(cfg.branch_pred);
+    s.pipeline.branch_mispred_penalty = cfg.mispredict_penalty;
+    return s;
 }
 
 static void apply_mem_init(Memory& mem, const std::vector<MemInitEntry>& inits)
@@ -169,24 +142,25 @@ struct RunResult
 
 static RunResult run_once(const SimConfig& cfg, const std::vector<u8>& code)
 {
-    auto sys = build_system(cfg);
+    SimSystem sys(to_system_config(cfg));
 
     // Load code
-    sys.main_mem->load(0, code);
+    sys.load_program(0, code);
 
     // Apply memory initialization from config
-    apply_mem_init(*sys.main_mem, cfg.mem_init);
+    apply_mem_init(sys.ram(), cfg.mem_init);
 
     // Set up CPU
-    sys.cpu->set_pc(0);
+    sys.core().set_pc(0);
 
     // Apply register initialization from config
-    for (auto& ri : cfg.reg_init) sys.cpu->set_reg(static_cast<reg_idx_t>(ri.reg_idx), ri.value);
+    for (auto& ri : cfg.reg_init)
+        sys.core().set_reg(static_cast<reg_idx_t>(ri.reg_idx), ri.value);
 
     // Run
-    sys.cpu->run_cycles(static_cast<cycle_t>(cfg.max_cycles));
+    sys.run(static_cast<u64>(cfg.max_cycles));
 
-    const auto& ps = sys.cpu->stats();
+    const auto& ps = sys.core().stats();
     RunResult r;
     r.cycles       = ps.cycles;
     r.instructions = ps.instructions_retired;
@@ -194,20 +168,20 @@ static RunResult run_once(const SimConfig& cfg, const std::vector<u8>& code)
     r.stalls       = ps.stalls_load_use + ps.stalls_raw + ps.stalls_control;
     r.flushes      = ps.branch_mispredicts;
 
-    if (sys.l1)
+    if (auto* l1 = sys.l1())
     {
-        r.l1_hit_rate = sys.l1->stats().hit_rate();
-        r.l1_misses   = sys.l1->stats().misses;
+        r.l1_hit_rate = l1->stats().hit_rate();
+        r.l1_misses   = l1->stats().misses;
     }
-    if (sys.l2)
+    if (auto* l2 = sys.l2())
     {
-        r.l2_hit_rate = sys.l2->stats().hit_rate();
-        r.l2_misses   = sys.l2->stats().misses;
+        r.l2_hit_rate = l2->stats().hit_rate();
+        r.l2_misses   = l2->stats().misses;
     }
-    if (sys.l3)
+    if (auto* l3 = sys.l3())
     {
-        r.l3_hit_rate = sys.l3->stats().hit_rate();
-        r.l3_misses   = sys.l3->stats().misses;
+        r.l3_hit_rate = l3->stats().hit_rate();
+        r.l3_misses   = l3->stats().misses;
     }
 
     r.branches        = ps.branches;
