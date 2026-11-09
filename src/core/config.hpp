@@ -98,15 +98,6 @@ struct CoreConfig
     std::vector<RegInit> reg_init;  ///< Per-core register overrides.
 };
 
-/// Device MMIO layout (relative to @c device_base).
-namespace DeviceLayout
-{
-    constexpr addr_t PLIC_OFFSET  = 0x0000;
-    constexpr addr_t TIMER_OFFSET = 0x1000;
-    constexpr addr_t NIC_OFFSET   = 0x2000;
-    constexpr addr_t TOTAL_SIZE   = 0x3000;  ///< Total MMIO region size.
-}
-
 /// Parsed configuration.
 struct SimConfig
 {

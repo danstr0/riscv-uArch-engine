@@ -4,7 +4,8 @@
  */
 
 #include "config.hpp"
-#include "assembler.hpp"  // for register name parsing
+#include "assembler.hpp"
+#include "platform.hpp"
 
 #include <algorithm>
 #include <cctype>
@@ -720,37 +721,16 @@ bool validate_config(const SimConfig& cfg, std::vector<ConfigError>& errors)
     if (cfg.cpu_type == "multicore" && cfg.l1_size > 0 && cfg.l2_size == 0)
         err("multicore with L1 caches requires a shared L2 cache");
 
-    // ── MMIO region guard (multicore) ───────────────
+    // ── Physical memory map guard ───────────────────
+    // RAM starts at 0; devices sit at fixed addresses, so RAM must end
+    // before the first device window. Mem-init entries are already bounded
+    // by RAM size above, so they cannot reach a device
 
-    if (cfg.cpu_type == "multicore")
-    {
-        // Device base = align_up(mem_size, 0x1000)
-        u64 mem_top = static_cast<u64>(cfg.mem_size_kb) * 1024;
-        u64 device_base = (mem_top + 0xFFF) & ~static_cast<u64>(0xFFF);
-        u64 device_end  = device_base + DeviceLayout::TOTAL_SIZE;
-
-        // Device region should fit in 32-bit address space
-        if (device_end > 0xFFFF'FFFFULL)
-            err(std::format("memory size {}KB places device MMIO region "
-                            "beyond 32-bit address space",
-                            cfg.mem_size_kb));
-
-        // Mem init shouldn't overlap device region
-        for (auto& entry : cfg.mem_init)
-        {
-            u64 entry_end = entry.address;
-            switch (entry.kind)
-            {
-                case MemInitEntry::Kind::WORDS:  entry_end += entry.words.size() * 4; break;
-                case MemInitEntry::Kind::BYTES:  entry_end += entry.bytes.size();     break;
-                case MemInitEntry::Kind::FILL:   entry_end += entry.fill_count;       break;
-                case MemInitEntry::Kind::STRING: entry_end += entry.str.size() + 1;   break;
-            }
-            if (entry.address < device_end && entry_end > device_base)
-                err(std::format("memory init at 0x{:x} overlaps MMIO device region "
-                                "(0x{:x}-0x{:x})", entry.address, device_base, device_end));
-        }
-    }
+    if (mem_bytes > PlatformMap::CLINT_BASE)
+        err(std::format("memory size {}KB overlaps the CLINT at 0x{:08x} "
+                        "(max {}KB with RAM at address 0)",
+                        cfg.mem_size_kb, PlatformMap::CLINT_BASE,
+                        PlatformMap::CLINT_BASE / 1024));
 
     // ── Per-core config ─────────────────────────────
 
