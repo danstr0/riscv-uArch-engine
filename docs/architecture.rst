@@ -129,6 +129,9 @@ of control/status registers. ``MRET`` returns from a machine-mode trap.
    * - ``mtvec``
      - 0x305
      - Trap vector base address
+   * - ``mscratch``
+     - 0x340
+     - Scratch register for trap handlers
    * - ``mepc``
      - 0x341
      - Exception PC (saved on trap entry)
@@ -137,9 +140,26 @@ of control/status registers. ``MRET`` returns from a machine-mode trap.
      - Trap cause code
    * - ``mip``
      - 0x344
-     - Pending interrupt bits
+     - Pending interrupt bits (read-only)
+   * - ``mhartid``
+     - 0xF14
+     - Hart ID (read-only)
 
-Interrupt priority: external (MEIE) > timer (MTIE) > software (MSIE).
+``mtvec`` supports both MODE values: direct (all traps to BASE) and
+vectored (interrupts to BASE + 4 × cause). Reserved MODE values read back
+as direct
+
+Interrupt priority follows the privileged spec: external (MEI) > software
+(MSI) > timer (MTI).
+
+Interrupts are precise on both core models. The single-cycle CPU takes
+them between instructions. The pipeline takes them at the EX boundary:
+instructions in MEM and WB complete, the instructions in EX/ID/IF are
+squashed, and ``mepc`` holds the oldest squashed instruction, so ``mret``
+resumes exactly where the program was interrupted.
+
+The CSR pseudo-instructions ``csrr``, ``csrw``, ``csrs``, ``csrc``,
+``csrwi``, ``csrsi``, and ``csrci`` are supported by the assembler.
 
 
 Pipeline
@@ -300,9 +320,11 @@ The multi-core system connects N pipelined cores through a shared
 memory hierarchy with hardware cache coherence.
 ::
 
-    Core 0 → MMIOBus → L1d[0] ──┐
-                                ├── Coherence Controller → L2 → L3 → Main Memory
-    Core 1 → MMIOBus → L1d[1] ──┘
+    Core 0 → MMIOBus ─┬─ RAM range → L1d[0] ──┐
+                      └─ devices (CLINT, PLIC, NIC)
+                                              ├── Coherence Controller → L2 → L3 → RAM
+    Core 1 → MMIOBus ─┬─ RAM range → L1d[1] ──┘
+                      └─ devices
 
 Cache modes
 ^^^^^^^^^^^
@@ -347,51 +369,61 @@ cache line can be in one of four states:
 - cache-to-cache transfer = 5 cycles
 - invalidation = 2 cycles
  
-Device MMIO
-^^^^^^^^^^^
+Platform and device MMIO
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-Devices are memory-mapped immediately above main memory at
-page-aligned addresses:
+All core models — the single-cycle CPU, the pipelined CPU, and the
+multi-core system — run on the same platform, which owns RAM, the devices,
+the physical memory map, and the interrupt wiring. Devices sit at fixed
+addresses that follow the common SiFive / QEMU ``virt`` layout and do not
+depend on RAM size:
 
 .. list-table::
-   :widths: 20 50 30
+   :widths: 20 20 60
    :header-rows: 1
 
-   * - Offset
-     - Device
+   * - Base
      - Size
-   * - +0x0000
-     - PLIC (interrupt controller)
-     - 8 KiB
-   * - +0x1000
-     - Timer (CLINT-style)
-     - 16 bytes
-   * - +0x2000
-     - NIC (network interface)
-     - 256 bytes
+     - Region
+   * - +0x0000_0000
+     - RAM size
+     - RAM (demand-allocated; base is configurable)
+   * - 0x0200_0000
+     - 64 KiB
+     - CLINT: ``msip[h]`` at +0x0 _ 4·h, ``mtimecmp[h]`` at +0x4000 + 8·h,
+       ``mtime`` at +0xBFF8
+   * - 0x0C00_0000
+     - 64 MiB
+     - PLIC: priorities at +0x0, pending at +0x1000, enables at
+       +0x2000 + 0x80·h, threshold / claim at +0x200000 + 0x1000·h
+   * - 0x1000_0000
+     - 4 KiB
+     - NIC (only when a NIC is attached)
 
-The device base address is computed as
-``align_up(main_memory_size, 0x1000)``. For 64 KiB memory, devices
-start at 0x10000.  MMIO accesses bypass the cache entirely — the
-per-core MMIO bus routes device addresses to the device objects
-directly, and only non-device addresses pass through to the L1 cache.
+With RAM at address 0, RAM can be at most 32 MiB before it would overlap
+the CLINT; the config validator enforces this. Accesses that hit no region
+fault. Device accesses bypass the caches: each hart's bus routes device
+addresses straight to the device, and only the RAM range is forwarded to
+the hart's L1 (or to RAM when caches are disabled).
 
 Devices
 ^^^^^^^
 
-- **PLIC (Platform-Level Interrupt Controller)** — routes external
-  interrupt sources to cores.  Supports up to 31 sources with
-  priority-based arbitration.  A source becomes pending, the core
-  claims it (masking further interrupts from that source), services
-  it, then completes the claim.
-- **Timer (CLINT-style)** — 64-bit free-running ``mtime`` counter
-  incremented every cycle.  When ``mtime ≥ mtimecmp``, a timer
-  interrupt is raised on all cores (via ``mip.MTIP``).
+- **PLIC (Platform-Level Interrupt Controller)** — routes up to 31
+  external interrupt sources with priority-based arbitration. Each hart
+  has its own M-mode context (enable bits, threshold, claim/complete), so
+  external interrupts reach only the harts that enabled them.
+- **CLINT (Core-Local Interruptor)** — a shared 64-bit ``mtime``
+  counter, plus a per-hart ``mtimecmp`` (drives that hart's ``mip.MTIP``)
+  and a per-hart ``msip`` (drivse ``mip.MSIP``, for inter-processor
+  interrupts). ``mtime`` advances once per core cycle by default; a
+  timebase divider can make it slower than the core clock.
 - **NIC (Network Interface Controller)** — cycle-accurate DMA-based
   NIC with descriptor rings, interrupt coalescing, and RSS
   (Receive Side Scaling) for multi-queue packet distribution.
   Supports up to 8 RX/TX queues with configurable coalescing
-  thresholds (packet count and timer-based).
+  thresholds (packet count and timer-based). NIC DMA reads and writes
+  RAM directly and is not yet coherent with CPU caches.
 
 
 Assembler

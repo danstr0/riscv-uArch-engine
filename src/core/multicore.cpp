@@ -9,13 +9,6 @@
 
 namespace riscv {
 
-// ── Alignment helper ───────────────────────────────────────────────────
-
-static addr_t align_up(addr_t v, addr_t align)
-{
-    return (v + align - 1) & ~(align - 1);
-}
-
 // ── Construction ───────────────────────────────────────────────────────
 
 MultiCoreCPU::MultiCoreCPU(MultiCoreConfig config)
@@ -23,27 +16,28 @@ MultiCoreCPU::MultiCoreCPU(MultiCoreConfig config)
 {
     assert(config_.num_cores > 0 && config_.num_cores <= 16);
 
-    // ── Main memory ─────────────────────────────────────
+    // ── Platform: RAM, CLINT, PLIC, memory map ──────────
 
-    main_mem_ = std::make_shared<SparseMemory>(0, config_.main_memory_size);
-
-    // ── Device MMIO base ────────────────────────────────
-    // Immediately above main memory, page-aligned
-
-    device_base_ = align_up(config_.main_memory_size, 0x1000);
+    platform_ = std::make_unique<Platform>(PlatformConfig{
+        .num_harts             = config_.num_cores,
+        .ram_base              = 0,
+        .ram_size              = config_.main_memory_size,
+        .mtime_cycles_per_tick = config_.mtime_cycles_per_tick,
+    });
+    auto main_mem = platform_->ram_ptr();
 
     // ── Build cache hierarchy ───────────────────────────
 
     bool use_caches = (config_.l1d.size_bytes > 0);
 
-    std::shared_ptr<Memory> shared_backing = main_mem_;
+    std::shared_ptr<Memory> shared_backing = main_mem;
 
     if (use_caches)
     {
         // Optional L3
         if (config_.l3.size_bytes > 0)
         {
-            l3_cache_ = std::make_shared<Cache>(config.l3, main_mem_);
+            l3_cache_ = std::make_shared<Cache>(config.l3, main_mem);
             shared_backing = l3_cache_;
         }
 
@@ -83,82 +77,38 @@ MultiCoreCPU::MultiCoreCPU(MultiCoreConfig config)
         }
     }
 
-    // ── Create cores with per-core MMIO buses ───────────
-
-    auto plic_ptr  = std::shared_ptr<Memory>(std::shared_ptr<void>{}, &plic_);
-    auto timer_ptr = std::shared_ptr<Memory>(std::shared_ptr<void>{}, &timer_);
+    // ── Create cores, each with tis own bus and interrupt lines ──
 
     cores_.reserve(config_.num_cores);
     buses_.reserve(config_.num_cores);
 
     for (u32 i = 0; i < config_.num_cores; ++i)
     {
-        auto bus = std::make_shared<MMIOBus>();
+        // RAM accesses go to the core's L1 if present, otherwise straight to RAM;
+        // device accesses bypass the caches
+        std::shared_ptr<Memory> downstream = use_caches
+            ? std::shared_ptr<Memory>(l1d_caches_[i])
+            : std::shared_ptr<Memory>(main_mem);
 
-        // L1 cache if present, otherwise main memory
-        if (use_caches)
-            bus->set_default(l1d_caches_[i]);
-        else
-            bus->set_default(main_mem_);
-
-        // Map devices above main memory
-        bus->map(device_base_,          PLIC::REG_SIZE,  plic_ptr,  "plic");
-        bus->map(device_base_ + 0x1000, Timer::REG_SIZE, timer_ptr, "timer");
-
+        auto bus = platform_->make_hart_bus(std::move(downstream));
         buses_.push_back(bus);
         cores_.push_back(std::make_unique<PipelinedCPU>(bus, config_.pipeline));
+        platform_->connect_hart(i, cores_.back()->csrs());
     }
-
-    wire_interrupts();
-}
-
-// ── Interrupt wiring ───────────────────────────────────────────────────
-
-void MultiCoreCPU::wire_interrupts()
-{
-    timer_.set_notify([this](bool pending)
-    {
-        for (auto& core : cores_)
-        {
-            if (pending) core->csrs().set_mip_bit(MInterrupt::MTIE);
-            else         core->csrs().clear_mip_bit(MInterrupt::MTIE);
-        }
-    });
-
-    plic_.set_notify([this](bool pending)
-    {
-        for (auto& core : cores_)
-        {
-            if (pending) core->csrs().set_mip_bit(MInterrupt::MEIE);
-            else         core->csrs().clear_mip_bit(MInterrupt::MEIE);
-        }
-    });
 }
 
 // ── NIC attachment ─────────────────────────────────────────────────────
 
 void MultiCoreCPU::attach_nic(std::shared_ptr<NIC> nic)
 {
-    nic_ = std::move(nic);
-    nic_->plic_source = config_.nic_plic_source;
-
-    u32 source = config_.nic_plic_source;
-    nic_->set_interrupt_callback([this, source]()
-    {
-        plic_.set_pending(source);
-    });
-
-    // Map NIC MMIO on each core's bus
-    addr_t nic_base = device_base_ + 0x2000;
-    for (auto& bus : buses_)
-        bus->map(nic_base, NicReg::REG_SIZE, nic_, "nic");
+    platform_->attach_nic(std::move(nic), config_.nic_plic_source);
 }
 
 // ── Program loading ────────────────────────────────────────────────────
 
 void MultiCoreCPU::load_program(addr_t addr, std::span<const u8> program)
 {
-    main_mem_->load(addr, program);
+    platform_->ram().load(addr, program);
 }
 
 void MultiCoreCPU::load_instruction(addr_t addr, u32 instruction)
@@ -170,7 +120,7 @@ void MultiCoreCPU::load_instruction(addr_t addr, u32 instruction)
         static_cast<u8>(instruction >> 16),
         static_cast<u8>(instruction >> 24),
     };
-    main_mem_->load(addr, bytes);
+    platform_->ram().load(addr, bytes);
 }
 
 // ── Execution ──────────────────────────────────────────────────────────
@@ -179,13 +129,11 @@ bool MultiCoreCPU::tick()
 {
     cycle_count_++;
 
-    timer_.tick(cycle_count_);
-
-    if (nic_) nic_->tick(cycle_count_);
-
     bool any_running = false;
     for (auto& core : cores_)
         if (core->tick()) any_running = true;
+
+    platform_->tick(cycle_count_);
 
     return any_running;
 }

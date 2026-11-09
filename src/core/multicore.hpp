@@ -3,19 +3,17 @@
  * @brief Synchronous multi-Core SoC simulation environment.
  *
  * Models a cycle-synchronous shared-memory multiprocessor with
- * directory-based coherence, a shared cache hierarchy, and
- * memory-mapped I/O devices (PLIC, Timer, NIC).
+ * directory-based coherence, a shared cache hierarchy, and the
+ * memory-mapped devices of a @c Platform (CLINT, PLIC, optional NIC).
  *
  * @par Memory layout
- * Device MMIO addresses are placed immediately above main memory:
- * - @c device_base = align_up(mem_size, 0x1000)
- * - PLIC: device_base + 0x0000
- * - Timer: device_base + 0x1000
- * - NIC: device_base + 0x2000
+ * See platform.hpp. Devices sit at fixed addresses (CLINT 0x0200_0000,
+ * PLIC 0x0C00_0000, NIC 0x1000_0000) independent of RAM size.
  *
  * @par Interrupt delivery
- * External devices signal the PLIC, which performs priority arbitration
- * and asserts @c MEIP in the target core's @c mip register.
+ * Each hart has its own CLINT @c mtimecmp / @c msip and its own PLIC
+ * context, so timer, software (IPI), and external interrupts are routed
+ * per hart rather than broadcast.
  */
 
 #pragma once
@@ -26,9 +24,7 @@
 #include "memory.hpp"
 #include "nic.hpp"
 #include "pipeline.hpp"
-#include "plic.hpp"
-#include "sparse_memory.hpp"
-#include "timer.hpp"
+#include "platform.hpp"
 #include "types.hpp"
 
 #include <memory>
@@ -46,9 +42,12 @@ struct MultiCoreConfig
     CacheConfig l2  = CacheConfig::L2_typical();  ///< Required when L1 is enabled.
     CacheConfig l3  = CacheConfig::L3_typical();  ///< Set @c size_bytes=0 to disable.
 
-    u32 main_memory_size = 64 * 1024; // 64 KiB default
+    u32 main_memory_size = 64 * 1024;  ///< Bounds RAM at [0, size); demand-allocated.
 
     u32 nic_plic_source = 1;
+
+    /// Core cycles per CLINT @c mtime increment.
+    u32 mtime_cycles_per_tick = 1;
 };
 
 /// Aggregated statistics across all cores, caches, and coherence.
@@ -98,16 +97,15 @@ public:
 
     /// @name Device access
     /// @{
-    [[nodiscard]] PLIC&   plic()        noexcept { return plic_; }
-    [[nodiscard]] Timer&  timer()       noexcept { return timer_; }
-    [[nodiscard]] Memory& main_memory() noexcept { return *main_mem_; }
+    [[nodiscard]] Platform&     platform()    noexcept { return *platform_; }
+    [[nodiscard]] PLIC&         plic()        noexcept { return platform_->plic(); }
+    [[nodiscard]] CLINT&        clint()       noexcept { return platform_->clint(); }
+    [[nodiscard]] SparseMemory& main_memory() noexcept { return platform_->ram(); }
 
-    /// Attch a nic: maps into the address space and wires its interrupt to the PLIC.
+    /// Attach a NIC: maps it into every hart's address space and wires
+    /// its interrupt to the PLIC.
     void attach_nic(std::shared_ptr<NIC> nic);
-    [[nodiscard]] NIC* nic() noexcept { return nic_.get(); }
-
-    /// Get the computed device MMIO base address.
-    [[nodiscard]] addr_t device_base() const noexcept { return device_base_; }
+    [[nodiscard]] NIC* nic() noexcept { return platform_->nic(); }
     /// @}
 
     /// @name Cache hierarchy
@@ -134,9 +132,8 @@ public:
 
 private:
     MultiCoreConfig config_;
-    addr_t device_base_ = 0;
 
-    std::shared_ptr<SparseMemory>                main_mem_;
+    std::unique_ptr<Platform>                  platform_;
     std::shared_ptr<Cache>                     l3_cache_;
     std::shared_ptr<Cache>                     l2_cache_;
     std::vector<std::shared_ptr<Cache>>        l1d_caches_;
@@ -144,14 +141,8 @@ private:
     std::unique_ptr<CoherenceController>       coherence_;
     std::vector<std::unique_ptr<PipelinedCPU>> cores_;
 
-    PLIC                 plic_;
-    Timer                timer_;
-    std::shared_ptr<NIC> nic_;
-
     cycle_t cycle_count_ = 0;
-
-    /// Wire timer and PLIC interrupt lines to core CSR files.
-    void wire_interrupts();
 };
 
 } // namespace riscv
+

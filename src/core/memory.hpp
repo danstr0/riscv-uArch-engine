@@ -176,6 +176,7 @@ public:
         addr_t                  size;    ///< Size in bytes.
         std::shared_ptr<Memory> device;  ///< The memory-mapped device.
         std::string             name;    ///< Label for debugging (e.g., "RAM", "PLIC").
+        bool                    rebase = true;  ///< Subtract @c base before forwarding.
     };
 
     /// Set a fallback device for accesses that don't hit any mapped region.
@@ -190,6 +191,15 @@ public:
      */
     void map(addr_t base, addr_t size, std::shared_ptr<Memory> device,
              std::string name = "");
+
+    /**
+     * @brief Map a range whose target expects absolute addresses.
+     *
+     * Used for RAM (or a cache in front of RAM): accesses inside the range
+     * are forwarded unchanged instead of being rebased to zero.
+     */
+    void map_passthrough(addr_t base, u64 size, std::shared_ptr<Memory> target,
+                         std::string name = "");
 
     /// Remove the mapping at @p base.
     void unmap(addr_t base);

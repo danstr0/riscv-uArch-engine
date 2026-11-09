@@ -26,8 +26,9 @@
  * - Integer: @c x0-x31 or ABI names (@c zero, @c ra, @c sp, @c gp, @c tp,
  *   @c t0-t6, @c s0-s11, @c a0-a7, @c fp).
  * - Vector: @c v0-v31.
- * - CSR: named (@c mstatus, @c mie, @c mtvec, @c mepc, @c mcause, @c mip)
- *   or hexadecimal (@c 0x300). Range 0x000-0xFFF.
+ * - CSR: named (@c mstatus, @c mie, @c mtvec, @c mscratch, @c mepc,
+ *   @c mcause, @c mip, @c mhartid) or hexadecimal (@c 0x300).
+ *   Range 0x000-0xFFF.
  *
  * @subsection asm_literals Numeric Literals
  * Decimal (@c 42), hexadecimal (@c 0xFF), or negative (@c -10, @c -0x10).
@@ -66,6 +67,7 @@
  * ┃             │ vmorn.mm, vmxor.mm, vmxnor.mm                              ┃
  * ┠─────────────┼────────────────────────────────────────────────────────────┨
  * ┃ Pseudo-ops  │ nop, li, mv, j, jr, ret, not, neg, beqz, bnez, seqz, snez, ┃
+ * ┃             │ csrr, csrw, csrs, csrc, csrwi, csrsi, csrci,               ┃
  * ┃             │ vmmv.m, vmclr.m, vmset.m, vmnot.m                          ┃
  * ┗━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
  * @endcode

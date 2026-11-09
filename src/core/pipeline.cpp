@@ -77,6 +77,21 @@ bool PipelinedCPU::tick()
     auto cur = stages_;
     std::array<PipelineReg, kNumStages> next{};
 
+    // A fault in MEM or EX halts the core; squash the faulting instruction
+    // and everything younger, but keep whatever older instruction has
+    // already been staged into WB this cycle so it still retires.
+    // Committing here lets the pipeline drain; otherwise, the faulting
+    // instruction re-executes forever
+    auto fault_stop = [&]() -> bool
+    {
+        const PipelineReg retiring = next[static_cast<int>(Stage::WB)];
+        for (auto& s : stages_) s.clear();
+        stages_[static_cast<int>(Stage::WB)] = retiring;
+        halted_ = true;
+        faulted_ = true;
+        return true;
+    };
+
     // 2. WB: Retire and commit to architectural state ─────────
     {
         const auto& wb = cur[static_cast<int>(Stage::WB)];
@@ -95,32 +110,17 @@ bool PipelinedCPU::tick()
         }
     }
 
-    // ── 2b. Check for pending interrupts ─────────────────────
-    if (csrs_.interrupt_pending() && !flush_pipeline_)
-    {
-        u32 cause = csrs_.pending_cause();
-        if (cause != 0)
-        {
-            addr_t trap_pc = pc_;
-
-            // for (int i = kNumStages - 1; i >= 0; --i)
-            for (size_t i = kNumStages; i > 0; --i)
-                if (cur[i - 1].valid)
-                {
-                    trap_pc = cur[i - 1].pc;
-                    break;
-                }
-
-            if (trace_)
-                std::cout << std::format("[TRAP] cause={} pc=0x{:08x} "
-                                         "-> mtvec=0x{:08x}\n",
-                                         cause, trap_pc, csrs_.mtvec());
-
-            csrs_.enter_trap(trap_pc, cause);
-            flush_pipeline_ = true;
-            flush_target_ = csrs_.mtvec();
-        }
-    }
+    // ── 2b. Precise interrupt check ──────────────────────────
+    const u32 irq_cause = faulted_ ? 0 : csrs_.pending_cause();
+    const bool take_interrupt = (irq_cause != 0);
+    addr_t irq_epc = pc_;
+    if (take_interrupt)
+        for (Stage s : {Stage::EX, Stage::ID, Stage::IF})
+            if (cur[static_cast<int>(s)].valid)
+            {
+                irq_epc = cur[static_cast<int>(s)].pc;
+                break;
+            }
 
     // ── 3. MEM: Memory access and load result generation ─────
     {
@@ -181,8 +181,7 @@ bool PipelinedCPU::tick()
                                                  "at 0x{:08x} (PC 0x{:08x})\n",
                                                  addr, mem_in.pc);
                         wb_out.valid = false;
-                        halted_ = true;
-                        return true;
+                        return fault_stop();
                     }
                     for (u32 i = 0; i < vstate_.vl; ++i)
                     {
@@ -275,8 +274,7 @@ bool PipelinedCPU::tick()
                                              "(PC 0x{:08x})\n",
                                              mem_in.mem_read ? "read" : "write", addr, mem_in.pc);
                     wb_out.valid = false;
-                    halted_ = true;
-                    return true;
+                    return fault_stop();
                 }
             }
             else if (mem_in.mem_write)
@@ -305,8 +303,7 @@ bool PipelinedCPU::tick()
                                                  "at 0x{:08x} (PC 0x{:08x})\n",
                                                  addr, mem_in.pc);
                         wb_out.valid = false;
-                        halted_ = true;
-                        return true;
+                        return fault_stop();
                     }
                     for (u32 i = 0; i < vstate_.vl; ++i)
                         memory_->write32(addr + i * 4,
@@ -325,8 +322,7 @@ bool PipelinedCPU::tick()
                                              "(PC 0x{:08x})\n",
                                              mem_in.mem_read ? "read" : "write", addr, mem_in.pc);
                     wb_out.valid = false;
-                    halted_ = true;
-                    return true;
+                    return fault_stop();
                 }
                 if (reservation_.has_value())
                 {
@@ -363,7 +359,7 @@ bool PipelinedCPU::tick()
         const auto& ex_in = cur[static_cast<int>(Stage::EX)];
         auto& mem_out = next[static_cast<int>(Stage::MEM)];
 
-        if (ex_in.valid)
+        if (ex_in.valid && !take_interrupt)
         {
             mem_out = ex_in;
 
@@ -432,8 +428,7 @@ bool PipelinedCPU::tick()
                         std::cerr << std::format("[ERROR] Misaligned branch target 0x{:08x} "
                                                  "(PC 0x{:08x})\n",
                                                  target, inst.pc);
-                        halted_ = true;
-                        return true;
+                        return fault_stop();
                     }
 
                     bool predicted_taken = predict_branch(inst.pc, inst.imm);
@@ -476,8 +471,7 @@ bool PipelinedCPU::tick()
                         std::cerr << std::format("[Pipeline] Misaligned JAL target 0x{:08x} "
                                                  "(PC 0x{:08x})\n",
                                                  target, inst.pc);
-                        halted_ = true;
-                        return true;
+                        return fault_stop();
                     }
                     exec_jump(target);
                     break;
@@ -490,8 +484,7 @@ bool PipelinedCPU::tick()
                         std::cerr << std::format("[Pipeline] Misaligned JALR target 0x{:08x} "
                                                  "(PC 0x{:08x})\n",
                                                  target, inst.pc);
-                        halted_ = true;
-                        return true;
+                        return fault_stop();
                     }
                     exec_jump(target);
                     break;
@@ -619,6 +612,33 @@ bool PipelinedCPU::tick()
             if (!mem_out.mem_read)
                 mem_out.rd_val = mem_out.alu_result;
         }
+    }
+
+    // ── 5b. Interrupt entry ──────────────────────────────────
+    // EX did not execute this cycle; squash EX/ID/IF and redirect fetch.
+    // Skipping ID/IF also keeps squashed instructions from setting halted_
+    // (EBREAK / illegal decode) or advancing the predicting PC.
+    if (take_interrupt)
+    {
+        const addr_t handler = csrs_.trap_target(irq_cause);
+
+        if (trace_)
+            std::cout << std::format("[TRAP] cause=0x{:08x} epc=0x{:08x} "
+                                     "-> handler=0x{:08x}\n",
+                                     irq_cause, irq_epc, handler);
+
+        csrs_.enter_trap(irq_epc, irq_cause);
+        stats_.interrupts_taken++;
+
+        next[static_cast<int>(Stage::IF)].clear();
+        next[static_cast<int>(Stage::ID)].clear();
+        next[static_cast<int>(Stage::EX)].clear();
+        pc_             = handler;
+        halted_         = false;
+        flush_pipeline_ = false;
+
+        stages_ = next;
+        return true;
     }
 
     // ── 6. ID: Decode and pipeline register management ───────
