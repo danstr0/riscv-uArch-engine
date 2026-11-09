@@ -110,6 +110,16 @@ void MMIOBus::map(addr_t base, addr_t size, std::shared_ptr<Memory> device,
     regions_.push_back({base, size, std::move(device), std::move(name)});
 }
 
+void MMIOBus::map_passthrough(addr_t base, u64 size, std::shared_ptr<Memory> target,
+                              std::string name)
+{
+    unmap(base);
+    const addr_t sz = size > 0xFFFF'FFFFull
+                    ? addr_t{0xFFFF'FFFF}
+                    : static_cast<addr_t>(size);
+    regions_.push_back({base, sz, std::move(target), std::move(name), false});
+}
+
 void MMIOBus::unmap(addr_t base)
 {
     std::erase_if(regions_, [base](const Region& r) { return r.base == base; });
@@ -118,10 +128,10 @@ void MMIOBus::unmap(addr_t base)
 Memory* MMIOBus::find_region(addr_t addr, addr_t* offset) const
 {
     for (auto& r : regions_)
-        // Check if addr falls within [base, base + size)
-        if (addr >= r.base && addr < r.base + r.size)
+        // Check if addr falls within [base, base + size); 64-bit to avoid wrap
+        if (addr >= r.base && u64{addr} < u64{r.base} + r.size)
         {
-            if (offset) *offset = addr - r.base;
+            if (offset) *offset = r.rebase ? addr - r.base : addr;
             return r.device.get();
         }
 
