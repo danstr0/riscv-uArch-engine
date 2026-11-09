@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 project(rvsim
-    VERSION     0.5.0
+    VERSION     0.5.2
     LANGUAGES   CXX
     DESCRIPTION "RV32I CPU architecture engine"
 )
@@ -72,7 +72,8 @@ add_library(rvsim_core STATIC
     src/core/cache.cpp
     src/core/pipeline.cpp
     src/core/plic.cpp
-    src/core/timer.cpp
+    src/core/clint.cpp
+    src/core/platform.cpp
     src/core/nic.cpp
     src/core/coherence.cpp
     src/core/multicore.cpp
@@ -111,13 +112,14 @@ add_executable(rvsim_tests
     test/test_rvv.cpp
     test/test_csr.cpp
     test/test_plic.cpp
-    test/test_timer.cpp
+    test/test_clint.cpp
     test/test_nic.cpp
     test/test_coherence.cpp
     test/test_multicore.cpp
     test/test_assembler.cpp
     test/test_config.cpp
     test/test_sparse_memory.cpp
+    test/test_platform.cpp
 )
  
 target_link_libraries(rvsim_tests PRIVATE rvsim_core)
@@ -131,11 +133,3 @@ add_custom_target(check
     COMMENT "Running RISC-V simulator tests"
 )
 
-# ── Benchmarks ──────────────────────────────────────────────────────────
-# TODO: re-enable later, in benchmarking+documentation update.
-
-#add_executable(bench_cache benchmark/bench_cache.cpp)
-#target_link_libraries(bench_cache PRIVATE rvsim_core)
-
-#add_executable(bench_pipeline benchmark/bench_pipeline.cpp)
-#target_link_libraries(bench_pipeline PRIVATE rvsim_core)
