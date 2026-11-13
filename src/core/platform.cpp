@@ -19,7 +19,7 @@ constexpr u64 kAddressSpace = u64{1} << 32;
 Platform::Platform(PlatformConfig config)
     : config_(config)
 {
-    if (config_.num_harts == 0 | config_.num_harts > PLICConfig::MAX_CONTEXTS)
+    if (config_.num_harts == 0 || config_.num_harts > PLICConfig::MAX_CONTEXTS)
         throw std::invalid_argument(
             std::format("Platform: num_harts must be 1..{} (got {})",
                         PLICConfig::MAX_CONTEXTS, config_.num_harts));
@@ -117,6 +117,17 @@ std::shared_ptr<MMIOBus> Platform::make_hart_bus(std::shared_ptr<Memory> downstr
         bus->map(config_.nic_base, PlatformMap::NIC_SIZE, nic_, "nic");
 
     buses_.push_back(bus);
+    return bus;
+}
+
+std::shared_ptr<MMIOBus> Platform::make_fetch_bus(std::shared_ptr<Memory> downstream)
+{
+    if (!downstream)
+        throw std::invalid_argument("Platform::make_fetch_bus: downstream memory is null");
+
+    auto bus = std::make_shared<MMIOBus>();
+    bus->map_passthrough(config_.ram_base, config_.ram_size,
+                         std::move(downstream), "ram");
     return bus;
 }
 

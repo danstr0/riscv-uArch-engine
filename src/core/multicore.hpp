@@ -21,6 +21,7 @@
 #include "cache.hpp"
 #include "coherence.hpp"
 #include "csr.hpp"
+#include "dma_port.hpp"
 #include "memory.hpp"
 #include "nic.hpp"
 #include "pipeline.hpp"
@@ -39,6 +40,7 @@ struct MultiCoreConfig
     PipelineConfig pipeline = {};
 
     CacheConfig l1d = CacheConfig::L1_typical();  ///< Set @c size_bytes=0 to disable all caches.
+    CacheConfig l1i{.size_bytes = 0};             ///< Per-core I-cache; 0 = @c l1d is a unified L1.
     CacheConfig l2  = CacheConfig::L2_typical();  ///< Required when L1 is enabled.
     CacheConfig l3  = CacheConfig::L3_typical();  ///< Set @c size_bytes=0 to disable.
 
@@ -56,6 +58,7 @@ struct MultiCoreStats
     std::vector<PipelineStats> core_stats;
     CoherenceStats             coherence;
     std::vector<CacheStats>    l1d_stats;
+    std::vector<CacheStats>    l1i_stats;  ///< Empty when the L1 is unified.
     CacheStats                 l2_stats;
     CacheStats                 l3_stats;
 };
@@ -69,6 +72,9 @@ struct MultiCoreStats
 class MultiCoreCPU {
 public:
     explicit MultiCoreCPU(MultiCoreConfig config = {});
+
+    MultiCoreCPU(const MultiCoreCPU&)            = delete;
+    MultiCoreCPU& operator=(const MultiCoreCPU&) = delete;
 
     /// @name Core access
     /// @{
@@ -106,11 +112,16 @@ public:
     /// its interrupt to the PLIC.
     void attach_nic(std::shared_ptr<NIC> nic);
     [[nodiscard]] NIC* nic() noexcept { return platform_->nic(); }
+
+    /// The memory a bus-mastering device (e.g., the NIC) should use;
+    /// coherent with the L1 D-caches.
+    [[nodiscard]] std::shared_ptr<Memory> dma_memory() const noexcept { return dma_; }
     /// @}
 
     /// @name Cache hierarchy
     /// @{
     [[nodiscard]] Cache* l1d(u32 core_id);
+    [[nodiscard]] Cache* l1i(u32 core_id);
     [[nodiscard]] Cache* l2() { return l2_cache_.get(); }
     [[nodiscard]] Cache* l3() { return l3_cache_.get(); }
     [[nodiscard]] CoherenceController* coherence() { return coherence_.get(); }
@@ -137,7 +148,10 @@ private:
     std::shared_ptr<Cache>                     l3_cache_;
     std::shared_ptr<Cache>                     l2_cache_;
     std::vector<std::shared_ptr<Cache>>        l1d_caches_;
+    std::vector<std::shared_ptr<Cache>>        l1i_caches_;
+    std::shared_ptr<Memory>                    dma_;
     std::vector<std::shared_ptr<MMIOBus>>      buses_;
+    std::vector<std::shared_ptr<MMIOBus>>      fetch_buses_;
     std::unique_ptr<CoherenceController>       coherence_;
     std::vector<std::unique_ptr<PipelinedCPU>> cores_;
 

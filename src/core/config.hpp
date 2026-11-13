@@ -117,6 +117,13 @@ struct SimConfig
     std::string l1_write_alloc = "allocate";
     /// @}
 
+    /// @name L1 instruction cache
+    /// @{
+    u32         l1i_size        = 0;  // 0 -> l1 is unified
+    u32         l1i_assoc       = 8;
+    std::string l1i_replacement = "lru";
+    /// @}
+
     /// @name L2 cache
     /// @{
     u32 l2_size  = 0; // 0 = disabled

@@ -69,6 +69,7 @@ struct [[nodiscard]] ExecuteResult
 
     bool   ecall        = false;  ///< Environment call trap.
     bool   ebreak       = false;  ///< Breakpoint trap.
+    bool   fence_i      = false;  ///< Instruction-fetch synchronization requested.
 
     std::optional<u32> rd_value;  ///< Value written to @c rd, if any.
 };

@@ -679,18 +679,12 @@ TEST(plat_nic_rx_interrupt_end_to_end)
     // A packet arrives on the wire; the NIC DMAs it into RAM and raises
     // PLIC source 1; the CPU traps, claims, reads ICR and the payload,
     // completes, and returns.
-    //
-    // Uncached models only: NIC DMA writes RAM directly and is not coherent
-    // with CPU caches (a CPU-written descriptor can sit in a write-back L1
-    // where the NIC never sees it).
-    return for_each_model({Model::Cpu, Model::Pipe,
-                           Model::PipeNoForward, Model::MultiCore},
-                          [](Machine& m, Model)
+    return for_each_model(kSingleHartModels, [](Machine& m, Model)
     {
         NicTiming timing;
         timing.dma_latency_cycles       = 10;
         timing.dma_cycles_per_cacheline = 1;
-        m.platform().attach_nic(std::make_shared<NIC>(m.platform().ram_ptr(), timing), 1);
+        m.platform().attach_nic(std::make_shared<NIC>(m.dma_memory(), timing), 1);
 
         ASSERT(m.load({
             {0x0, R"(

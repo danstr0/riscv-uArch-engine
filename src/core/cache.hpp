@@ -67,7 +67,7 @@ enum class WriteAllocate : u8
 enum class CacheType : u8
 {
     UNIFIED,      ///< Serves both instructions and data.
-    INSTRUCTION,  ///< I-cache (reads only).
+    INSTRUCTION,  ///< I-cache (reads only; writes assert).
     DATA,         ///< D-cache (reads and writes).
 };
 
@@ -265,9 +265,20 @@ public:
     /// @{
     using MissCallback  = std::function<u32(addr_t)>;  ///< Invoked on read miss before fetch.
     using WriteCallback = std::function<u32(addr_t)>;  ///< Invoked on every write.
+    using EvictCallback = std::function<void(addr_t)>; ///< Invoked when this cache gives up a line.
 
     void set_on_read_miss(MissCallback cb) { on_read_miss_ = std::move(cb); }
     void set_on_write(WriteCallback cb)    { on_write_ = std::move(cb); }
+
+    /**
+     * @brief Register a callback fired when a line leaves this cache on
+     *        its own.
+     *
+     * Covers replacement evictions, explicit invalidation, and a write miss
+     * that did not allocate. Not fired by @c snoop_invalidate(), since the
+     * coherence controller initiated that and already knows.
+     */
+    void set_on_evict(EvictCallback cb) { on_evict_ = std::move(cb); }
     /// @}
 
     /// @name Debug
@@ -281,6 +292,7 @@ private:
     std::shared_ptr<Memory> next_level_;
     MissCallback            on_read_miss_;
     WriteCallback           on_write_;
+    EvictCallback           on_evict_;
     bool                    trace_ = false;
 
     /*

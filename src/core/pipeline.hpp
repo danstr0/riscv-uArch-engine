@@ -31,6 +31,7 @@
 #include "vector_state.hpp"
 
 #include <array>
+#include <functional>
 #include <memory>
 #include <optional>
 #include <span>
@@ -154,8 +155,24 @@ struct PipelineStats
  */
 class PipelinedCPU {
 public:
+    /**
+     * @param memory  Data path (loads, stores, atomics).
+     * @param config  Pipeline knobs.
+     * @param imem    Instruction-fetch path; defaults to @p memory (unified).
+     */
     explicit PipelinedCPU(std::shared_ptr<Memory> memory, 
-                          PipelineConfig config = {});
+                          PipelineConfig config = {},
+                          std::shared_ptr<Memory> imem = nullptr);
+
+    /// Register the action taken by @c fence.i (invalidate this hart's I-cache).
+    void set_on_fence_i(std::function<void()> cb) { on_fence_i_ = std::move(cb); }
+
+    /// Called after every committed store with its address and size in bytes.
+    using StoreCallback = std::function<void(addr_t, u32)>;
+    void set_on_store(StoreCallback cb) { on_store_ = std::move(cb); }
+
+    /// Another agent stored to memory: drop any LR reservation it overlaps.
+    void observe_remote_store(addr_t addr, u32 size) noexcept;
 
     /// @name Program loading
     /// @{
@@ -219,7 +236,10 @@ public:
 
 private:
     std::shared_ptr<Memory> memory_;
+    std::shared_ptr<Memory> imem_;
     PipelineConfig          config_;
+    std::function<void()>   on_fence_i_;
+    StoreCallback           on_store_;
 
     std::array<u32, 32>     regs_{};
     addr_t                  pc_ = 0;

@@ -66,14 +66,14 @@ RV32A — Atomics (11 instructions)
 
 All R-type with opcode = 0101111 (AMO):
 
-- ``LR.W`` — load-reserved (places a reservation on the cache line)
+- ``LR.W`` — load-reserved (places a reservation on the word)
 - ``SC.W`` — store-conditional (succeeds only if reservation is intact)
 - ``AMOSWAP.W``, ``AMOADD.W``, ``AMOXOR.W``, ``AMOAND.W``, ``AMOOR.W``
 - ``AMOMIN.W``, ``AMOMAX.W``, ``AMOMINU.W``, ``AMOMAXU.W``
 
 ``LR``/``SC`` is the foundation for lock-free synchronization — ``SC`` returns
-``0`` on success (reservation held) and ``1`` on failure (another core wrote
-to the line between ``LR`` and ``SC``).
+``0`` on success (reservation held) and ``1`` on failure (a store overlapped
+the reserved word between ``LR`` and ``SC``, from this core or another).
 
 RVV — Vector Extension Subset (25 instructions)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -258,7 +258,15 @@ are optional: the CPU can run directly against main memory (useful
 for isolating pipeline effects in benchmarks).
 ::
 
-    CPU → [L1] → [L2] → [L3] → Main Memory
+    CPU ─┬─ data ──── [L1D] ─┬─ [L2] → [L3] → Main Memory
+         └─ fetch ─── [L1I] ─┘
+
+With no L1I configured, the L1 is unified and serves both paths. The L1I
+is read-only. Its refills see the newest data, including dirty D-cache
+lines, but a line already in the I-cache can go stale after a store until
+the hart executes ``fence.i``, which invalidates that hart's I-cache and
+refetches every younger instruction. RISC-V allows this. Device regions
+are not executable: a fetch from one faults.
 
 L1 cache (per-core in multi-core mode)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -422,8 +430,8 @@ Devices
   NIC with descriptor rings, interrupt coalescing, and RSS
   (Receive Side Scaling) for multi-queue packet distribution.
   Supports up to 8 RX/TX queues with configurable coalescing
-  thresholds (packet count and timer-based). NIC DMA reads and writes
-  RAM directly and is not yet coherent with CPU caches.
+  thresholds (packet count and timer-based). Construct it with the
+  system's ``dma_memory()`` so its DMA stays coherent with the D-caches.
 
 
 Assembler

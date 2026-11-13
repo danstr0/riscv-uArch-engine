@@ -120,9 +120,14 @@ names (e.g., ``pipeline.forwarding``, ``cache.l1.size``).
    * - ``flushes``
      - Pipeline flushes from branch mispredictions.
    * - ``l1_hit_rate``
-     - L1 cache hit rate (0.0–1.0). ``0`` if no L1.
+     - L1 data cache hit rate (0.0–1.0), or the unified L1's when
+       ``[cache.l1i]`` is disabled. ``0`` if no L1.
    * - ``l1_misses``
      - L1 cache miss count.
+   * - ``l1i_hit_rate``
+     - L1 instruction cache hit rate. ``0`` if the L1 is unified.
+   * - ``l1i_misses``
+     - L1 instruction cache miss count.
    * - ``l2_hit_rate``
      - L2 cache hit rate.  0 if no L2.
    * - ``l2_misses``

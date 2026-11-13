@@ -287,6 +287,13 @@ ConfigResult parse_config(std::string_view source)
             else if (key == "write")       cfg.l1_write = val;
             else if (key == "write_alloc") cfg.l1_write_alloc = val;
         }
+        // ── [cache.l1i] section ─────────────────────────
+        else if (current_section == "cache.l1i")
+        {
+            if      (key == "size")        cfg.l1i_size = parse_size_val(val);
+            else if (key == "assoc")       { u32 v; if (parse_u32(val, v)) cfg.l1i_assoc = v; }
+            else if (key == "replacement") cfg.l1i_replacement = val;
+        }
         // ── [cache.l2] section ──────────────────────────
         else if (current_section == "cache.l2")
         {
@@ -444,6 +451,7 @@ static const std::vector<std::string> kValidParams =
 {
     "cache.l1.size", "cache.l1.assoc", "cache.l1.line",
     "cache.l1.replacement", "cache.l1.write", "cache.l1.write_alloc",
+    "cache.l1i.size", "cache.l1i.assoc", "cache.l1i.replacement",
     "cache.l2.size", "cache.l2.assoc",
     "cache.l3.size", "cache.l3.assoc",
     "pipeline.forwarding", "pipeline.branch_pred", "pipeline.mispredict_penalty",
@@ -480,14 +488,16 @@ static bool in_list(const std::string& val, const std::vector<std::string>& list
 bool is_valid_param_value(const std::string& param, const std::string& value,
                           std::string& error_msg)
 {
-    if (param == "cache.l1.size" || param == "cache.l2.size" || param == "cache.l3.size")
+    if (param == "cache.l1.size" || param == "cache.l1i.size"
+     || param == "cache.l2.size" || param == "cache.l3.size")
     {
         u32 v = parse_size_val(value);
         if (v == 0)            { error_msg = "cache size must be > 0"; return false; }
         if (!is_power_of_2(v)) { error_msg = "cache size must be a power of 2"; return false; }
         return true;
     }
-    if (param == "cache.l1.assoc" || param == "cache.l2.assoc" || param == "cache.l3.assoc")
+    if (param == "cache.l1.assoc" || param == "cache.l1i.assoc"
+     || param == "cache.l2.assoc" || param == "cache.l3.assoc")
     {
         u32 v = 0;
         if (!parse_u32(value, v) || v == 0)
@@ -504,7 +514,7 @@ bool is_valid_param_value(const std::string& param, const std::string& value,
         if (!is_power_of_2(v)) { error_msg = "line size must be a power of 2"; return false; }
         return true;
     }
-    if (param == "cache.l1.replacement")
+    if (param == "cache.l1.replacement" || param == "cache.l1i.replacement")
     {
         if (!in_list(value, kReplacementPolicies))
         {
@@ -660,6 +670,7 @@ bool validate_config(const SimConfig& cfg, std::vector<ConfigError>& errors)
     };
 
     validate_cache("L1", cfg.l1_size, cfg.l1_assoc, cfg.l1_line);
+    validate_cache("L1I", cfg.l1i_size, cfg.l1i_assoc, cfg.l1_line);
     validate_cache("L2", cfg.l2_size, cfg.l2_assoc, cfg.l1_line);
     validate_cache("L3", cfg.l3_size, cfg.l3_assoc, cfg.l1_line);
 
@@ -668,6 +679,16 @@ bool validate_config(const SimConfig& cfg, std::vector<ConfigError>& errors)
         err("L2 cache requires L1 cache");
     if (cfg.l3_size > 0 && cfg.l2_size == 0)
         err("L3 cache requires L2 cache");
+
+    if (cfg.l1i_size > 0 && cfg.l1_size == 0)
+        err("L1I cache requires L1 data cache");
+    if (cfg.l1i_size > 0 && cfg.l2_size > 0 && cfg.l2_size <= cfg.l1i_size)
+        err(std::format("L2 size ({}) must be larger than L1I size ({})",
+                        cfg.l2_size, cfg.l1i_size));
+    if (!in_list(cfg.l1i_replacement, kReplacementPolicies) && cfg.l1i_size > 0)
+        err(std::format("unknown L1I replacement policy '{}' "
+                        "(expected: lru, mru, plru, fifo, random)",
+                        cfg.l1i_replacement));
 
     // Cache sizes must increase with distance from CPU
     if (cfg.l1_size > 0 && cfg.l2_size > 0 && cfg.l2_size <= cfg.l1_size)
@@ -808,6 +829,9 @@ void apply_config_param(SimConfig& cfg, const std::string& param,
     else if (param == "cache.l1.replacement") cfg.l1_replacement = value;
     else if (param == "cache.l1.write")       cfg.l1_write = value;
     else if (param == "cache.l1.write_alloc") cfg.l1_write_alloc = value;
+    else if (param == "cache.l1i.size")        cfg.l1i_size = parse_size_val(value);
+    else if (param == "cache.l1i.assoc")       { u32 v; if (parse_u32(value, v)) cfg.l1i_assoc = v; }
+    else if (param == "cache.l1i.replacement") cfg.l1i_replacement = value;
     else if (param == "cache.l2.size")        cfg.l2_size = parse_size_val(value);
     else if (param == "cache.l2.assoc")       { u32 v; if (parse_u32(value, v)) cfg.l2_assoc = v; }
     else if (param == "cache.l3.size")        cfg.l3_size = parse_size_val(value);

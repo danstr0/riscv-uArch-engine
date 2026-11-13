@@ -478,10 +478,9 @@ void NIC::complete_dma()
             auto& ring = rx_rings_[dma.queue_id];
             RxDescriptor desc = read_rx_desc(dma.queue_id, dma.desc_idx);
 
-            for (size_t i = 0; i < dma.packet.data.size(); ++i)
-                sys_mem_->load(desc.buffer_addr,
-                               std::span<const u8>(dma.packet.data.data(),
-                                                   dma.packet.data.size()));
+            sys_mem_->load(desc.buffer_addr,
+                           std::span<const u8>(dma.packet.data.data(),
+                                               dma.packet.data.size()));
 
             // Update descriptor status
             desc.length = static_cast<u16>(dma.packet.data.size());

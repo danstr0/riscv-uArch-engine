@@ -678,10 +678,11 @@ Assembler::encode_instruction(const ParsedLine& line,
 
     // ── System instructions ─────────────────────────────
 
-    if (m == "ecall")  { if (nops != 0) return err("ecall takes no operands");  return ok1(0x0000'0073); }
-    if (m == "ebreak") { if (nops != 0) return err("ebreak takes no operands"); return ok1(0x0010'0073); }
-    if (m == "mret")   { if (nops != 0) return err("mret takes no operands");   return ok1(0x3020'0073); }
-    if (m == "fence")  { if (nops != 0) return err("fence takes no operands");  return ok1(0x0FF0'000F); }
+    if (m == "ecall")   { if (nops != 0) return err("ecall takes no operands");  return ok1(0x0000'0073); }
+    if (m == "ebreak")  { if (nops != 0) return err("ebreak takes no operands"); return ok1(0x0010'0073); }
+    if (m == "mret")    { if (nops != 0) return err("mret takes no operands");   return ok1(0x3020'0073); }
+    if (m == "fence")   { if (nops != 0) return err("fence takes no operands");  return ok1(0x0FF0'000F); }
+    if (m == "fence.i") { if (nops != 0) return err("fence.i takes no operands"); return ok1(0x0000'100F); }
 
     // ── CSR instructions ────────────────────────────────
 

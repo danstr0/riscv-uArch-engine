@@ -44,11 +44,14 @@ struct CoherenceStats
 {
     u64 read_misses        = 0;
     u64 write_misses       = 0;
-    u64 upgrades           = 0;  ///< S → M transitions.
+    u64 upgrades           = 0;  ///< S/E → M transitions.
     u64 invalidations_sent = 0;
-    u64 writebacks_forced  = 0;  ///< M → S/I transitions requiring writeback.
+    u64 writebacks_forced  = 0;  ///< M → E/S/I transitions requiring writeback.
     u64 shared_transfers   = 0;  ///< Cache-to-cache intervention transfers.
     u64 l2_fetches         = 0;  ///< Requests satisfied by shared L2/RAM.
+    u64 fetch_misses       = 0;  ///< I-cache refills seen by the directory.
+    u64 dma_reads          = 0;  ///< Coherent DMA reads (per byte-range access).
+    u64 dma_writes         = 0;  ///< Coherent DMA writes (per byte-range access).
 
     void reset() noexcept { *this = CoherenceStats{}; }
 };
@@ -95,6 +98,25 @@ public:
 
     /// Notify the directory that @p core_id is evicting the line at @p addr.
     void notify_eviction(u32 core_id, addr_t addr);
+
+    /**
+     * @brief Handle an I-cache refill from @p core_id.
+     *
+     * The refill must see the newest data, so a @c Modified owner (including
+     * the requesting core's own D-cache) writes back and drops to @c Exclusive.
+     * I-cache copies are deliberately not tracked: as RISC-V allows, a line
+     * already in an I-cache can go stale until that hart runs @c fence.i.
+     *
+     * @return Transaction latency in cycles.
+     */
+    u32 handle_fetch_miss(u32 core_id, addr_t addr);
+
+    /// A device is about to read the line: a Modified owner writes back.
+    u32 dma_read(addr_t addr);
+
+    /// A device is about to write the line: all L1 copies are written
+    /// back and invalidated.
+    u32 dma_write(addr_t addr);
     /// @}
 
     /// @name Statistics
@@ -131,7 +153,11 @@ private:
     /// Invalidate all copies except in @p requesting_core. Returns snoop latency.
     u32 invalidate_others(u32 requesting_core, addr_t line_addr, DirectoryEntry& entry);
 
-    /// @return Core ID holding the line in Modified state, or -1 if none.
+    /// Write back a Modified owner of @p line_addr (M → E), if any.
+    /// Returns snoop latency.
+    u32 clean_modified_owner(addr_t line_addr);
+
+    /// @return Core ID holding the line in Modified state, or @c -1 if none.
     [[nodiscard]] i32 find_modified_owner(const DirectoryEntry& entry) const;
 
     /// @return Any core holding the line in Shared or Exclusive (excluding @p exclude_core), or -1.

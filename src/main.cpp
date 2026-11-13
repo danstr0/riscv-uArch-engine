@@ -88,8 +88,14 @@ static SystemConfig to_system_config(const SimConfig& cfg)
             .size_bytes = cfg.l2_size, .line_size = cfg.l1_line,
             .associativity = cfg.l2_assoc, .hit_latency = 12, .miss_penalty = 50,
         };
+    if (cfg.l1i_size > 0)
+        s.l1i = {
+            .size_bytes = cfg.l1i_size, .line_size = cfg.l1_line,
+            .associativity = cfg.l1i_assoc, .hit_latency = 4, .miss_penalty = 10,
+            .replacement = to_replacement(cfg.l1i_replacement),
+        };
     if (cfg.l1_size > 0)
-        s.l1 = {
+        s.l1d = {
             .size_bytes = cfg.l1_size, .line_size = cfg.l1_line,
             .associativity = cfg.l1_assoc, .hit_latency = 4, .miss_penalty = 10,
             .replacement = to_replacement(cfg.l1_replacement),
@@ -135,6 +141,7 @@ struct RunResult
     cycle_t cycles = 0; u64 instructions = 0; double ipc = 0;
     u64 stalls = 0; u64 flushes = 0;
     double l1_hit_rate = 0; u64 l1_misses = 0;
+    double l1i_hit_rate = 0; u64 l1i_misses = 0;
     double l2_hit_rate = 0; u64 l2_misses = 0;
     double l3_hit_rate = 0; u64 l3_misses = 0;
     u64 branches = 0; u64 mispredicts = 0; double branch_accuracy = 0;
@@ -168,10 +175,15 @@ static RunResult run_once(const SimConfig& cfg, const std::vector<u8>& code)
     r.stalls       = ps.stalls_load_use + ps.stalls_raw + ps.stalls_control;
     r.flushes      = ps.branch_mispredicts;
 
-    if (auto* l1 = sys.l1())
+    if (auto* l1 = sys.l1d())
     {
         r.l1_hit_rate = l1->stats().hit_rate();
         r.l1_misses   = l1->stats().misses;
+    }
+    if (auto* l1i = sys.l1i())
+    {
+        r.l1i_hit_rate = l1i->stats().hit_rate();
+        r.l1i_misses   = l1i->stats().misses;
     }
     if (auto* l2 = sys.l2())
     {
@@ -196,6 +208,7 @@ static void csv_header()
 {
     std::cout << "cycles,instructions,ipc,stalls,flushes,"
                  "l1_hit_rate,l1_misses,"
+                 "l1i_hit_rate,l1i_misses,"
                  "l2_hit_rate,l2_misses,"
                  "l3_hit_rate,l3_misses,"
                  "branches,mispredicts,branch_accuracy\n";
@@ -203,9 +216,10 @@ static void csv_header()
 
 static void csv_row(const RunResult& r)
 {
-    std::cout << std::format("{},{},{:.4f},{},{},{:.4f},{},{:.4f},{},{:.4f},{},{},{},{:.4f}\n",
+    std::cout << std::format("{},{},{:.4f},{},{},{:.4f},{},{:.4f},{},{:.4f},{},{:.4f},{},{},{},{:.4f}\n",
         r.cycles, r.instructions, r.ipc, r.stalls, r.flushes,
         r.l1_hit_rate, r.l1_misses,
+        r.l1i_hit_rate, r.l1i_misses,
         r.l2_hit_rate, r.l2_misses,
         r.l3_hit_rate, r.l3_misses,
         r.branches, r.mispredicts, r.branch_accuracy);
@@ -234,6 +248,18 @@ static void sweep_recursive(const std::vector<SweepAxis>& axes, u32 depth,
         if (cfg.l1_size > 0 && cfg.l2_size > 0 && cfg.l2_size <= cfg.l1_size)
         {
             skip("L2 size < L1 size"); return;
+        }
+        if (cfg.l1i_size > 0 && cfg.l1_size == 0)
+        {
+            skip("L1I requires L1"); return;
+        }
+        if (cfg.l1i_size > 0 && cfg.l2_size > 0 && cfg.l2_size <= cfg.l1i_size)
+        {
+            skip("L2 size < L1I size"); return;
+        }
+        if (cfg.l1i_size > 0 && (cfg.l1i_size % (cfg.l1_line * cfg.l1i_assoc)) != 0)
+        {
+            skip("L1I size not divisible by line*assoc"); return;
         }
         if (cfg.l2_size > 0 && cfg.l3_size > 0 && cfg.l3_size < cfg.l2_size)
         {
@@ -398,13 +424,16 @@ int main(int argc, char** argv)
         std::cerr << std::format(
             "\n"
             " -- Architecture --\n"
-            "  L1: {}B, {}-way, line={}, replacement={}, {} {}\n"
-            "  L2: {}B, {}-way {}\n"
-            "  L3: {}B, {}-way {}\n"
+            "  L1:  {}B, {}-way, line={}, replacement={}, {} {}\n"
+            "  L1I: {}B, {}-way, replacement={} {}\n"
+            "  L2:  {}B, {}-way {}\n"
+            "  L3:  {}B, {}-way {}\n"
             "  Pipeline: forwarding={}, branch_pred={}, mispredict_penalty={}\n"
             "\n",
             cfg.l1_size, cfg.l1_assoc, cfg.l1_line, cfg.l1_replacement, cfg.l1_write,
             cfg.l1_size == 0 ? "  (disabled)" : "",
+            cfg.l1i_size, cfg.l1i_assoc, cfg.l1i_replacement,
+            cfg.l1i_size == 0 ? "  (disabled: L1 is unified)" : "",
             cfg.l2_size, cfg.l2_assoc, cfg.l2_size == 0 ? "  (disabled)" : "",
             cfg.l3_size, cfg.l3_assoc, cfg.l3_size == 0 ? "  (disabled)" : "",
             cfg.forwarding, cfg.branch_pred, cfg.mispredict_penalty);
@@ -418,6 +447,7 @@ int main(int argc, char** argv)
             "  Stalls:           {}\n"
             "  Flushes:          {}\n"
             "  L1 hit rate:      {:.2f}%  ({} misses)\n"
+            "  L1I hit rate:     {:.2f}%  ({} misses)\n"
             "  L2 hit rate:      {:.2f}%  ({} misses)\n"
             "  L3 hit rate:      {:.2f}%  ({} misses)\n"
             "  Branches:         {} ({} mispredicts, {:.1f}% accuracy)\n"
@@ -425,6 +455,7 @@ int main(int argc, char** argv)
             r.cycles, r.instructions, r.ipc,
             r.stalls, r.flushes,
             r.l1_hit_rate * 100.0, r.l1_misses,
+            r.l1i_hit_rate * 100.0, r.l1i_misses,
             r.l2_hit_rate * 100.0, r.l2_misses,
             r.l3_hit_rate * 100.0, r.l3_misses,
             r.branches, r.mispredicts, r.branch_accuracy * 100.0);
