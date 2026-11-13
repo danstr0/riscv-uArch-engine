@@ -11,5 +11,5 @@ digraph "riscv::VectorRegFile::reset"
   Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node3 [id="Node000003",label="riscv::Executor::Executor",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1Executor.html#abf0d3981a0b2d8167a799816d98e046f",tooltip=" "];
   Node2 -> Node4 [id="edge3_Node000002_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="riscv::PipelinedCPU\l::PipelinedCPU",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1PipelinedCPU.html#af2ef7d8ee4478457e1aa645e7a7bb343",tooltip=" "];
+  Node4 [id="Node000004",label="riscv::PipelinedCPU\l::PipelinedCPU",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1PipelinedCPU.html#ac69a0c13f98af3035156c756292019cf",tooltip=" "];
 }

@@ -7,6 +7,6 @@ digraph "riscv::MultiCoreConfig"
   Node1 [id="Node000001",label="riscv::MultiCoreConfig",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="System-level configuration for the multi-core SoC."];
   Node2 -> Node1 [id="edge1_Node000001_Node000002",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" pipeline",fontcolor="grey" ];
   Node2 [id="Node000002",label="riscv::PipelineConfig",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structriscv_1_1PipelineConfig.html",tooltip="Pipeline configuration knobs."];
-  Node3 -> Node1 [id="edge2_Node000001_Node000003",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" l1d\nl2\nl3",fontcolor="grey" ];
+  Node3 -> Node1 [id="edge2_Node000001_Node000003",dir="back",color="darkorchid3",style="dashed",tooltip=" ",label=" l1d\nl1i\nl2\nl3",fontcolor="grey" ];
   Node3 [id="Node000003",label="riscv::CacheConfig",height=0.2,width=0.4,color="gray40", fillcolor="white", style="filled",URL="$structriscv_1_1CacheConfig.html",tooltip="Configuration for a single cache level."];
 }

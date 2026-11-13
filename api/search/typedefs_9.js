@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['writecallback_0',['WriteCallback',['../classriscv_1_1Cache.html#ab61e9825f65e38f0a20c4625090fc247',1,'riscv::Cache']]]
+  ['storecallback_0',['StoreCallback',['../classriscv_1_1PipelinedCPU.html#a2f29f1f5aff4b796aa01e4633ca67957',1,'riscv::PipelinedCPU']]]
 ];

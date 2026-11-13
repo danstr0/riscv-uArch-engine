@@ -104,6 +104,13 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ab29c2bb06f266807f8d3745b6357db32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55a327157fc34d432b5680441eb1785b" id="r_a55a327157fc34d432b5680441eb1785b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1SimConfig.html#a55a327157fc34d432b5680441eb1785b">l1_write_alloc</a> = &quot;allocate&quot;</td></tr>
 <tr class="separator:a55a327157fc34d432b5680441eb1785b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">L1 instruction cache</div></td></tr>
+<tr class="memitem:a8e369ef9f11729d354af8ea24fce5cbb" id="r_a8e369ef9f11729d354af8ea24fce5cbb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1SimConfig.html#a8e369ef9f11729d354af8ea24fce5cbb">l1i_size</a> = 0</td></tr>
+<tr class="separator:a8e369ef9f11729d354af8ea24fce5cbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2774a5deb2bd5d31292dd8e3e536c054" id="r_a2774a5deb2bd5d31292dd8e3e536c054"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1SimConfig.html#a2774a5deb2bd5d31292dd8e3e536c054">l1i_assoc</a> = 8</td></tr>
+<tr class="separator:a2774a5deb2bd5d31292dd8e3e536c054"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36a8c33eb82c87b3886ee4abc12c8fda" id="r_a36a8c33eb82c87b3886ee4abc12c8fda"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1SimConfig.html#a36a8c33eb82c87b3886ee4abc12c8fda">l1i_replacement</a> = &quot;lru&quot;</td></tr>
+<tr class="separator:a36a8c33eb82c87b3886ee4abc12c8fda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">L2 cache</div></td></tr>
 <tr class="memitem:a26ada77af03a422aaf8cfb9ce48e5a0e" id="r_a26ada77af03a422aaf8cfb9ce48e5a0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1SimConfig.html#a26ada77af03a422aaf8cfb9ce48e5a0e">l2_size</a> = 0</td></tr>
 <tr class="separator:a26ada77af03a422aaf8cfb9ce48e5a0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -282,6 +289,48 @@ Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">std::string riscv::SimConfig::l1_write_alloc = &quot;allocate&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2774a5deb2bd5d31292dd8e3e536c054" name="a2774a5deb2bd5d31292dd8e3e536c054"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2774a5deb2bd5d31292dd8e3e536c054">&#9670;&#160;</a></span>l1i_assoc</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> riscv::SimConfig::l1i_assoc = 8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a36a8c33eb82c87b3886ee4abc12c8fda" name="a36a8c33eb82c87b3886ee4abc12c8fda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36a8c33eb82c87b3886ee4abc12c8fda">&#9670;&#160;</a></span>l1i_replacement</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string riscv::SimConfig::l1i_replacement = &quot;lru&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8e369ef9f11729d354af8ea24fce5cbb" name="a8e369ef9f11729d354af8ea24fce5cbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e369ef9f11729d354af8ea24fce5cbb">&#9670;&#160;</a></span>l1i_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> riscv::SimConfig::l1i_size = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">

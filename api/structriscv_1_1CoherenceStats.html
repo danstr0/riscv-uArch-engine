@@ -98,12 +98,12 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ab860a2c0d1b137e7053f205a6c08b62e" id="r_ab860a2c0d1b137e7053f205a6c08b62e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1CoherenceStats.html#ab860a2c0d1b137e7053f205a6c08b62e">write_misses</a> = 0</td></tr>
 <tr class="separator:ab860a2c0d1b137e7053f205a6c08b62e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e0d3fc659e2f1d31aee9b9e9b1f2ba2" id="r_a7e0d3fc659e2f1d31aee9b9e9b1f2ba2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1CoherenceStats.html#a7e0d3fc659e2f1d31aee9b9e9b1f2ba2">upgrades</a> = 0</td></tr>
-<tr class="memdesc:a7e0d3fc659e2f1d31aee9b9e9b1f2ba2"><td class="mdescLeft">&#160;</td><td class="mdescRight">S → M transitions.  <br /></td></tr>
+<tr class="memdesc:a7e0d3fc659e2f1d31aee9b9e9b1f2ba2"><td class="mdescLeft">&#160;</td><td class="mdescRight">S/E → M transitions.  <br /></td></tr>
 <tr class="separator:a7e0d3fc659e2f1d31aee9b9e9b1f2ba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af84159c15d913591e7927f5ca7e46fb0" id="r_af84159c15d913591e7927f5ca7e46fb0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1CoherenceStats.html#af84159c15d913591e7927f5ca7e46fb0">invalidations_sent</a> = 0</td></tr>
 <tr class="separator:af84159c15d913591e7927f5ca7e46fb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2649ecb05d261594ac721bfc2cce0fe8" id="r_a2649ecb05d261594ac721bfc2cce0fe8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1CoherenceStats.html#a2649ecb05d261594ac721bfc2cce0fe8">writebacks_forced</a> = 0</td></tr>
-<tr class="memdesc:a2649ecb05d261594ac721bfc2cce0fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">M → S/I transitions requiring writeback.  <br /></td></tr>
+<tr class="memdesc:a2649ecb05d261594ac721bfc2cce0fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">M → E/S/I transitions requiring writeback.  <br /></td></tr>
 <tr class="separator:a2649ecb05d261594ac721bfc2cce0fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a992d1b6c845eed5853449122b749c5b4" id="r_a992d1b6c845eed5853449122b749c5b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1CoherenceStats.html#a992d1b6c845eed5853449122b749c5b4">shared_transfers</a> = 0</td></tr>
 <tr class="memdesc:a992d1b6c845eed5853449122b749c5b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cache-to-cache intervention transfers.  <br /></td></tr>
@@ -111,6 +111,15 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a7061e9d3c9b7b642facf582b76ed5e1a" id="r_a7061e9d3c9b7b642facf582b76ed5e1a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1CoherenceStats.html#a7061e9d3c9b7b642facf582b76ed5e1a">l2_fetches</a> = 0</td></tr>
 <tr class="memdesc:a7061e9d3c9b7b642facf582b76ed5e1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests satisfied by shared L2/RAM.  <br /></td></tr>
 <tr class="separator:a7061e9d3c9b7b642facf582b76ed5e1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a383122b4e24d92d3b2c426c4bcb80d4e" id="r_a383122b4e24d92d3b2c426c4bcb80d4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1CoherenceStats.html#a383122b4e24d92d3b2c426c4bcb80d4e">fetch_misses</a> = 0</td></tr>
+<tr class="memdesc:a383122b4e24d92d3b2c426c4bcb80d4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">I-cache refills seen by the directory.  <br /></td></tr>
+<tr class="separator:a383122b4e24d92d3b2c426c4bcb80d4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab480dfd90ad326fd3f1b4138e485ea97" id="r_ab480dfd90ad326fd3f1b4138e485ea97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1CoherenceStats.html#ab480dfd90ad326fd3f1b4138e485ea97">dma_reads</a> = 0</td></tr>
+<tr class="memdesc:ab480dfd90ad326fd3f1b4138e485ea97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coherent DMA reads (per byte-range access).  <br /></td></tr>
+<tr class="separator:ab480dfd90ad326fd3f1b4138e485ea97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8486f06b665d522a0aed2ec8f8f5107d" id="r_a8486f06b665d522a0aed2ec8f8f5107d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1CoherenceStats.html#a8486f06b665d522a0aed2ec8f8f5107d">dma_writes</a> = 0</td></tr>
+<tr class="memdesc:a8486f06b665d522a0aed2ec8f8f5107d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coherent DMA writes (per byte-range access).  <br /></td></tr>
+<tr class="separator:a8486f06b665d522a0aed2ec8f8f5107d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Coherence transaction counters. </p>
@@ -146,6 +155,54 @@ Here is the caller graph for this function:</div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="ab480dfd90ad326fd3f1b4138e485ea97" name="ab480dfd90ad326fd3f1b4138e485ea97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab480dfd90ad326fd3f1b4138e485ea97">&#9670;&#160;</a></span>dma_reads</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a> riscv::CoherenceStats::dma_reads = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Coherent DMA reads (per byte-range access). </p>
+
+</div>
+</div>
+<a id="a8486f06b665d522a0aed2ec8f8f5107d" name="a8486f06b665d522a0aed2ec8f8f5107d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8486f06b665d522a0aed2ec8f8f5107d">&#9670;&#160;</a></span>dma_writes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a> riscv::CoherenceStats::dma_writes = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Coherent DMA writes (per byte-range access). </p>
+
+</div>
+</div>
+<a id="a383122b4e24d92d3b2c426c4bcb80d4e" name="a383122b4e24d92d3b2c426c4bcb80d4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a383122b4e24d92d3b2c426c4bcb80d4e">&#9670;&#160;</a></span>fetch_misses</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceriscv.html#adbb9042ceed1b5f35328fc13bc623a7d">u64</a> riscv::CoherenceStats::fetch_misses = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>I-cache refills seen by the directory. </p>
+
+</div>
+</div>
 <a id="af84159c15d913591e7927f5ca7e46fb0" name="af84159c15d913591e7927f5ca7e46fb0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af84159c15d913591e7927f5ca7e46fb0">&#9670;&#160;</a></span>invalidations_sent</h2>
 
@@ -218,7 +275,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>S → M transitions. </p>
+<p>S/E → M transitions. </p>
 
 </div>
 </div>
@@ -248,7 +305,7 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>M → S/I transitions requiring writeback. </p>
+<p>M → E/S/I transitions requiring writeback. </p>
 
 </div>
 </div>

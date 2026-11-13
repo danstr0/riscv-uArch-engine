@@ -93,8 +93,11 @@ Collaboration diagram for riscv::CPU:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6965a8ac82b8593059bbf55f3ddabdba" id="r_a6965a8ac82b8593059bbf55f3ddabdba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#a6965a8ac82b8593059bbf55f3ddabdba">CPU</a> (std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt; <a class="el" href="classriscv_1_1CPU.html#a7f3e115805ea57a98377fc692767fe22">memory</a>)</td></tr>
-<tr class="separator:a6965a8ac82b8593059bbf55f3ddabdba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ad1a62489feb8c5a8bd0b7131ba824f" id="r_a6ad1a62489feb8c5a8bd0b7131ba824f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#a6ad1a62489feb8c5a8bd0b7131ba824f">CPU</a> (std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt; <a class="el" href="classriscv_1_1CPU.html#a7f3e115805ea57a98377fc692767fe22">memory</a>, std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt; imem=nullptr)</td></tr>
+<tr class="separator:a6ad1a62489feb8c5a8bd0b7131ba824f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c2624eef888d2997572163805bae7b7" id="r_a2c2624eef888d2997572163805bae7b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#a2c2624eef888d2997572163805bae7b7">set_on_fence_i</a> (std::function&lt; void()&gt; cb)</td></tr>
+<tr class="memdesc:a2c2624eef888d2997572163805bae7b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register the action taken by <code>fence.i</code> (invalidate this hart's I-cache).  <br /></td></tr>
+<tr class="separator:a2c2624eef888d2997572163805bae7b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Program loading</div></td></tr>
 <tr class="memitem:a8abcf6478306a77c6cb9176d4ff1568e" id="r_a8abcf6478306a77c6cb9176d4ff1568e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#a8abcf6478306a77c6cb9176d4ff1568e">load_program</a> (<a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a> addr, std::span&lt; const <a class="el" href="namespaceriscv.html#a6358f00da0ce33cb24951ab5ef2f2576">u8</a> &gt; program)</td></tr>
 <tr class="separator:a8abcf6478306a77c6cb9176d4ff1568e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,8 +163,12 @@ Public Member Functions</h2></td></tr>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a6f89d07227ec3295a46cd5975d7f43b1" id="r_a6f89d07227ec3295a46cd5975d7f43b1"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#a6f89d07227ec3295a46cd5975d7f43b1">memory_</a></td></tr>
 <tr class="separator:a6f89d07227ec3295a46cd5975d7f43b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07051b8a305ddb8422097aeedad37423" id="r_a07051b8a305ddb8422097aeedad37423"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#a07051b8a305ddb8422097aeedad37423">imem_</a></td></tr>
+<tr class="separator:a07051b8a305ddb8422097aeedad37423"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6785f1e089da28f173b41d68256b9c6" id="r_ad6785f1e089da28f173b41d68256b9c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classriscv_1_1Executor.html">Executor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#ad6785f1e089da28f173b41d68256b9c6">executor_</a></td></tr>
 <tr class="separator:ad6785f1e089da28f173b41d68256b9c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf0751f880b8ea828fbba9a473943491" id="r_abf0751f880b8ea828fbba9a473943491"><td class="memItemLeft" align="right" valign="top">std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#abf0751f880b8ea828fbba9a473943491">on_fence_i_</a></td></tr>
+<tr class="separator:abf0751f880b8ea828fbba9a473943491"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace27ae80c61ad01b6669515c30353655" id="r_ace27ae80c61ad01b6669515c30353655"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structriscv_1_1DecodedInst.html">DecodedInst</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#ace27ae80c61ad01b6669515c30353655">last_inst_</a> {}</td></tr>
 <tr class="separator:ace27ae80c61ad01b6669515c30353655"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6bf849d69e6e12af76248c900a45b07" id="r_aa6bf849d69e6e12af76248c900a45b07"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structriscv_1_1ExecuteResult.html">ExecuteResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CPU.html#aa6bf849d69e6e12af76248c900a45b07">last_result_</a> {}</td></tr>
@@ -174,8 +181,8 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Single-cycle RISC-V <a class="el" href="classriscv_1_1CPU.html" title="Single-cycle RISC-V CPU implementing fetch-decode-execute.">CPU</a> implementing fetch-decode-execute. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a6965a8ac82b8593059bbf55f3ddabdba" name="a6965a8ac82b8593059bbf55f3ddabdba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6965a8ac82b8593059bbf55f3ddabdba">&#9670;&#160;</a></span>CPU()</h2>
+<a id="a6ad1a62489feb8c5a8bd0b7131ba824f" name="a6ad1a62489feb8c5a8bd0b7131ba824f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ad1a62489feb8c5a8bd0b7131ba824f">&#9670;&#160;</a></span>CPU()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -187,8 +194,18 @@ Private Attributes</h2></td></tr>
           <td class="memname">riscv::CPU::CPU </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt;&#160;</td>
-          <td class="paramname"><em>memory</em></td><td>)</td>
+          <td class="paramname"><em>memory</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt;&#160;</td>
+          <td class="paramname"><em>imem</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -197,6 +214,13 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">memory</td><td>Data path (loads and stores). </td></tr>
+    <tr><td class="paramname">imem</td><td>Instruction-fetch path; defaults to <code>memory</code> (unified). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -779,6 +803,34 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a2c2624eef888d2997572163805bae7b7" name="a2c2624eef888d2997572163805bae7b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c2624eef888d2997572163805bae7b7">&#9670;&#160;</a></span>set_on_fence_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv::CPU::set_on_fence_i </td>
+          <td>(</td>
+          <td class="paramtype">std::function&lt; void()&gt;&#160;</td>
+          <td class="paramname"><em>cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Register the action taken by <code>fence.i</code> (invalidate this hart's I-cache). </p>
+
+</div>
+</div>
 <a id="a595b86e2066c158378ad31c175ae9cb6" name="a595b86e2066c158378ad31c175ae9cb6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a595b86e2066c158378ad31c175ae9cb6">&#9670;&#160;</a></span>set_pc()</h2>
 
@@ -987,6 +1039,28 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a07051b8a305ddb8422097aeedad37423" name="a07051b8a305ddb8422097aeedad37423"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07051b8a305ddb8422097aeedad37423">&#9670;&#160;</a></span>imem_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classriscv_1_1Memory.html">Memory</a>&gt; riscv::CPU::imem_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a14634288002d73406d69287c509aa896" name="a14634288002d73406d69287c509aa896"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a14634288002d73406d69287c509aa896">&#9670;&#160;</a></span>interrupts_taken_</h2>
 
@@ -1064,6 +1138,28 @@ Here is the caller graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname">std::shared_ptr&lt;<a class="el" href="classriscv_1_1Memory.html">Memory</a>&gt; riscv::CPU::memory_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abf0751f880b8ea828fbba9a473943491" name="abf0751f880b8ea828fbba9a473943491"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf0751f880b8ea828fbba9a473943491">&#9670;&#160;</a></span>on_fence_i_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;void()&gt; riscv::CPU::on_fence_i_</td>
         </tr>
       </table>
   </td>

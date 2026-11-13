@@ -51,9 +51,11 @@ digraph "src/core/pipeline.hpp"
   Node18 -> Node15 [id="edge26_Node000018_Node000015",color="steelblue1",style="solid",tooltip=" "];
   Node18 -> Node17 [id="edge27_Node000018_Node000017",color="steelblue1",style="solid",tooltip=" "];
   Node1 -> Node4 [id="edge28_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
-  Node1 -> Node16 [id="edge29_Node000001_Node000016",color="steelblue1",style="solid",tooltip=" "];
-  Node1 -> Node20 [id="edge30_Node000001_Node000020",color="steelblue1",style="solid",tooltip=" "];
-  Node20 [id="Node000020",label="optional",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
-  Node1 -> Node10 [id="edge31_Node000001_Node000010",color="steelblue1",style="solid",tooltip=" "];
-  Node1 -> Node17 [id="edge32_Node000001_Node000017",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node20 [id="edge29_Node000001_Node000020",color="steelblue1",style="solid",tooltip=" "];
+  Node20 [id="Node000020",label="functional",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node1 -> Node16 [id="edge30_Node000001_Node000016",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node21 [id="edge31_Node000001_Node000021",color="steelblue1",style="solid",tooltip=" "];
+  Node21 [id="Node000021",label="optional",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
+  Node1 -> Node10 [id="edge32_Node000001_Node000010",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node17 [id="edge33_Node000001_Node000017",color="steelblue1",style="solid",tooltip=" "];
 }

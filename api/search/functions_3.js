@@ -17,7 +17,11 @@ var searchData=
   ['directoryentry_14',['DirectoryEntry',['../structriscv_1_1DirectoryEntry.html#a961fefe681696a949cf5405affde55cf',1,'riscv::DirectoryEntry']]],
   ['disassemble_15',['disassemble',['../structriscv_1_1DecodedInst.html#a6d88bce0c86abf3c819e860234af4ee8',1,'riscv::DecodedInst']]],
   ['dma_5fcycles_16',['dma_cycles',['../structriscv_1_1NicTiming.html#a35e3b993880e77bd011edcaa2d8bc6db',1,'riscv::NicTiming']]],
-  ['dump_17',['dump',['../classriscv_1_1Cache.html#a753530b65bb6dc35fe31c83cc5ca8eb9',1,'riscv::Cache']]],
-  ['dump_5fregs_18',['dump_regs',['../classriscv_1_1CPU.html#a29d88bb00d6d19e63a32311061565a28',1,'riscv::CPU::dump_regs()'],['../classriscv_1_1Executor.html#ab9de8c92a24be75788165eedaa3850a8',1,'riscv::Executor::dump_regs()'],['../classriscv_1_1PipelinedCPU.html#aad0b3527900dafb14436da1ea422b2e5',1,'riscv::PipelinedCPU::dump_regs() const']]],
-  ['dump_5fstats_19',['dump_stats',['../classriscv_1_1PipelinedCPU.html#a5ef0245696a76b9585a230098aa0a768',1,'riscv::PipelinedCPU']]]
+  ['dma_5fmemory_17',['dma_memory',['../classriscv_1_1MultiCoreCPU.html#a519db70b577f88197c28f0c53b4f3459',1,'riscv::MultiCoreCPU::dma_memory()'],['../classriscv_1_1SingleCoreSystem.html#ab7c798f96441e61ea5d26796f8984392',1,'riscv::SingleCoreSystem::dma_memory()']]],
+  ['dma_5fread_18',['dma_read',['../classriscv_1_1CoherenceController.html#adbe266f664495acf4889b6ffc795cc69',1,'riscv::CoherenceController']]],
+  ['dma_5fwrite_19',['dma_write',['../classriscv_1_1CoherenceController.html#acae390bfc907c87640a3c00351aa192f',1,'riscv::CoherenceController']]],
+  ['dmaport_20',['DmaPort',['../classriscv_1_1DmaPort.html#a4e20143f0f02a712bfa5aa2790473d0a',1,'riscv::DmaPort']]],
+  ['dump_21',['dump',['../classriscv_1_1Cache.html#a753530b65bb6dc35fe31c83cc5ca8eb9',1,'riscv::Cache']]],
+  ['dump_5fregs_22',['dump_regs',['../classriscv_1_1CPU.html#a29d88bb00d6d19e63a32311061565a28',1,'riscv::CPU::dump_regs()'],['../classriscv_1_1Executor.html#ab9de8c92a24be75788165eedaa3850a8',1,'riscv::Executor::dump_regs()'],['../classriscv_1_1PipelinedCPU.html#aad0b3527900dafb14436da1ea422b2e5',1,'riscv::PipelinedCPU::dump_regs() const']]],
+  ['dump_5fstats_23',['dump_stats',['../classriscv_1_1PipelinedCPU.html#a5ef0245696a76b9585a230098aa0a768',1,'riscv::PipelinedCPU']]]
 ];

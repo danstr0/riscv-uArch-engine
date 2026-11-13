@@ -94,9 +94,12 @@ Collaboration diagram for riscv::SystemConfig:</div>
 Public Attributes</h2></td></tr>
 <tr class="memitem:afa61d7db1388685e7e8067d815581b25" id="r_afa61d7db1388685e7e8067d815581b25"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structriscv_1_1PlatformConfig.html">PlatformConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1SystemConfig.html#afa61d7db1388685e7e8067d815581b25">platform</a> {}</td></tr>
 <tr class="separator:afa61d7db1388685e7e8067d815581b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa9a7d5c12a90e1fc9cd15544b39858e" id="r_afa9a7d5c12a90e1fc9cd15544b39858e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structriscv_1_1CacheConfig.html">CacheConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1SystemConfig.html#afa9a7d5c12a90e1fc9cd15544b39858e">l1</a> {.size_bytes = 0}</td></tr>
-<tr class="memdesc:afa9a7d5c12a90e1fc9cd15544b39858e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set <code>size_bytes &gt; 0</code> to enable a level; L2 requires L1, L3 requires L2.  <br /></td></tr>
-<tr class="separator:afa9a7d5c12a90e1fc9cd15544b39858e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1183fda992b008577e28ab8ac6597ef6" id="r_a1183fda992b008577e28ab8ac6597ef6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structriscv_1_1CacheConfig.html">CacheConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1SystemConfig.html#a1183fda992b008577e28ab8ac6597ef6">l1d</a> {.size_bytes = 0}</td></tr>
+<tr class="memdesc:a1183fda992b008577e28ab8ac6597ef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set <code>size_bytes &gt; 0</code> to enable a level; L2 requires L1, L3 requires L2.  <br /></td></tr>
+<tr class="separator:a1183fda992b008577e28ab8ac6597ef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef4a152ec8f3f6741444f269a10c29bc" id="r_aef4a152ec8f3f6741444f269a10c29bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structriscv_1_1CacheConfig.html">CacheConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1SystemConfig.html#aef4a152ec8f3f6741444f269a10c29bc">l1i</a> {.size_bytes = 0}</td></tr>
+<tr class="memdesc:aef4a152ec8f3f6741444f269a10c29bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">L1 instruction cache; requires <code>l1d</code>.  <br /></td></tr>
+<tr class="separator:aef4a152ec8f3f6741444f269a10c29bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7359b1873bd7071130da0ccc1105621" id="r_af7359b1873bd7071130da0ccc1105621"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structriscv_1_1CacheConfig.html">CacheConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1SystemConfig.html#af7359b1873bd7071130da0ccc1105621">l2</a> {.size_bytes = 0}</td></tr>
 <tr class="separator:af7359b1873bd7071130da0ccc1105621"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4f3b3cf23cffff62d52f45f3353ab78" id="r_ad4f3b3cf23cffff62d52f45f3353ab78"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structriscv_1_1CacheConfig.html">CacheConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1SystemConfig.html#ad4f3b3cf23cffff62d52f45f3353ab78">l3</a> {.size_bytes = 0}</td></tr>
@@ -108,19 +111,36 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Configuration for <code><a class="el" href="classriscv_1_1SingleCoreSystem.html">SingleCoreSystem</a></code>. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="afa9a7d5c12a90e1fc9cd15544b39858e" name="afa9a7d5c12a90e1fc9cd15544b39858e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa9a7d5c12a90e1fc9cd15544b39858e">&#9670;&#160;</a></span>l1</h2>
+<a id="a1183fda992b008577e28ab8ac6597ef6" name="a1183fda992b008577e28ab8ac6597ef6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1183fda992b008577e28ab8ac6597ef6">&#9670;&#160;</a></span>l1d</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structriscv_1_1CacheConfig.html">CacheConfig</a> riscv::SystemConfig::l1 {.size_bytes = 0}</td>
+          <td class="memname"><a class="el" href="structriscv_1_1CacheConfig.html">CacheConfig</a> riscv::SystemConfig::l1d {.size_bytes = 0}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Set <code>size_bytes &gt; 0</code> to enable a level; L2 requires L1, L3 requires L2. </p>
+<p>L1 data cache, or the unified L1. </p>
+
+</div>
+</div>
+<a id="aef4a152ec8f3f6741444f269a10c29bc" name="aef4a152ec8f3f6741444f269a10c29bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef4a152ec8f3f6741444f269a10c29bc">&#9670;&#160;</a></span>l1i</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structriscv_1_1CacheConfig.html">CacheConfig</a> riscv::SystemConfig::l1i {.size_bytes = 0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>L1 instruction cache; requires <code>l1d</code>. </p>
 
 </div>
 </div>

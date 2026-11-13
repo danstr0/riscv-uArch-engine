@@ -182,6 +182,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1DirectoryEntry.html">DirectoryEntry</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Per-line directory entry tracking coherence state across all cores.  <a href="structriscv_1_1DirectoryEntry.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1DmaPort.html">DmaPort</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1ExecuteResult.html">ExecuteResult</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Result returned by the executor after processing one instruction.  <a href="structriscv_1_1ExecuteResult.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -494,19 +496,20 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9ac3330b50eeb6a91e71d9a9c183955e4d">VMV_V_X</a>
 , <a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9a2bc529c69e51c72a0c144853496c0803">VMV_X_S</a>
 , <a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9a680f61224afe352a026a616896f47a29">FENCE</a>
-, <a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9ab60980ad7dacf61aafe097e6033c59ea">ECALL</a>
+, <a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9a54499fdddaae8dae8755c33b9bdd81eb">FENCE_I</a>
 , <br />
-&#160;&#160;<a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9aa762e6a6343c5132765a43bb0ccab610">EBREAK</a>
+&#160;&#160;<a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9ab60980ad7dacf61aafe097e6033c59ea">ECALL</a>
+, <a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9aa762e6a6343c5132765a43bb0ccab610">EBREAK</a>
 , <a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9a185aee6b73da8b0ca0753c3916d24998">CSRRW</a>
 , <a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9a9196a34cfef6e65348f60b6130954047">CSRRS</a>
-, <a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9afc93a00fe94811d7ac316eafc3aaed56">CSRRC</a>
 , <br />
-&#160;&#160;<a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9a20c0f2e00bfb91142a263f82610596c1">CSRRWI</a>
+&#160;&#160;<a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9afc93a00fe94811d7ac316eafc3aaed56">CSRRC</a>
+, <a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9a20c0f2e00bfb91142a263f82610596c1">CSRRWI</a>
 , <a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9ab45c1bdc7d2ef6af82c308a6e1a8cbd4">CSRRSI</a>
 , <a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9ad9a1d1509467c7cd5dcbfba314f7880b">CSRRCI</a>
-, <a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9ae095f89f216e552933fbac1f35905fc8">MRET</a>
 , <br />
-&#160;&#160;<a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9accc0377a8afbf50e7094f5c23a8af223">INVALID</a>
+&#160;&#160;<a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9ae095f89f216e552933fbac1f35905fc8">MRET</a>
+, <a class="el" href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9accc0377a8afbf50e7094f5c23a8af223">INVALID</a>
 <br />
  }</td></tr>
 <tr class="memdesc:a5aa14dce041d38bf1183d740def9dab9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decoded operation tag identifying the specific architectural operation.  <a href="namespaceriscv.html#a5aa14dce041d38bf1183d740def9dab9">More...</a><br /></td></tr>
@@ -827,7 +830,7 @@ Variables</h2></td></tr>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="abceb97d5ffb93203f1e5ec70f139e13eae12ab2013376ab01a1cdf04277af2399" name="abceb97d5ffb93203f1e5ec70f139e13eae12ab2013376ab01a1cdf04277af2399"></a>UNIFIED&#160;</td><td class="fielddoc"><p>Serves both instructions and data. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="abceb97d5ffb93203f1e5ec70f139e13ea40cb2f2c740ed5a8dec7dc25e0b5aacb" name="abceb97d5ffb93203f1e5ec70f139e13ea40cb2f2c740ed5a8dec7dc25e0b5aacb"></a>INSTRUCTION&#160;</td><td class="fielddoc"><p>I-cache (reads only). </p>
+<tr><td class="fieldname"><a id="abceb97d5ffb93203f1e5ec70f139e13ea40cb2f2c740ed5a8dec7dc25e0b5aacb" name="abceb97d5ffb93203f1e5ec70f139e13ea40cb2f2c740ed5a8dec7dc25e0b5aacb"></a>INSTRUCTION&#160;</td><td class="fielddoc"><p>I-cache (reads only; writes assert). </p>
 </td></tr>
 <tr><td class="fieldname"><a id="abceb97d5ffb93203f1e5ec70f139e13eae44f9e348e41cb272efa87387728571b" name="abceb97d5ffb93203f1e5ec70f139e13eae44f9e348e41cb272efa87387728571b"></a>DATA&#160;</td><td class="fielddoc"><p>D-cache (reads and writes). </p>
 </td></tr>
@@ -1046,6 +1049,7 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a5aa14dce041d38bf1183d740def9dab9ac3330b50eeb6a91e71d9a9c183955e4d" name="a5aa14dce041d38bf1183d740def9dab9ac3330b50eeb6a91e71d9a9c183955e4d"></a>VMV_V_X&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a5aa14dce041d38bf1183d740def9dab9a2bc529c69e51c72a0c144853496c0803" name="a5aa14dce041d38bf1183d740def9dab9a2bc529c69e51c72a0c144853496c0803"></a>VMV_X_S&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a5aa14dce041d38bf1183d740def9dab9a680f61224afe352a026a616896f47a29" name="a5aa14dce041d38bf1183d740def9dab9a680f61224afe352a026a616896f47a29"></a>FENCE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5aa14dce041d38bf1183d740def9dab9a54499fdddaae8dae8755c33b9bdd81eb" name="a5aa14dce041d38bf1183d740def9dab9a54499fdddaae8dae8755c33b9bdd81eb"></a>FENCE_I&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a5aa14dce041d38bf1183d740def9dab9ab60980ad7dacf61aafe097e6033c59ea" name="a5aa14dce041d38bf1183d740def9dab9ab60980ad7dacf61aafe097e6033c59ea"></a>ECALL&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a5aa14dce041d38bf1183d740def9dab9aa762e6a6343c5132765a43bb0ccab610" name="a5aa14dce041d38bf1183d740def9dab9aa762e6a6343c5132765a43bb0ccab610"></a>EBREAK&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a5aa14dce041d38bf1183d740def9dab9a185aee6b73da8b0ca0753c3916d24998" name="a5aa14dce041d38bf1183d740def9dab9a185aee6b73da8b0ca0753c3916d24998"></a>CSRRW&#160;</td><td class="fielddoc"></td></tr>
@@ -1085,7 +1089,7 @@ Variables</h2></td></tr>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab2f47fbabea19cd577ef7ab1dc9f3906a615d2885ef7576cedd9aafbb2578f028" name="ab2f47fbabea19cd577ef7ab1dc9f3906a615d2885ef7576cedd9aafbb2578f028"></a>LOAD&#160;</td><td class="fielddoc"><p>LB, LH, LW, LBU, LHU. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="ab2f47fbabea19cd577ef7ab1dc9f3906a313dc1cde630bfecf32cb66b417fd60a" name="ab2f47fbabea19cd577ef7ab1dc9f3906a313dc1cde630bfecf32cb66b417fd60a"></a>MISC_MEM&#160;</td><td class="fielddoc"><p>FENCE. </p>
+<tr><td class="fieldname"><a id="ab2f47fbabea19cd577ef7ab1dc9f3906a313dc1cde630bfecf32cb66b417fd60a" name="ab2f47fbabea19cd577ef7ab1dc9f3906a313dc1cde630bfecf32cb66b417fd60a"></a>MISC_MEM&#160;</td><td class="fielddoc"><p>FENCE, FENCE.I. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="ab2f47fbabea19cd577ef7ab1dc9f3906a261bff03bea2c4adf58f2efc6001c776" name="ab2f47fbabea19cd577ef7ab1dc9f3906a261bff03bea2c4adf58f2efc6001c776"></a>OP_IMM&#160;</td><td class="fielddoc"><p>ADDI, SLTI, SLTIU, XORI, ORI, ANDI, SLLI, SRLI, SRAI. </p>
 </td></tr>

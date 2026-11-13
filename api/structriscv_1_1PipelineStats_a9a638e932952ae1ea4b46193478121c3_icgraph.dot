@@ -7,5 +7,5 @@ digraph "riscv::PipelineStats::reset"
   rankdir="RL";
   Node1 [id="Node000001",label="riscv::PipelineStats\l::reset",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="riscv::PipelinedCPU\l::PipelinedCPU",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1PipelinedCPU.html#af2ef7d8ee4478457e1aa645e7a7bb343",tooltip=" "];
+  Node2 [id="Node000002",label="riscv::PipelinedCPU\l::PipelinedCPU",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1PipelinedCPU.html#ac69a0c13f98af3035156c756292019cf",tooltip=" "];
 }

@@ -98,7 +98,8 @@ determines how data is written.
 [cache.l1]
 ^^^^^^^^^^
 
-Per-core L1 data cache.  Set ``size = 0`` to disable caching
+Per-core L1 data cache, which also serves instruction fetches unless
+``[cache.l1i]`` is enabled.  Set ``size = 0`` to disable caching
 entirely (CPU reads/writes go directly to main memory).
 
 .. list-table::
@@ -134,6 +135,31 @@ entirely (CPU reads/writes go directly to main memory).
     size=4K, line=64, assoc=8     → 4096 / (64 × 8) = 8 sets — valid.
     size=4K, line=64, assoc=128   → 4096 / 8192 — rejected.
 
+[cache.l1i]
+^^^^^^^^^^^
+
+Optional L1 instruction cache. When enabled, instruction fetches stop
+going through ``[cache.l1]`` and the two are separate caches.  Leave
+``size = 0`` for a unified L1.  Requires ``[cache.l1]``, and shares its
+line size.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 20 60
+
+   * - Key
+     - Default
+     - Values
+   * - ``size``
+     - ``0``
+     - Power of 2 (or ``0`` for a unified L1)
+   * - ``assoc``
+     - ``8``
+     - Power of 2
+   * - ``replacement``
+     - ``lru``
+     - ``lru``, ``mru``, ``plru``, ``fifo``, ``random``
+
 [cache.l2]
 ^^^^^^^^^^
 
@@ -155,7 +181,7 @@ Set ``size = 0`` to disable.
      - Power of 2
 
 L2 shares the line size with L1 (set in ``[cache.l1] line``).
-L2 size must be ≥ L1 size.
+L2 size must be larger than both L1 sizes.
 
 [cache.l3]
 ^^^^^^^^^^
@@ -355,6 +381,12 @@ names:
      - ``[cache.l1] write``
    * - ``cache.l1.write_alloc``
      - ``[cache.l1] write_alloc``
+   * - ``cache.l1i.size``
+     - ``[cache.l1i] size``
+   * - ``cache.l1i.assoc``
+     - ``[cache.l1i] assoc``
+   * - ``cache.l1i.replacement``
+     - ``[cache.l1i] replacement``
    * - ``cache.l2.size``
      - ``[cache.l2] size``
    * - ``cache.l2.assoc``

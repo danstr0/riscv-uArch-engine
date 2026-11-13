@@ -50,6 +50,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#memory">[memory]</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#memory-init">[memory.init]</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cache-l1">[cache.l1]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cache-l1i">[cache.l1i]</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cache-l2">[cache.l2]</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cache-l3">[cache.l3]</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pipeline">[pipeline]</a></li>
@@ -198,7 +199,8 @@ overlap them.</p></li>
 </section>
 <section id="cache-l1">
 <h3>[cache.l1]<a class="headerlink" href="#cache-l1" title="Link to this heading"></a></h3>
-<p>Per-core L1 data cache.  Set <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">=</span> <span class="pre">0</span></code> to disable caching
+<p>Per-core L1 data cache, which also serves instruction fetches unless
+<code class="docutils literal notranslate"><span class="pre">[cache.l1i]</span></code> is enabled.  Set <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">=</span> <span class="pre">0</span></code> to disable caching
 entirely (CPU reads/writes go directly to main memory).</p>
 <table class="docutils align-default">
 <colgroup>
@@ -246,6 +248,40 @@ size=4K, line=64, assoc=128   → 4096 / 8192 — rejected.
 </pre></div>
 </div>
 </section>
+<section id="cache-l1i">
+<h3>[cache.l1i]<a class="headerlink" href="#cache-l1i" title="Link to this heading"></a></h3>
+<p>Optional L1 instruction cache. When enabled, instruction fetches stop
+going through <code class="docutils literal notranslate"><span class="pre">[cache.l1]</span></code> and the two are separate caches.  Leave
+<code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">=</span> <span class="pre">0</span></code> for a unified L1.  Requires <code class="docutils literal notranslate"><span class="pre">[cache.l1]</span></code>, and shares its
+line size.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Values</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">size</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>Power of 2 (or <code class="docutils literal notranslate"><span class="pre">0</span></code> for a unified L1)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">assoc</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">8</span></code></p></td>
+<td><p>Power of 2</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">replacement</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lru</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lru</span></code>, <code class="docutils literal notranslate"><span class="pre">mru</span></code>, <code class="docutils literal notranslate"><span class="pre">plru</span></code>, <code class="docutils literal notranslate"><span class="pre">fifo</span></code>, <code class="docutils literal notranslate"><span class="pre">random</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="cache-l2">
 <h3>[cache.l2]<a class="headerlink" href="#cache-l2" title="Link to this heading"></a></h3>
 <p>Shared L2 cache.  Required when L1 is enabled in multicore mode.
@@ -274,7 +310,7 @@ Set <code class="docutils literal notranslate"><span class="pre">size</span> <sp
 </tbody>
 </table>
 <p>L2 shares the line size with L1 (set in <code class="docutils literal notranslate"><span class="pre">[cache.l1]</span> <span class="pre">line</span></code>).
-L2 size must be ≥ L1 size.</p>
+L2 size must be larger than both L1 sizes.</p>
 </section>
 <section id="cache-l3">
 <h3>[cache.l3]<a class="headerlink" href="#cache-l3" title="Link to this heading"></a></h3>
@@ -507,34 +543,43 @@ names:</p>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cache.l1.write_alloc</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">[cache.l1]</span> <span class="pre">write_alloc</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cache.l2.size</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cache.l1i.size</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[cache.l1i]</span> <span class="pre">size</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cache.l1i.assoc</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[cache.l1i]</span> <span class="pre">assoc</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cache.l1i.replacement</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[cache.l1i]</span> <span class="pre">replacement</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cache.l2.size</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">[cache.l2]</span> <span class="pre">size</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cache.l2.assoc</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cache.l2.assoc</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">[cache.l2]</span> <span class="pre">assoc</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cache.l3.size</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cache.l3.size</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">[cache.l3]</span> <span class="pre">size</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cache.l3.assoc</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cache.l3.assoc</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">[cache.l3]</span> <span class="pre">assoc</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pipeline.forwarding</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pipeline.forwarding</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">[pipeline]</span> <span class="pre">forwarding</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pipeline.branch_pred</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pipeline.branch_pred</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">[pipeline]</span> <span class="pre">branch_pred</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pipeline.mispredict_penalty</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pipeline.mispredict_penalty</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">[pipeline]</span> <span class="pre">mispredict_penalty</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">system.cpu</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">system.cpu</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">[system]</span> <span class="pre">cpu</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">system.cores</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">system.cores</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">[system]</span> <span class="pre">cores</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">system.max_cycles</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">system.max_cycles</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">[system]</span> <span class="pre">max_cycles</span></code></p></td>
 </tr>
 </tbody>

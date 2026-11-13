@@ -106,6 +106,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad7aca45424617e82ce03f567787e96e4" id="r_ad7aca45424617e82ce03f567787e96e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CoherenceController.html#ad7aca45424617e82ce03f567787e96e4">notify_eviction</a> (<a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> core_id, <a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a> addr)</td></tr>
 <tr class="memdesc:ad7aca45424617e82ce03f567787e96e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notify the directory that <code>core_id</code> is evicting the line at <code>addr</code>.  <br /></td></tr>
 <tr class="separator:ad7aca45424617e82ce03f567787e96e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd534a81871b5ce67937fb1f30c0a860" id="r_acd534a81871b5ce67937fb1f30c0a860"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CoherenceController.html#acd534a81871b5ce67937fb1f30c0a860">handle_fetch_miss</a> (<a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> core_id, <a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a> addr)</td></tr>
+<tr class="memdesc:acd534a81871b5ce67937fb1f30c0a860"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle an I-cache refill from <code>core_id</code>.  <br /></td></tr>
+<tr class="separator:acd534a81871b5ce67937fb1f30c0a860"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbe266f664495acf4889b6ffc795cc69" id="r_adbe266f664495acf4889b6ffc795cc69"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CoherenceController.html#adbe266f664495acf4889b6ffc795cc69">dma_read</a> (<a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a> addr)</td></tr>
+<tr class="memdesc:adbe266f664495acf4889b6ffc795cc69"><td class="mdescLeft">&#160;</td><td class="mdescRight">A device is about to read the line: a Modified owner writes back.  <br /></td></tr>
+<tr class="separator:adbe266f664495acf4889b6ffc795cc69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acae390bfc907c87640a3c00351aa192f" id="r_acae390bfc907c87640a3c00351aa192f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CoherenceController.html#acae390bfc907c87640a3c00351aa192f">dma_write</a> (<a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a> addr)</td></tr>
+<tr class="separator:acae390bfc907c87640a3c00351aa192f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Statistics</div></td></tr>
 <tr class="memitem:a3d9c3d9b8c6b8a5808a337e45699ae2c" id="r_a3d9c3d9b8c6b8a5808a337e45699ae2c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structriscv_1_1CoherenceStats.html">CoherenceStats</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CoherenceController.html#a3d9c3d9b8c6b8a5808a337e45699ae2c">stats</a> () const noexcept</td></tr>
 <tr class="separator:a3d9c3d9b8c6b8a5808a337e45699ae2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,6 +138,8 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a0783f4f40900bfb64fb4576bf8965108" id="r_a0783f4f40900bfb64fb4576bf8965108"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CoherenceController.html#a0783f4f40900bfb64fb4576bf8965108">invalidate_others</a> (<a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> requesting_core, <a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a> line_addr, <a class="el" href="structriscv_1_1DirectoryEntry.html">DirectoryEntry</a> &amp;entry)</td></tr>
 <tr class="memdesc:a0783f4f40900bfb64fb4576bf8965108"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalidate all copies except in <code>requesting_core</code>. Returns snoop latency.  <br /></td></tr>
 <tr class="separator:a0783f4f40900bfb64fb4576bf8965108"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af39688ace9bea72f97302a83dc302f04" id="r_af39688ace9bea72f97302a83dc302f04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CoherenceController.html#af39688ace9bea72f97302a83dc302f04">clean_modified_owner</a> (<a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a> line_addr)</td></tr>
+<tr class="separator:af39688ace9bea72f97302a83dc302f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4849ac360aae9ff8937d3a7d6c665ed9" id="r_a4849ac360aae9ff8937d3a7d6c665ed9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#abecb66bf67a553427efdd0034ae180e1">i32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CoherenceController.html#a4849ac360aae9ff8937d3a7d6c665ed9">find_modified_owner</a> (const <a class="el" href="structriscv_1_1DirectoryEntry.html">DirectoryEntry</a> &amp;entry) const</td></tr>
 <tr class="separator:a4849ac360aae9ff8937d3a7d6c665ed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a047844475ab5def684e955e6d2a47eda" id="r_a047844475ab5def684e955e6d2a47eda"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#abecb66bf67a553427efdd0034ae180e1">i32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1CoherenceController.html#a047844475ab5def684e955e6d2a47eda">find_any_sharer</a> (const <a class="el" href="structriscv_1_1DirectoryEntry.html">DirectoryEntry</a> &amp;entry, <a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> exclude_core) const</td></tr>
@@ -202,6 +212,92 @@ Static Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="af39688ace9bea72f97302a83dc302f04" name="af39688ace9bea72f97302a83dc302f04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af39688ace9bea72f97302a83dc302f04">&#9670;&#160;</a></span>clean_modified_owner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> riscv::CoherenceController::clean_modified_owner </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a>&#160;</td>
+          <td class="paramname"><em>line_addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Write back a Modified owner of <code>line_addr</code> (M → E), if any. Returns snoop latency. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classriscv_1_1CoherenceController_af39688ace9bea72f97302a83dc302f04_cgraph.png" border="0" usemap="#aclassriscv_1_1CoherenceController_af39688ace9bea72f97302a83dc302f04_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classriscv_1_1CoherenceController_af39688ace9bea72f97302a83dc302f04_icgraph.png" border="0" usemap="#aclassriscv_1_1CoherenceController_af39688ace9bea72f97302a83dc302f04_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="adbe266f664495acf4889b6ffc795cc69" name="adbe266f664495acf4889b6ffc795cc69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbe266f664495acf4889b6ffc795cc69">&#9670;&#160;</a></span>dma_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> riscv::CoherenceController::dma_read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a>&#160;</td>
+          <td class="paramname"><em>addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A device is about to read the line: a Modified owner writes back. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classriscv_1_1CoherenceController_adbe266f664495acf4889b6ffc795cc69_cgraph.png" border="0" usemap="#aclassriscv_1_1CoherenceController_adbe266f664495acf4889b6ffc795cc69_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="acae390bfc907c87640a3c00351aa192f" name="acae390bfc907c87640a3c00351aa192f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acae390bfc907c87640a3c00351aa192f">&#9670;&#160;</a></span>dma_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> riscv::CoherenceController::dma_write </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a>&#160;</td>
+          <td class="paramname"><em>addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A device is about to write the line: all L1 copies are written back and invalidated. </p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classriscv_1_1CoherenceController_acae390bfc907c87640a3c00351aa192f_cgraph.png" border="0" usemap="#aclassriscv_1_1CoherenceController_acae390bfc907c87640a3c00351aa192f_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
 <a id="a047844475ab5def684e955e6d2a47eda" name="a047844475ab5def684e955e6d2a47eda"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a047844475ab5def684e955e6d2a47eda">&#9670;&#160;</a></span>find_any_sharer()</h2>
 
@@ -267,7 +363,7 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Core ID holding the line in Modified state, or -1 if none. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Core ID holding the line in Modified state, or <code>-1</code> if none. </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -310,6 +406,43 @@ Here is the call graph for this function:</div>
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classriscv_1_1CoherenceController_aa9809acbda2511453b54cb8fd3d46d1f_icgraph.png" border="0" usemap="#aclassriscv_1_1CoherenceController_aa9809acbda2511453b54cb8fd3d46d1f_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="acd534a81871b5ce67937fb1f30c0a860" name="acd534a81871b5ce67937fb1f30c0a860"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd534a81871b5ce67937fb1f30c0a860">&#9670;&#160;</a></span>handle_fetch_miss()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> riscv::CoherenceController::handle_fetch_miss </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td>
+          <td class="paramname"><em>core_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a>&#160;</td>
+          <td class="paramname"><em>addr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handle an I-cache refill from <code>core_id</code>. </p>
+<p>The refill must see the newest data, so a <code>Modified</code> owner (including the requesting core's own D-cache) writes back and drops to <code>Exclusive</code>. I-cache copies are deliberately not tracked: as RISC-V allows, a line already in an I-cache can go stale until that hart runs <code>fence.i</code>.</p>
+<dl class="section return"><dt>Returns</dt><dd>Transaction latency in cycles. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classriscv_1_1CoherenceController_acd534a81871b5ce67937fb1f30c0a860_cgraph.png" border="0" usemap="#aclassriscv_1_1CoherenceController_acd534a81871b5ce67937fb1f30c0a860_cgraph" alt=""/></div>
 </div>
 
 </div>

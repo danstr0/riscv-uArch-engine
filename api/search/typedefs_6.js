@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['page_0',['Page',['../classriscv_1_1SparseMemory.html#a0dfb7323728f9768832147907e6599d4',1,'riscv::SparseMemory']]]
+  ['notifycallback_0',['NotifyCallback',['../classriscv_1_1PLIC.html#a1a04dfa0266ac02aaac53dbf44c1963f',1,'riscv::PLIC']]]
 ];

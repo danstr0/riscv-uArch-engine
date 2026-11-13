@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['kind_0',['kind',['../structriscv_1_1MemInitEntry.html#ae33147754cc5a9e811bded851b3d2732',1,'riscv::MemInitEntry::kind'],['../structriscv_1_1MemInitEntry.html#a02e1ec5533e1a9bf385d17dc2684fee2',1,'riscv::MemInitEntry::Kind']]],
+  ['kind_0',['kind',['../structriscv_1_1MemInitEntry.html#a02e1ec5533e1a9bf385d17dc2684fee2',1,'riscv::MemInitEntry::Kind'],['../structriscv_1_1MemInitEntry.html#ae33147754cc5a9e811bded851b3d2732',1,'riscv::MemInitEntry::kind']]],
   ['kinvalidationlatency_1',['kInvalidationLatency',['../classriscv_1_1CoherenceController.html#a8957b27423be84e2f37438abf86dbbbc',1,'riscv::CoherenceController']]],
   ['knopage_2',['kNoPage',['../classriscv_1_1SparseMemory.html#ae46e8f6c6e50a5927f17c91b523ba92e',1,'riscv::SparseMemory']]],
   ['knumstages_3',['kNumStages',['../namespaceriscv.html#a6e883cce144c40967a3f35d7cb43d65f',1,'riscv']]],

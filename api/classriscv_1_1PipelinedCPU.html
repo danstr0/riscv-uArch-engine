@@ -75,6 +75,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classriscv_1_1PipelinedCPU-members.html">List of all members</a>  </div>
@@ -97,10 +98,24 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1PipelinedCPU_1_1ForwardResult.html">ForwardResult</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a2f29f1f5aff4b796aa01e4633ca67957" id="r_a2f29f1f5aff4b796aa01e4633ca67957"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#a2f29f1f5aff4b796aa01e4633ca67957">StoreCallback</a> = std::function&lt; void(<a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a>, <a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>)&gt;</td></tr>
+<tr class="memdesc:a2f29f1f5aff4b796aa01e4633ca67957"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called after every committed store with its address and size in bytes.  <br /></td></tr>
+<tr class="separator:a2f29f1f5aff4b796aa01e4633ca67957"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af2ef7d8ee4478457e1aa645e7a7bb343" id="r_af2ef7d8ee4478457e1aa645e7a7bb343"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#af2ef7d8ee4478457e1aa645e7a7bb343">PipelinedCPU</a> (std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt; <a class="el" href="classriscv_1_1PipelinedCPU.html#a93578a8493a252b80d827c2432592ccb">memory</a>, <a class="el" href="structriscv_1_1PipelineConfig.html">PipelineConfig</a> <a class="el" href="classriscv_1_1PipelinedCPU.html#a8a842762f60608bf85dfe3bdb4bcc3c8">config</a>={})</td></tr>
-<tr class="separator:af2ef7d8ee4478457e1aa645e7a7bb343"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac69a0c13f98af3035156c756292019cf" id="r_ac69a0c13f98af3035156c756292019cf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#ac69a0c13f98af3035156c756292019cf">PipelinedCPU</a> (std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt; <a class="el" href="classriscv_1_1PipelinedCPU.html#a93578a8493a252b80d827c2432592ccb">memory</a>, <a class="el" href="structriscv_1_1PipelineConfig.html">PipelineConfig</a> <a class="el" href="classriscv_1_1PipelinedCPU.html#a8a842762f60608bf85dfe3bdb4bcc3c8">config</a>={}, std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt; imem=nullptr)</td></tr>
+<tr class="separator:ac69a0c13f98af3035156c756292019cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39d04e104f654547d90284151847e16f" id="r_a39d04e104f654547d90284151847e16f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#a39d04e104f654547d90284151847e16f">set_on_fence_i</a> (std::function&lt; void()&gt; cb)</td></tr>
+<tr class="memdesc:a39d04e104f654547d90284151847e16f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register the action taken by <code>fence.i</code> (invalidate this hart's I-cache).  <br /></td></tr>
+<tr class="separator:a39d04e104f654547d90284151847e16f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a799df963953c50f3b8316ed4871697f2" id="r_a799df963953c50f3b8316ed4871697f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#a799df963953c50f3b8316ed4871697f2">set_on_store</a> (<a class="el" href="classriscv_1_1PipelinedCPU.html#a2f29f1f5aff4b796aa01e4633ca67957">StoreCallback</a> cb)</td></tr>
+<tr class="separator:a799df963953c50f3b8316ed4871697f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b24ba3d12c2298a3786cd37455447d6" id="r_a5b24ba3d12c2298a3786cd37455447d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#a5b24ba3d12c2298a3786cd37455447d6">observe_remote_store</a> (<a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a> addr, <a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> size) noexcept</td></tr>
+<tr class="memdesc:a5b24ba3d12c2298a3786cd37455447d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Another agent stored to memory: drop any LR reservation it overlaps.  <br /></td></tr>
+<tr class="separator:a5b24ba3d12c2298a3786cd37455447d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Program loading</div></td></tr>
 <tr class="memitem:a1c17b6c177691ef6e860b0d757f2b1d2" id="r_a1c17b6c177691ef6e860b0d757f2b1d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#a1c17b6c177691ef6e860b0d757f2b1d2">load_program</a> (<a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a> addr, std::span&lt; const <a class="el" href="namespaceriscv.html#a6358f00da0ce33cb24951ab5ef2f2576">u8</a> &gt; program)</td></tr>
 <tr class="separator:a1c17b6c177691ef6e860b0d757f2b1d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,8 +200,14 @@ Static Private Member Functions</h2></td></tr>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a9e6acd08c858c4714931b301cabfcf8b" id="r_a9e6acd08c858c4714931b301cabfcf8b"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#a9e6acd08c858c4714931b301cabfcf8b">memory_</a></td></tr>
 <tr class="separator:a9e6acd08c858c4714931b301cabfcf8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a46410966063d8120457e6091a3b20c" id="r_a5a46410966063d8120457e6091a3b20c"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#a5a46410966063d8120457e6091a3b20c">imem_</a></td></tr>
+<tr class="separator:a5a46410966063d8120457e6091a3b20c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba1d9367e2eedf395f607c079dfc41b6" id="r_aba1d9367e2eedf395f607c079dfc41b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structriscv_1_1PipelineConfig.html">PipelineConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#aba1d9367e2eedf395f607c079dfc41b6">config_</a></td></tr>
 <tr class="separator:aba1d9367e2eedf395f607c079dfc41b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a96183d6d9d5707f8abe59293db51e6" id="r_a0a96183d6d9d5707f8abe59293db51e6"><td class="memItemLeft" align="right" valign="top">std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#a0a96183d6d9d5707f8abe59293db51e6">on_fence_i_</a></td></tr>
+<tr class="separator:a0a96183d6d9d5707f8abe59293db51e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaefd90974fb74dfbd0d060626727380d" id="r_aaefd90974fb74dfbd0d060626727380d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classriscv_1_1PipelinedCPU.html#a2f29f1f5aff4b796aa01e4633ca67957">StoreCallback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#aaefd90974fb74dfbd0d060626727380d">on_store_</a></td></tr>
+<tr class="separator:aaefd90974fb74dfbd0d060626727380d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2ef1771d5da29869d2f07e456d4beb1" id="r_ae2ef1771d5da29869d2f07e456d4beb1"><td class="memItemLeft" align="right" valign="top">std::array&lt; <a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>, 32 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#ae2ef1771d5da29869d2f07e456d4beb1">regs_</a> {}</td></tr>
 <tr class="separator:ae2ef1771d5da29869d2f07e456d4beb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e3af6c4cb15f04d244f80b4957e7749" id="r_a2e3af6c4cb15f04d244f80b4957e7749"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1PipelinedCPU.html#a2e3af6c4cb15f04d244f80b4957e7749">pc_</a> = 0</td></tr>
@@ -228,9 +249,26 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>5-stage pipelined RISC-V <a class="el" href="classriscv_1_1CPU.html" title="Single-cycle RISC-V CPU implementing fetch-decode-execute.">CPU</a>. </p>
 <p>Each call to <a class="el" href="classriscv_1_1PipelinedCPU.html#a1911bee7d502d5018830c573a3be59a9" title="Advance the pipeline by one clock cycle. Returns false if halted and drained.">tick()</a> advances the pipeline by one clock cycle using double-buffered state (snapshot → compute next → commit). </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af2ef7d8ee4478457e1aa645e7a7bb343" name="af2ef7d8ee4478457e1aa645e7a7bb343"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2ef7d8ee4478457e1aa645e7a7bb343">&#9670;&#160;</a></span>PipelinedCPU()</h2>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a2f29f1f5aff4b796aa01e4633ca67957" name="a2f29f1f5aff4b796aa01e4633ca67957"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f29f1f5aff4b796aa01e4633ca67957">&#9670;&#160;</a></span>StoreCallback</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classriscv_1_1PipelinedCPU.html#a2f29f1f5aff4b796aa01e4633ca67957">riscv::PipelinedCPU::StoreCallback</a> =  std::function&lt;void(<a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a>, <a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Called after every committed store with its address and size in bytes. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ac69a0c13f98af3035156c756292019cf" name="ac69a0c13f98af3035156c756292019cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac69a0c13f98af3035156c756292019cf">&#9670;&#160;</a></span>PipelinedCPU()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -248,7 +286,13 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structriscv_1_1PipelineConfig.html">PipelineConfig</a>&#160;</td>
-          <td class="paramname"><em>config</em> = <code>{}</code>&#160;</td>
+          <td class="paramname"><em>config</em> = <code>{}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt;&#160;</td>
+          <td class="paramname"><em>imem</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -262,10 +306,18 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">memory</td><td>Data path (loads, stores, atomics). </td></tr>
+    <tr><td class="paramname">config</td><td>Pipeline knobs. </td></tr>
+    <tr><td class="paramname">imem</td><td>Instruction-fetch path; defaults to <code>memory</code> (unified). </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classriscv_1_1PipelinedCPU_af2ef7d8ee4478457e1aa645e7a7bb343_cgraph.png" border="0" usemap="#aclassriscv_1_1PipelinedCPU_af2ef7d8ee4478457e1aa645e7a7bb343_cgraph" alt=""/></div>
+<div class="center"><img src="classriscv_1_1PipelinedCPU_ac69a0c13f98af3035156c756292019cf_cgraph.png" border="0" usemap="#aclassriscv_1_1PipelinedCPU_ac69a0c13f98af3035156c756292019cf_cgraph" alt=""/></div>
 </div>
 
 </div>
@@ -449,6 +501,11 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classriscv_1_1PipelinedCPU_a2a50999a28b76d8c06adcb5c14c55bb3_icgraph.png" border="0" usemap="#aclassriscv_1_1PipelinedCPU_a2a50999a28b76d8c06adcb5c14c55bb3_icgraph" alt=""/></div>
+</div>
 
 </div>
 </div>
@@ -726,6 +783,44 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5b24ba3d12c2298a3786cd37455447d6" name="a5b24ba3d12c2298a3786cd37455447d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b24ba3d12c2298a3786cd37455447d6">&#9670;&#160;</a></span>observe_remote_store()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv::PipelinedCPU::observe_remote_store </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a>&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Another agent stored to memory: drop any LR reservation it overlaps. </p>
 
 </div>
 </div>
@@ -1083,6 +1178,70 @@ Here is the caller graph for this function:</div>
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classriscv_1_1PipelinedCPU_a37658f17f694a73bf999a67d5e744de6_cgraph.png" border="0" usemap="#aclassriscv_1_1PipelinedCPU_a37658f17f694a73bf999a67d5e744de6_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a39d04e104f654547d90284151847e16f" name="a39d04e104f654547d90284151847e16f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39d04e104f654547d90284151847e16f">&#9670;&#160;</a></span>set_on_fence_i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv::PipelinedCPU::set_on_fence_i </td>
+          <td>(</td>
+          <td class="paramtype">std::function&lt; void()&gt;&#160;</td>
+          <td class="paramname"><em>cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Register the action taken by <code>fence.i</code> (invalidate this hart's I-cache). </p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classriscv_1_1PipelinedCPU_a39d04e104f654547d90284151847e16f_icgraph.png" border="0" usemap="#aclassriscv_1_1PipelinedCPU_a39d04e104f654547d90284151847e16f_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a799df963953c50f3b8316ed4871697f2" name="a799df963953c50f3b8316ed4871697f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a799df963953c50f3b8316ed4871697f2">&#9670;&#160;</a></span>set_on_store()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv::PipelinedCPU::set_on_store </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classriscv_1_1PipelinedCPU.html#a2f29f1f5aff4b796aa01e4633ca67957">StoreCallback</a>&#160;</td>
+          <td class="paramname"><em>cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classriscv_1_1PipelinedCPU_a799df963953c50f3b8316ed4871697f2_icgraph.png" border="0" usemap="#aclassriscv_1_1PipelinedCPU_a799df963953c50f3b8316ed4871697f2_icgraph" alt=""/></div>
 </div>
 
 </div>
@@ -1567,6 +1726,28 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a5a46410966063d8120457e6091a3b20c" name="a5a46410966063d8120457e6091a3b20c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a46410966063d8120457e6091a3b20c">&#9670;&#160;</a></span>imem_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classriscv_1_1Memory.html">Memory</a>&gt; riscv::PipelinedCPU::imem_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a9e6acd08c858c4714931b301cabfcf8b" name="a9e6acd08c858c4714931b301cabfcf8b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9e6acd08c858c4714931b301cabfcf8b">&#9670;&#160;</a></span>memory_</h2>
 
@@ -1578,6 +1759,50 @@ Here is the caller graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname">std::shared_ptr&lt;<a class="el" href="classriscv_1_1Memory.html">Memory</a>&gt; riscv::PipelinedCPU::memory_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0a96183d6d9d5707f8abe59293db51e6" name="a0a96183d6d9d5707f8abe59293db51e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a96183d6d9d5707f8abe59293db51e6">&#9670;&#160;</a></span>on_fence_i_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::function&lt;void()&gt; riscv::PipelinedCPU::on_fence_i_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaefd90974fb74dfbd0d060626727380d" name="aaefd90974fb74dfbd0d060626727380d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaefd90974fb74dfbd0d060626727380d">&#9670;&#160;</a></span>on_store_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classriscv_1_1PipelinedCPU.html#a2f29f1f5aff4b796aa01e4633ca67957">StoreCallback</a> riscv::PipelinedCPU::on_store_</td>
         </tr>
       </table>
   </td>

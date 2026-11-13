@@ -99,6 +99,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a287701cbf919708ff4aff5575de3dc89" id="r_a287701cbf919708ff4aff5575de3dc89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structriscv_1_1CacheConfig.html">CacheConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1MultiCoreConfig.html#a287701cbf919708ff4aff5575de3dc89">l1d</a> = <a class="el" href="structriscv_1_1CacheConfig.html#acdd1e52ae006c1974de6bfb66d520d3c">CacheConfig::L1_typical</a>()</td></tr>
 <tr class="memdesc:a287701cbf919708ff4aff5575de3dc89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set <code>size_bytes=0</code> to disable all caches.  <br /></td></tr>
 <tr class="separator:a287701cbf919708ff4aff5575de3dc89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac04eb83df1300e87fcef54c0f5fa7b2b" id="r_ac04eb83df1300e87fcef54c0f5fa7b2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structriscv_1_1CacheConfig.html">CacheConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1MultiCoreConfig.html#ac04eb83df1300e87fcef54c0f5fa7b2b">l1i</a> {.size_bytes = 0}</td></tr>
+<tr class="memdesc:ac04eb83df1300e87fcef54c0f5fa7b2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Per-core I-cache; 0 = <code>l1d</code> is a unified L1.  <br /></td></tr>
+<tr class="separator:ac04eb83df1300e87fcef54c0f5fa7b2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa5e4934268e194d90654aef48b2e63b" id="r_afa5e4934268e194d90654aef48b2e63b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structriscv_1_1CacheConfig.html">CacheConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structriscv_1_1MultiCoreConfig.html#afa5e4934268e194d90654aef48b2e63b">l2</a> = <a class="el" href="structriscv_1_1CacheConfig.html#af86f291a985e65c1de2168b0b343637b">CacheConfig::L2_typical</a>()</td></tr>
 <tr class="memdesc:afa5e4934268e194d90654aef48b2e63b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Required when L1 is enabled.  <br /></td></tr>
 <tr class="separator:afa5e4934268e194d90654aef48b2e63b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,6 +133,22 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Set <code>size_bytes=0</code> to disable all caches. </p>
+
+</div>
+</div>
+<a id="ac04eb83df1300e87fcef54c0f5fa7b2b" name="ac04eb83df1300e87fcef54c0f5fa7b2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac04eb83df1300e87fcef54c0f5fa7b2b">&#9670;&#160;</a></span>l1i</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structriscv_1_1CacheConfig.html">CacheConfig</a> riscv::MultiCoreConfig::l1i {.size_bytes = 0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Per-core I-cache; 0 = <code>l1d</code> is a unified L1. </p>
 
 </div>
 </div>

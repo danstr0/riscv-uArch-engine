@@ -185,14 +185,14 @@ synchronization, and system-level interrupt handling.</p>
 <h3>RV32A — Atomics (11 instructions)<a class="headerlink" href="#rv32a-atomics-11-instructions" title="Link to this heading"></a></h3>
 <p>All R-type with opcode = 0101111 (AMO):</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">LR.W</span></code> — load-reserved (places a reservation on the cache line)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LR.W</span></code> — load-reserved (places a reservation on the word)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">SC.W</span></code> — store-conditional (succeeds only if reservation is intact)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">AMOSWAP.W</span></code>, <code class="docutils literal notranslate"><span class="pre">AMOADD.W</span></code>, <code class="docutils literal notranslate"><span class="pre">AMOXOR.W</span></code>, <code class="docutils literal notranslate"><span class="pre">AMOAND.W</span></code>, <code class="docutils literal notranslate"><span class="pre">AMOOR.W</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">AMOMIN.W</span></code>, <code class="docutils literal notranslate"><span class="pre">AMOMAX.W</span></code>, <code class="docutils literal notranslate"><span class="pre">AMOMINU.W</span></code>, <code class="docutils literal notranslate"><span class="pre">AMOMAXU.W</span></code></p></li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">LR</span></code>/<code class="docutils literal notranslate"><span class="pre">SC</span></code> is the foundation for lock-free synchronization — <code class="docutils literal notranslate"><span class="pre">SC</span></code> returns
-<code class="docutils literal notranslate"><span class="pre">0</span></code> on success (reservation held) and <code class="docutils literal notranslate"><span class="pre">1</span></code> on failure (another core wrote
-to the line between <code class="docutils literal notranslate"><span class="pre">LR</span></code> and <code class="docutils literal notranslate"><span class="pre">SC</span></code>).</p>
+<code class="docutils literal notranslate"><span class="pre">0</span></code> on success (reservation held) and <code class="docutils literal notranslate"><span class="pre">1</span></code> on failure (a store overlapped
+the reserved word between <code class="docutils literal notranslate"><span class="pre">LR</span></code> and <code class="docutils literal notranslate"><span class="pre">SC</span></code>, from this core or another).</p>
 </section>
 <section id="rvv-vector-extension-subset-25-instructions">
 <h3>RVV — Vector Extension Subset (25 instructions)<a class="headerlink" href="#rvv-vector-extension-subset-25-instructions" title="Link to this heading"></a></h3>
@@ -427,9 +427,16 @@ fetch at the correct target.</p>
 <p>The cache hierarchy is fully configurable at each level. All levels
 are optional: the CPU can run directly against main memory (useful
 for isolating pipeline effects in benchmarks).</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CPU → [L1] → [L2] → [L3] → Main Memory
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CPU ─┬─ data ──── [L1D] ─┬─ [L2] → [L3] → Main Memory
+     └─ fetch ─── [L1I] ─┘
 </pre></div>
 </div>
+<p>With no L1I configured, the L1 is unified and serves both paths. The L1I
+is read-only. Its refills see the newest data, including dirty D-cache
+lines, but a line already in the I-cache can go stale after a store until
+the hart executes <code class="docutils literal notranslate"><span class="pre">fence.i</span></code>, which invalidates that hart’s I-cache and
+refetches every younger instruction. RISC-V allows this. Device regions
+are not executable: a fetch from one faults.</p>
 <section id="l1-cache-per-core-in-multi-core-mode">
 <h3>L1 cache (per-core in multi-core mode)<a class="headerlink" href="#l1-cache-per-core-in-multi-core-mode" title="Link to this heading"></a></h3>
 <ul class="simple">
@@ -623,8 +630,8 @@ timebase divider can make it slower than the core clock.</p></li>
 NIC with descriptor rings, interrupt coalescing, and RSS
 (Receive Side Scaling) for multi-queue packet distribution.
 Supports up to 8 RX/TX queues with configurable coalescing
-thresholds (packet count and timer-based). NIC DMA reads and writes
-RAM directly and is not yet coherent with CPU caches.</p></li>
+thresholds (packet count and timer-based). Construct it with the
+system’s <code class="docutils literal notranslate"><span class="pre">dma_memory()</span></code> so its DMA stays coherent with the D-caches.</p></li>
 </ul>
 </section>
 </section>

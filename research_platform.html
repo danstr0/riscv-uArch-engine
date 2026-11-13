@@ -218,10 +218,17 @@ names (e.g., <code class="docutils literal notranslate"><span class="pre">pipeli
 <td><p>Pipeline flushes from branch mispredictions.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">l1_hit_rate</span></code></p></td>
-<td><p>L1 cache hit rate (0.0–1.0). <code class="docutils literal notranslate"><span class="pre">0</span></code> if no L1.</p></td>
+<td><p>L1 data cache hit rate (0.0–1.0), or the unified L1’s when
+<code class="docutils literal notranslate"><span class="pre">[cache.l1i]</span></code> is disabled. <code class="docutils literal notranslate"><span class="pre">0</span></code> if no L1.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">l1_misses</span></code></p></td>
 <td><p>L1 cache miss count.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">l1i_hit_rate</span></code></p></td>
+<td><p>L1 instruction cache hit rate. <code class="docutils literal notranslate"><span class="pre">0</span></code> if the L1 is unified.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">l1i_misses</span></code></p></td>
+<td><p>L1 instruction cache miss count.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">l2_hit_rate</span></code></p></td>
 <td><p>L2 cache hit rate.  0 if no L2.</p></td>

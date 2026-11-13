@@ -8,4 +8,16 @@ digraph "riscv::MultiCoreCPU::MultiCoreCPU"
   Node1 [id="Node000001",label="riscv::MultiCoreCPU\l::MultiCoreCPU",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="riscv::MultiCoreCPU\l::config",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MultiCoreCPU.html#abc0dfa4b4a57175bf9d279dcd9a4521c",tooltip=" "];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="riscv::MultiCoreCPU\l::core",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MultiCoreCPU.html#a70afdef2b59510bffaf2654721d479b5",tooltip=" "];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="riscv::PipelinedCPU\l::csrs",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1PipelinedCPU.html#a2a50999a28b76d8c06adcb5c14c55bb3",tooltip=" "];
+  Node1 -> Node5 [id="edge4_Node000001_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="riscv::MultiCoreCPU::l1i",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1MultiCoreCPU.html#a5c249bfd703588dd41256484d0f2e4fa",tooltip=" "];
+  Node1 -> Node6 [id="edge5_Node000001_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="riscv::PipelinedCPU\l::set_on_fence_i",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1PipelinedCPU.html#a39d04e104f654547d90284151847e16f",tooltip="Register the action taken by fence.i (invalidate this hart's I-cache)."];
+  Node1 -> Node7 [id="edge6_Node000001_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="riscv::Cache::set_on\l_read_miss",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1Cache.html#a5f5d2411d14e4262587c2f1f2d0a4030",tooltip=" "];
+  Node1 -> Node8 [id="edge7_Node000001_Node000008",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="riscv::PipelinedCPU\l::set_on_store",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1PipelinedCPU.html#a799df963953c50f3b8316ed4871697f2",tooltip=" "];
 }

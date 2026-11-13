@@ -11,8 +11,11 @@ var searchData=
   ['directory_5f_8',['directory_',['../classriscv_1_1CoherenceController.html#a3fbe8070854bf8d8aaf9b2f1072ce108',1,'riscv::CoherenceController']]],
   ['dirty_9',['dirty',['../structriscv_1_1CacheLine.html#a3871aab70521e0c1bf4d24ee3ec1e4aa',1,'riscv::CacheLine']]],
   ['dirty_5fevictions_10',['dirty_evictions',['../structriscv_1_1CacheStats.html#aeb6e650400b8b7bd2c99d27107dbbd0b',1,'riscv::CacheStats']]],
-  ['dma_5fcycles_5fper_5fcacheline_11',['dma_cycles_per_cacheline',['../structriscv_1_1NicTiming.html#abdc03b3e5c18601b578edcb0d1df7542',1,'riscv::NicTiming']]],
-  ['dma_5fdone_5fcycle_12',['dma_done_cycle',['../structriscv_1_1Packet.html#affa0a8e3bb6be5f45ee62eec247f8361',1,'riscv::Packet']]],
-  ['dma_5flatency_5fcycles_13',['dma_latency_cycles',['../structriscv_1_1NicTiming.html#aedcff59417f9c6a4182615248541eb47',1,'riscv::NicTiming']]],
-  ['dma_5fstart_5fcycle_14',['dma_start_cycle',['../structriscv_1_1Packet.html#a8b800c2011664d7e2a4f4084a3bddecd',1,'riscv::Packet']]]
+  ['dma_5f_11',['dma_',['../classriscv_1_1MultiCoreCPU.html#a52a1cec9dfe47583e23b3f89d5929c8e',1,'riscv::MultiCoreCPU::dma_'],['../classriscv_1_1SingleCoreSystem.html#aaa8295252ed4f5cfd07a1eaff8117e15',1,'riscv::SingleCoreSystem::dma_']]],
+  ['dma_5fcycles_5fper_5fcacheline_12',['dma_cycles_per_cacheline',['../structriscv_1_1NicTiming.html#abdc03b3e5c18601b578edcb0d1df7542',1,'riscv::NicTiming']]],
+  ['dma_5fdone_5fcycle_13',['dma_done_cycle',['../structriscv_1_1Packet.html#affa0a8e3bb6be5f45ee62eec247f8361',1,'riscv::Packet']]],
+  ['dma_5flatency_5fcycles_14',['dma_latency_cycles',['../structriscv_1_1NicTiming.html#aedcff59417f9c6a4182615248541eb47',1,'riscv::NicTiming']]],
+  ['dma_5freads_15',['dma_reads',['../structriscv_1_1CoherenceStats.html#ab480dfd90ad326fd3f1b4138e485ea97',1,'riscv::CoherenceStats']]],
+  ['dma_5fstart_5fcycle_16',['dma_start_cycle',['../structriscv_1_1Packet.html#a8b800c2011664d7e2a4f4084a3bddecd',1,'riscv::Packet']]],
+  ['dma_5fwrites_17',['dma_writes',['../structriscv_1_1CoherenceStats.html#a8486f06b665d522a0aed2ec8f8f5107d',1,'riscv::CoherenceStats']]]
 ];

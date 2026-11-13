@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['misscallback_0',['MissCallback',['../classriscv_1_1Cache.html#aef81451ae70fd81ea0b75a39e6a7a271',1,'riscv::Cache']]]
+  ['linecallback_0',['LineCallback',['../classriscv_1_1CLINT.html#a6f00e3c2ed8c50bab024d9907973b6d4',1,'riscv::CLINT']]],
+  ['linehook_1',['LineHook',['../classriscv_1_1DmaPort.html#a13fcd621d509caab4f676d68558914ac',1,'riscv::DmaPort']]]
 ];

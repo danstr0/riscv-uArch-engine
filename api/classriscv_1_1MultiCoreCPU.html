@@ -95,6 +95,10 @@ Collaboration diagram for riscv::MultiCoreCPU:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a69263b775059b963523849ec3542484e" id="r_a69263b775059b963523849ec3542484e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MultiCoreCPU.html#a69263b775059b963523849ec3542484e">MultiCoreCPU</a> (<a class="el" href="structriscv_1_1MultiCoreConfig.html">MultiCoreConfig</a> <a class="el" href="classriscv_1_1MultiCoreCPU.html#abc0dfa4b4a57175bf9d279dcd9a4521c">config</a>={})</td></tr>
 <tr class="separator:a69263b775059b963523849ec3542484e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22e3fc0c06b926f8cde7758f1106840e" id="r_a22e3fc0c06b926f8cde7758f1106840e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MultiCoreCPU.html#a22e3fc0c06b926f8cde7758f1106840e">MultiCoreCPU</a> (const <a class="el" href="classriscv_1_1MultiCoreCPU.html">MultiCoreCPU</a> &amp;)=delete</td></tr>
+<tr class="separator:a22e3fc0c06b926f8cde7758f1106840e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e238c23a28a45f64605e7332006963e" id="r_a1e238c23a28a45f64605e7332006963e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classriscv_1_1MultiCoreCPU.html">MultiCoreCPU</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MultiCoreCPU.html#a1e238c23a28a45f64605e7332006963e">operator=</a> (const <a class="el" href="classriscv_1_1MultiCoreCPU.html">MultiCoreCPU</a> &amp;)=delete</td></tr>
+<tr class="separator:a1e238c23a28a45f64605e7332006963e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Core access</div></td></tr>
 <tr class="memitem:a21a78cf5dbcd42b8961724383beaf9e9" id="r_a21a78cf5dbcd42b8961724383beaf9e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MultiCoreCPU.html#a21a78cf5dbcd42b8961724383beaf9e9">num_cores</a> () const noexcept</td></tr>
 <tr class="separator:a21a78cf5dbcd42b8961724383beaf9e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,9 +134,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9e3c9aa26ca5279e154141f92137f6c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4133a300ece5b25cd6824ff51f09c419" id="r_a4133a300ece5b25cd6824ff51f09c419"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classriscv_1_1NIC.html">NIC</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MultiCoreCPU.html#a4133a300ece5b25cd6824ff51f09c419">nic</a> () noexcept</td></tr>
 <tr class="separator:a4133a300ece5b25cd6824ff51f09c419"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a519db70b577f88197c28f0c53b4f3459" id="r_a519db70b577f88197c28f0c53b4f3459"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MultiCoreCPU.html#a519db70b577f88197c28f0c53b4f3459">dma_memory</a> () const noexcept</td></tr>
+<tr class="separator:a519db70b577f88197c28f0c53b4f3459"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Cache hierarchy</div></td></tr>
 <tr class="memitem:afa8f2e0411618b25bcad47b7a2681744" id="r_afa8f2e0411618b25bcad47b7a2681744"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classriscv_1_1Cache.html">Cache</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MultiCoreCPU.html#afa8f2e0411618b25bcad47b7a2681744">l1d</a> (<a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> core_id)</td></tr>
 <tr class="separator:afa8f2e0411618b25bcad47b7a2681744"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c249bfd703588dd41256484d0f2e4fa" id="r_a5c249bfd703588dd41256484d0f2e4fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classriscv_1_1Cache.html">Cache</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MultiCoreCPU.html#a5c249bfd703588dd41256484d0f2e4fa">l1i</a> (<a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> core_id)</td></tr>
+<tr class="separator:a5c249bfd703588dd41256484d0f2e4fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8952f962ac7a79fa778c2e8b8071d26" id="r_ab8952f962ac7a79fa778c2e8b8071d26"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classriscv_1_1Cache.html">Cache</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MultiCoreCPU.html#ab8952f962ac7a79fa778c2e8b8071d26">l2</a> ()</td></tr>
 <tr class="separator:ab8952f962ac7a79fa778c2e8b8071d26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66958721aa90e7425ea556d6ad24b67f" id="r_a66958721aa90e7425ea556d6ad24b67f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classriscv_1_1Cache.html">Cache</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MultiCoreCPU.html#a66958721aa90e7425ea556d6ad24b67f">l3</a> ()</td></tr>
@@ -166,8 +174,14 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a97a169f3fee140945c918378a05b576d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80cd38d170ba38ace905510a9aed485d" id="r_a80cd38d170ba38ace905510a9aed485d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classriscv_1_1Cache.html">Cache</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MultiCoreCPU.html#a80cd38d170ba38ace905510a9aed485d">l1d_caches_</a></td></tr>
 <tr class="separator:a80cd38d170ba38ace905510a9aed485d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0342c16ed7f246bbd6d0c0d0b6c4ee3" id="r_aa0342c16ed7f246bbd6d0c0d0b6c4ee3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classriscv_1_1Cache.html">Cache</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MultiCoreCPU.html#aa0342c16ed7f246bbd6d0c0d0b6c4ee3">l1i_caches_</a></td></tr>
+<tr class="separator:aa0342c16ed7f246bbd6d0c0d0b6c4ee3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52a1cec9dfe47583e23b3f89d5929c8e" id="r_a52a1cec9dfe47583e23b3f89d5929c8e"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MultiCoreCPU.html#a52a1cec9dfe47583e23b3f89d5929c8e">dma_</a></td></tr>
+<tr class="separator:a52a1cec9dfe47583e23b3f89d5929c8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28e13eb993b2f113a9afd43d7e9ee6c7" id="r_a28e13eb993b2f113a9afd43d7e9ee6c7"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classriscv_1_1MMIOBus.html">MMIOBus</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MultiCoreCPU.html#a28e13eb993b2f113a9afd43d7e9ee6c7">buses_</a></td></tr>
 <tr class="separator:a28e13eb993b2f113a9afd43d7e9ee6c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a708e51306e8216943920646631020ccc" id="r_a708e51306e8216943920646631020ccc"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classriscv_1_1MMIOBus.html">MMIOBus</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MultiCoreCPU.html#a708e51306e8216943920646631020ccc">fetch_buses_</a></td></tr>
+<tr class="separator:a708e51306e8216943920646631020ccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7aaa17483b6c4e429358c2e1799171d7" id="r_a7aaa17483b6c4e429358c2e1799171d7"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classriscv_1_1CoherenceController.html">CoherenceController</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MultiCoreCPU.html#a7aaa17483b6c4e429358c2e1799171d7">coherence_</a></td></tr>
 <tr class="separator:a7aaa17483b6c4e429358c2e1799171d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96ec904fa3d31ab32d9ba659cb0c6187" id="r_a96ec904fa3d31ab32d9ba659cb0c6187"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::unique_ptr&lt; <a class="el" href="classriscv_1_1PipelinedCPU.html">PipelinedCPU</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1MultiCoreCPU.html#a96ec904fa3d31ab32d9ba659cb0c6187">cores_</a></td></tr>
@@ -180,7 +194,7 @@ Private Attributes</h2></td></tr>
 <p>Each call to <code><a class="el" href="classriscv_1_1MultiCoreCPU.html#ad2796b698f99ac55f7b3c1fba3df06e4" title="Advance all components by one cycle. Returns false if all cores halted.">tick()</a></code> advances all pipelines, caches, devices, and the coherence directory by one global clock cycle. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a69263b775059b963523849ec3542484e" name="a69263b775059b963523849ec3542484e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a69263b775059b963523849ec3542484e">&#9670;&#160;</a></span>MultiCoreCPU()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a69263b775059b963523849ec3542484e">&#9670;&#160;</a></span>MultiCoreCPU() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -207,6 +221,32 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classriscv_1_1MultiCoreCPU_a69263b775059b963523849ec3542484e_cgraph.png" border="0" usemap="#aclassriscv_1_1MultiCoreCPU_a69263b775059b963523849ec3542484e_cgraph" alt=""/></div>
 </div>
+
+</div>
+</div>
+<a id="a22e3fc0c06b926f8cde7758f1106840e" name="a22e3fc0c06b926f8cde7758f1106840e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22e3fc0c06b926f8cde7758f1106840e">&#9670;&#160;</a></span>MultiCoreCPU() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">riscv::MultiCoreCPU::MultiCoreCPU </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classriscv_1_1MultiCoreCPU.html">MultiCoreCPU</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -397,6 +437,32 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a519db70b577f88197c28f0c53b4f3459" name="a519db70b577f88197c28f0c53b4f3459"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a519db70b577f88197c28f0c53b4f3459">&#9670;&#160;</a></span>dma_memory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt; riscv::MultiCoreCPU::dma_memory </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The memory a bus-mastering device (e.g., the <a class="el" href="classriscv_1_1NIC.html" title="Cycle-accurate network interface controller.">NIC</a>) should use; coherent with the L1 D-caches. </p>
+
+</div>
+</div>
 <a id="acd3c397c5d5a8f5874e89620c1efb26c" name="acd3c397c5d5a8f5874e89620c1efb26c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acd3c397c5d5a8f5874e89620c1efb26c">&#9670;&#160;</a></span>get_stats()</h2>
 
@@ -411,6 +477,11 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classriscv_1_1MultiCoreCPU_acd3c397c5d5a8f5874e89620c1efb26c_cgraph.png" border="0" usemap="#aclassriscv_1_1MultiCoreCPU_acd3c397c5d5a8f5874e89620c1efb26c_cgraph" alt=""/></div>
+</div>
 
 </div>
 </div>
@@ -454,6 +525,29 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5c249bfd703588dd41256484d0f2e4fa" name="a5c249bfd703588dd41256484d0f2e4fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c249bfd703588dd41256484d0f2e4fa">&#9670;&#160;</a></span>l1i()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classriscv_1_1Cache.html">Cache</a> * riscv::MultiCoreCPU::l1i </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>&#160;</td>
+          <td class="paramname"><em>core_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classriscv_1_1MultiCoreCPU_a5c249bfd703588dd41256484d0f2e4fa_icgraph.png" border="0" usemap="#aclassriscv_1_1MultiCoreCPU_a5c249bfd703588dd41256484d0f2e4fa_icgraph" alt=""/></div>
+</div>
 
 </div>
 </div>
@@ -637,6 +731,32 @@ Here is the caller graph for this function:</div>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1e238c23a28a45f64605e7332006963e" name="a1e238c23a28a45f64605e7332006963e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e238c23a28a45f64605e7332006963e">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classriscv_1_1MultiCoreCPU.html">MultiCoreCPU</a> &amp; riscv::MultiCoreCPU::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classriscv_1_1MultiCoreCPU.html">MultiCoreCPU</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -958,6 +1078,50 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a52a1cec9dfe47583e23b3f89d5929c8e" name="a52a1cec9dfe47583e23b3f89d5929c8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52a1cec9dfe47583e23b3f89d5929c8e">&#9670;&#160;</a></span>dma_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="classriscv_1_1Memory.html">Memory</a>&gt; riscv::MultiCoreCPU::dma_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a708e51306e8216943920646631020ccc" name="a708e51306e8216943920646631020ccc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a708e51306e8216943920646631020ccc">&#9670;&#160;</a></span>fetch_buses_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::shared_ptr&lt;<a class="el" href="classriscv_1_1MMIOBus.html">MMIOBus</a>&gt; &gt; riscv::MultiCoreCPU::fetch_buses_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a80cd38d170ba38ace905510a9aed485d" name="a80cd38d170ba38ace905510a9aed485d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a80cd38d170ba38ace905510a9aed485d">&#9670;&#160;</a></span>l1d_caches_</h2>
 
@@ -969,6 +1133,28 @@ Here is the caller graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname">std::vector&lt;std::shared_ptr&lt;<a class="el" href="classriscv_1_1Cache.html">Cache</a>&gt; &gt; riscv::MultiCoreCPU::l1d_caches_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa0342c16ed7f246bbd6d0c0d0b6c4ee3" name="aa0342c16ed7f246bbd6d0c0d0b6c4ee3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0342c16ed7f246bbd6d0c0d0b6c4ee3">&#9670;&#160;</a></span>l1i_caches_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::shared_ptr&lt;<a class="el" href="classriscv_1_1Cache.html">Cache</a>&gt; &gt; riscv::MultiCoreCPU::l1i_caches_</td>
         </tr>
       </table>
   </td>

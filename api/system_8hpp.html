@@ -84,10 +84,12 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="cache_8hpp_source.html">cache.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="cpu_8hpp_source.html">cpu.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="dma__port_8hpp_source.html">dma_port.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="pipeline_8hpp_source.html">pipeline.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="platform_8hpp_source.html">platform.hpp</a>&quot;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;span&gt;</code><br />
+<code>#include &lt;stdexcept&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for system.hpp:</div>
@@ -112,7 +114,8 @@ Namespaces</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A complete single-hart system. </p>
-<p><code>SingleCoreSystem&lt;Core&gt;</code> assembles a <code>Platform</code> (RAM + CLINT + PLIC), an optional L1/L2/L3 hierarchy in front of RAM, and one core of type <code>Core</code> (<code>CPU</code> or <code>PipelinedCPU</code>). The core's loads, stores, and fetches go through the platform's bus, so programs reach devices at their memory-mapped addresses, and the platform's interrupt lines drive the core's <code>mip</code> register.</p>
+<p><code>SingleCoreSystem&lt;Core&gt;</code> assembles a <code>Platform</code> (RAM + CLINT + PLIC), an optional cache hierarchy in front of RAM, and one core of type <code>Core</code> (<code>CPU</code> or <code>PipelinedCPU</code>). The core's loads and stores go through the platform's bus, so programs reach devices at their memory-mapped addresses, and the platform's interrupt lines drive the core's <code>mip</code> register.</p>
+<dl class="section user"><dt>Split or unified L1</dt><dd>With <code>l1i</code> disabled (the default), <code>l1d</code> is a unified L1 serving both fetches and data. With <code>l1i</code> enabled, fetches go to a separate read-only I-cache. An I-cache refill sees the newest data, including dirty D-cache lines, but a line already in the I-cache can go stale after a store until the hart runs <code>fence.i</code>, as RISC-V permits.</dd></dl>
 <dl class="section user"><dt>Time</dt><dd>Each <code>step()</code> advances the core (one instruction for <code>CPU</code>, one clock for <code>PipelinedCPU</code>) and then advances the devices to the core's cycle count, so <code>mtime</code> tracks simulated time for both models.</dd></dl>
 <div class="fragment"><div class="line">SingleCoreSystem&lt;PipelinedCPU&gt; sys({ .platform = { .ram_size = 1 &lt;&lt; 20 } });</div>
 <div class="line">sys.load_program(0, code);</div>

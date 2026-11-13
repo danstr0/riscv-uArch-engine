@@ -7,5 +7,7 @@ digraph "riscv::CoherenceController::invalidate_others"
   rankdir="RL";
   Node1 [id="Node000001",label="riscv::CoherenceController\l::invalidate_others",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Invalidate all copies except in requesting_core. Returns snoop latency."];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="riscv::CoherenceController\l::handle_write_miss",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1CoherenceController.html#a540acf60d3f1ad84418668ff3daa0e58",tooltip="Handle a write miss or upgrade from core_id."];
+  Node2 [id="Node000002",label="riscv::CoherenceController\l::dma_write",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1CoherenceController.html#acae390bfc907c87640a3c00351aa192f",tooltip=" "];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="riscv::CoherenceController\l::handle_write_miss",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classriscv_1_1CoherenceController.html#a540acf60d3f1ad84418668ff3daa0e58",tooltip="Handle a write miss or upgrade from core_id."];
 }

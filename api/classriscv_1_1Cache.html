@@ -228,6 +228,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a4e2d841da7e5b2deb9a57d7bc3bde3b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d9f7e2a2e20b489011b04dc6611370d" id="r_a1d9f7e2a2e20b489011b04dc6611370d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classriscv_1_1Cache.html#ab61e9825f65e38f0a20c4625090fc247">WriteCallback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1Cache.html#a1d9f7e2a2e20b489011b04dc6611370d">on_write_</a></td></tr>
 <tr class="separator:a1d9f7e2a2e20b489011b04dc6611370d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3643b141e360b5e375e221129bcc533b" id="r_a3643b141e360b5e375e221129bcc533b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classriscv_1_1Cache.html#ac755731a2461206e8faf5e339470a0c7">EvictCallback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1Cache.html#a3643b141e360b5e375e221129bcc533b">on_evict_</a></td></tr>
+<tr class="separator:a3643b141e360b5e375e221129bcc533b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd22b09b83696231b757794518d31bae" id="r_acd22b09b83696231b757794518d31bae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1Cache.html#acd22b09b83696231b757794518d31bae">trace_</a> = false</td></tr>
 <tr class="separator:acd22b09b83696231b757794518d31bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab131cfdec3edef1c8381c92d63767857" id="r_ab131cfdec3edef1c8381c92d63767857"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="namespaceriscv.html#a6358f00da0ce33cb24951ab5ef2f2576">u8</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1Cache.html#ab131cfdec3edef1c8381c92d63767857">storage_</a></td></tr>
@@ -252,15 +254,37 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ab61e9825f65e38f0a20c4625090fc247" id="r_ab61e9825f65e38f0a20c4625090fc247"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1Cache.html#ab61e9825f65e38f0a20c4625090fc247">WriteCallback</a> = std::function&lt; <a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a>(<a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a>)&gt;</td></tr>
 <tr class="memdesc:ab61e9825f65e38f0a20c4625090fc247"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoked on every write.  <br /></td></tr>
 <tr class="separator:ab61e9825f65e38f0a20c4625090fc247"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac755731a2461206e8faf5e339470a0c7" id="r_ac755731a2461206e8faf5e339470a0c7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1Cache.html#ac755731a2461206e8faf5e339470a0c7">EvictCallback</a> = std::function&lt; void(<a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a>)&gt;</td></tr>
+<tr class="memdesc:ac755731a2461206e8faf5e339470a0c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoked when this cache gives up a line.  <br /></td></tr>
+<tr class="separator:ac755731a2461206e8faf5e339470a0c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f5d2411d14e4262587c2f1f2d0a4030" id="r_a5f5d2411d14e4262587c2f1f2d0a4030"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1Cache.html#a5f5d2411d14e4262587c2f1f2d0a4030">set_on_read_miss</a> (<a class="el" href="classriscv_1_1Cache.html#aef81451ae70fd81ea0b75a39e6a7a271">MissCallback</a> cb)</td></tr>
 <tr class="separator:a5f5d2411d14e4262587c2f1f2d0a4030"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33ad935b4c2f3fa31eaf5cc96b447ed7" id="r_a33ad935b4c2f3fa31eaf5cc96b447ed7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1Cache.html#a33ad935b4c2f3fa31eaf5cc96b447ed7">set_on_write</a> (<a class="el" href="classriscv_1_1Cache.html#ab61e9825f65e38f0a20c4625090fc247">WriteCallback</a> cb)</td></tr>
 <tr class="separator:a33ad935b4c2f3fa31eaf5cc96b447ed7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a2c62e57ac7bef4bc5d935d5f45d8fa" id="r_a3a2c62e57ac7bef4bc5d935d5f45d8fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1Cache.html#a3a2c62e57ac7bef4bc5d935d5f45d8fa">set_on_evict</a> (<a class="el" href="classriscv_1_1Cache.html#ac755731a2461206e8faf5e339470a0c7">EvictCallback</a> cb)</td></tr>
+<tr class="memdesc:a3a2c62e57ac7bef4bc5d935d5f45d8fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a callback fired when a line leaves this cache on its own.  <br /></td></tr>
+<tr class="separator:a3a2c62e57ac7bef4bc5d935d5f45d8fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Single cache level with configurable geometry, replacement, and write policies. </p>
 <p>Uses flat-vector storage for line payloads. Implements the <a class="el" href="classriscv_1_1Memory.html" title="Abstract interface for all memory-mapped entities.">Memory</a> interface so it can be chained with other levels or used standalone. </p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="ac755731a2461206e8faf5e339470a0c7" name="ac755731a2461206e8faf5e339470a0c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac755731a2461206e8faf5e339470a0c7">&#9670;&#160;</a></span>EvictCallback</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classriscv_1_1Cache.html#ac755731a2461206e8faf5e339470a0c7">riscv::Cache::EvictCallback</a> =  std::function&lt;void(<a class="el" href="namespaceriscv.html#a32b4e3ebabd57b4f34ebfed99742ee8a">addr_t</a>)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Invoked when this cache gives up a line. </p>
+
+</div>
+</div>
 <a id="aef81451ae70fd81ea0b75a39e6a7a271" name="aef81451ae70fd81ea0b75a39e6a7a271"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aef81451ae70fd81ea0b75a39e6a7a271">&#9670;&#160;</a></span>MissCallback</h2>
 
@@ -1206,6 +1230,35 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a id="a3a2c62e57ac7bef4bc5d935d5f45d8fa" name="a3a2c62e57ac7bef4bc5d935d5f45d8fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a2c62e57ac7bef4bc5d935d5f45d8fa">&#9670;&#160;</a></span>set_on_evict()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv::Cache::set_on_evict </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classriscv_1_1Cache.html#ac755731a2461206e8faf5e339470a0c7">EvictCallback</a>&#160;</td>
+          <td class="paramname"><em>cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Register a callback fired when a line leaves this cache on its own. </p>
+<p>Covers replacement evictions, explicit invalidation, and a write miss that did not allocate. Not fired by <code><a class="el" href="classriscv_1_1Cache.html#aaac2679e9d7929b1d4a28da68827fbd2" title="Invalidate a line, writing back to next level first if dirty.">snoop_invalidate()</a></code>, since the coherence controller initiated that and already knows. </p>
+
+</div>
+</div>
 <a id="a5f5d2411d14e4262587c2f1f2d0a4030" name="a5f5d2411d14e4262587c2f1f2d0a4030"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5f5d2411d14e4262587c2f1f2d0a4030">&#9670;&#160;</a></span>set_on_read_miss()</h2>
 
@@ -1229,6 +1282,11 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classriscv_1_1Cache_a5f5d2411d14e4262587c2f1f2d0a4030_icgraph.png" border="0" usemap="#aclassriscv_1_1Cache_a5f5d2411d14e4262587c2f1f2d0a4030_icgraph" alt=""/></div>
+</div>
 
 </div>
 </div>
@@ -1408,6 +1466,11 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classriscv_1_1Cache_abeff03c0343104ba0d43002d1ffd86b0_icgraph.png" border="0" usemap="#aclassriscv_1_1Cache_abeff03c0343104ba0d43002d1ffd86b0_icgraph" alt=""/></div>
+</div>
 
 </div>
 </div>
@@ -1972,6 +2035,28 @@ Here is the caller graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname">std::shared_ptr&lt;<a class="el" href="classriscv_1_1Memory.html">Memory</a>&gt; riscv::Cache::next_level_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3643b141e360b5e375e221129bcc533b" name="a3643b141e360b5e375e221129bcc533b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3643b141e360b5e375e221129bcc533b">&#9670;&#160;</a></span>on_evict_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classriscv_1_1Cache.html#ac755731a2461206e8faf5e339470a0c7">EvictCallback</a> riscv::Cache::on_evict_</td>
         </tr>
       </table>
   </td>

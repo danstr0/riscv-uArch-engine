@@ -115,6 +115,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8a32a22ad785db35eb4b6f2b56c01b5a" id="r_a8a32a22ad785db35eb4b6f2b56c01b5a"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classriscv_1_1MMIOBus.html">MMIOBus</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1Platform.html#a8a32a22ad785db35eb4b6f2b56c01b5a">make_hart_bus</a> (std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt; downstream)</td></tr>
 <tr class="memdesc:a8a32a22ad785db35eb4b6f2b56c01b5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the MMIO bus a hart issues its loads, stores, and fetches to.  <br /></td></tr>
 <tr class="separator:a8a32a22ad785db35eb4b6f2b56c01b5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d5fa455fda5e614022359ce08d543ed" id="r_a4d5fa455fda5e614022359ce08d543ed"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classriscv_1_1MMIOBus.html">MMIOBus</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1Platform.html#a4d5fa455fda5e614022359ce08d543ed">make_fetch_bus</a> (std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt; downstream)</td></tr>
+<tr class="memdesc:a4d5fa455fda5e614022359ce08d543ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the bus a hart fetches instructions through.  <br /></td></tr>
+<tr class="separator:a4d5fa455fda5e614022359ce08d543ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80652a15c1fb934fb0013eb199d16fcd" id="r_a80652a15c1fb934fb0013eb199d16fcd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1Platform.html#a80652a15c1fb934fb0013eb199d16fcd">connect_hart</a> (<a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> hart, <a class="el" href="classriscv_1_1CSRFile.html">CSRFile</a> &amp;csrs)</td></tr>
 <tr class="separator:a80652a15c1fb934fb0013eb199d16fcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8751edc46ede0f8396d5e27c283ed72" id="r_ae8751edc46ede0f8396d5e27c283ed72"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classriscv_1_1Platform.html#ae8751edc46ede0f8396d5e27c283ed72">attach_nic</a> (std::shared_ptr&lt; <a class="el" href="classriscv_1_1NIC.html">NIC</a> &gt; <a class="el" href="classriscv_1_1Platform.html#a729dab21c43766e13005ebc89a2272fe">nic</a>, <a class="el" href="namespaceriscv.html#afbafea0044d97b48d4adc3545a1c6852">u32</a> plic_source=1)</td></tr>
@@ -367,6 +370,33 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classriscv_1_1Platform_a80652a15c1fb934fb0013eb199d16fcd_cgraph.png" border="0" usemap="#aclassriscv_1_1Platform_a80652a15c1fb934fb0013eb199d16fcd_cgraph" alt=""/></div>
 </div>
+
+</div>
+</div>
+<a id="a4d5fa455fda5e614022359ce08d543ed" name="a4d5fa455fda5e614022359ce08d543ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d5fa455fda5e614022359ce08d543ed">&#9670;&#160;</a></span>make_fetch_bus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="classriscv_1_1MMIOBus.html">MMIOBus</a> &gt; riscv::Platform::make_fetch_bus </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classriscv_1_1Memory.html">Memory</a> &gt;&#160;</td>
+          <td class="paramname"><em>downstream</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create the bus a hart fetches instructions through. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">downstream</td><td>The hart's L1 I-cache, its unified L1, or <code><a class="el" href="classriscv_1_1Platform.html#a5a527419936e2e1ca61e42df2ddf5ee7">ram()</a></code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Only RAM is mapped: device regions are not executable, so a fetch from one faults. </p>
 
 </div>
 </div>
