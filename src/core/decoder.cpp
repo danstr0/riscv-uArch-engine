@@ -111,6 +111,7 @@ const char* op_name(Op op)
         case Op::VMV_X_S:    return "vmv.x.s";
 
         case Op::FENCE:      return "fence";
+        case Op::FENCE_I:    return "fence.i";
         case Op::ECALL:      return "ecall";
         case Op::EBREAK:     return "ebreak";
         case Op::CSRRW:      return "csrrw";
@@ -663,7 +664,7 @@ DecodedInst Decoder::decode(u32 inst, addr_t pc)
 
         case Opcode::MISC_MEM:
             d.format = Format::I;
-            d.op     = Op::FENCE;
+            d.op     = (bits(inst, 14, 12) == 0b001) ? Op::FENCE_I : Op::FENCE;
             d.rd     = static_cast<reg_idx_t>(bits(inst, 11, 7));
             d.rs1    = static_cast<reg_idx_t>(bits(inst, 19, 15));
             d.imm    = extract_i_imm(inst);

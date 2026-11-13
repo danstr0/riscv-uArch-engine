@@ -405,6 +405,7 @@ ExecuteResult Executor::execute(const DecodedInst& inst)
         case Op::ECALL:  result.ecall = true; break;
         case Op::EBREAK: result.ebreak = true; break;
         case Op::FENCE:  break;  // NOP in single-threaded context
+        case Op::FENCE_I: result.fence_i = true; break;
 
         // CSR instructions ───────────────────────────────
         case Op::CSRRW:

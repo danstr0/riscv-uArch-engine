@@ -33,7 +33,14 @@ struct CpuState
 /// Single-cycle RISC-V CPU implementing fetch-decode-execute.
 class CPU {
 public:
-    explicit CPU(std::shared_ptr<Memory> memory);
+    /**
+     * @param memory  Data path (loads and stores).
+     * @param imem    Instruction-fetch path; defaults to @p memory (unified).
+     */
+    explicit CPU(std::shared_ptr<Memory> memory, std::shared_ptr<Memory> imem = nullptr);
+
+    /// Register the action taken by @c fence.i (invalidate this hart's I-cache).
+    void set_on_fence_i(std::function<void()> cb) { on_fence_i_ = std::move(cb); }
 
     /// @name Program loading
     /// @{
@@ -128,7 +135,9 @@ public:
 private:
     // Declaration order matters: memory_ must be initialized before executor_
     std::shared_ptr<Memory> memory_;
+    std::shared_ptr<Memory> imem_;
     Executor                executor_;
+    std::function<void()>   on_fence_i_;
 
     DecodedInst   last_inst_{};
     ExecuteResult last_result_{};

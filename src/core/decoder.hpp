@@ -26,7 +26,7 @@ namespace riscv {
 enum class Opcode : u8
 {
     LOAD      = 0b0000011,  ///< LB, LH, LW, LBU, LHU
-    MISC_MEM  = 0b0001111,  ///< FENCE
+    MISC_MEM  = 0b0001111,  ///< FENCE, FENCE.I
     OP_IMM    = 0b0010011,  ///< ADDI, SLTI, SLTIU, XORI, ORI, ANDI, SLLI, SRLI, SRAI
     AUIPC     = 0b0010111,  ///< AUIPC
     STORE     = 0b0100011,  ///< SB, SH, SW
@@ -90,7 +90,7 @@ enum class Op : u8
     VMV_V_X, VMV_X_S,
 
     // ── System / synchronization ────────────────────────
-    FENCE, ECALL, EBREAK,
+    FENCE, FENCE_I, ECALL, EBREAK,
     CSRRW, CSRRS, CSRRC, CSRRWI, CSRRSI, CSRRCI,
     MRET,
 
@@ -138,7 +138,7 @@ struct DecodedInst
             case Op::SB: case Op::SH: case Op::SW:
             case Op::BEQ: case Op::BNE: case Op::BLT:
             case Op::BGE: case Op::BLTU: case Op::BGEU:
-            case Op::FENCE: case Op::ECALL: case Op::EBREAK:
+            case Op::FENCE: case Op::FENCE_I: case Op::ECALL: case Op::EBREAK:
             case Op::INVALID:
                 return false;
             default:
@@ -151,7 +151,7 @@ struct DecodedInst
         switch (op)
         {
             case Op::LUI: case Op::AUIPC: case Op::JAL:
-            case Op::FENCE: case Op::ECALL: case Op::EBREAK:
+            case Op::FENCE: case Op::FENCE_I: case Op::ECALL: case Op::EBREAK:
             case Op::INVALID:
                 return false;
             default:

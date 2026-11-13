@@ -117,13 +117,12 @@ u32 CoherenceController::handle_read_miss(u32 core_id, addr_t addr)
     u32 u_mod_owner = static_cast<u32>(mod_owner);
     if (mod_owner >= 0 && u_mod_owner != core_id)
     {
+        // The owner writes its data back to the shared level, and the
+        // requester's refill then picks it up from there
         std::vector<u8> line_data(line_size_);
         l1_caches_[u_mod_owner]->snoop_share_line(la, line_data.data(), line_size_);
         entry.core_states[u_mod_owner] = MESIState::Shared;
-
-        l1_caches_[core_id]->load(la, std::span<const u8>(line_data.data(), line_size_));
-
-        entry.core_states[core_id] = MESIState::Shared;
+        entry.core_states[core_id]     = MESIState::Shared;
         stats_.shared_transfers++;
         stats_.writebacks_forced++;
         latency += kTransferLatency;
@@ -186,6 +185,52 @@ u32 CoherenceController::handle_write_miss(u32 core_id, addr_t addr)
     latency += invalidate_others(core_id, la, entry);
     entry.core_states[core_id] = MESIState::Modified;
     stats_.l2_fetches++;
+    return latency;
+}
+
+// ── I-cache refills and DMA ────────────────────────────────────────────
+
+u32 CoherenceController::clean_modified_owner(addr_t line_addr)
+{
+    auto it = directory_.find(line_addr);
+    if (it == directory_.end()) return 0;
+
+    const i32 owner = find_modified_owner(it->second);
+    if (owner < 0) return 0;
+
+    const u32 u_owner = static_cast<u32>(owner);
+    std::vector<u8> line_data(line_size_);
+    l1_caches_[u_owner]->snoop_share_line(line_addr, line_data.data(), line_size_);
+    it->second.core_states[u_owner] = MESIState::Exclusive; // clean + still the only L1D copy
+    stats_.writebacks_forced++;
+    return kTransferLatency;
+}
+
+u32 CoherenceController::handle_fetch_miss(u32 core_id, addr_t addr)
+{
+    assert(core_id < num_cores_);
+    (void)core_id;
+    stats_.fetch_misses++;
+    return kSnoopLatency + clean_modified_owner(line_align(addr));
+}
+
+u32 CoherenceController::dma_read(addr_t addr)
+{
+    stats_.dma_reads++;
+    return kSnoopLatency + clean_modified_owner(line_align(addr));
+}
+
+u32 CoherenceController::dma_write(addr_t addr)
+{
+    stats_.dma_writes++;
+
+    addr_t la = line_align(addr);
+    auto it = directory_.find(la);
+    if (it == directory_.end()) return kSnoopLatency;
+
+    // num_cores_ is not a valid core ID, so every holder is invalidated
+    const u32 latency = kSnoopLatency + invalidate_others(num_cores_, la, it->second);
+    directory_.erase(it);
     return latency;
 }
 

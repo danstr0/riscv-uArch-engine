@@ -53,14 +53,16 @@ import numpy as np
 
 METRIC_COLS: set[str] = {
     "cycles", "instructions", "ipc", "stalls", "flushes",
-    "l1_hit_rate", "l1_misses", "l2_hit_rate", "l2_misses",
+    "l1_hit_rate", "l1_misses",
+    "l1i_hit_rate", "l1i_misses",
+    "l2_hit_rate", "l2_misses",
     "l3_hit_rate", "l3_misses",
     "branches", "mispredicts", "branch_accuracy",
 }
 
 # Higher is better for these; lower is better for the rest
 HIGHER_IS_BETTER: set[str] = {
-        "ipc", "l1_hit_rate", "l2_hit_rate", "l3_hit_rate", "branch_accuracy",
+        "ipc", "l1_hit_rate", "l1i_hit_rate", "l2_hit_rate", "l3_hit_rate", "branch_accuracy",
 }
 
 # ── CSV loading ─────────────────────────────────────────────────────────

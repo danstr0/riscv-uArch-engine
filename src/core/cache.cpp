@@ -256,6 +256,8 @@ void Cache::evict_line(u32 set_idx, u32 way)
 
     meta.valid = false;
     meta.dirty = false;
+
+    if (on_evict_) on_evict_(meta.line_addr);
 }
 
 // ── Fetch line from next level ─────────────────────────────────────────
@@ -368,6 +370,8 @@ MemoryResult Cache::read_bytes(addr_t addr, u32 size) const
 
 MemoryResult Cache::write_bytes(addr_t addr, const u8* bytes, u32 size)
 {
+    assert(config_.type != CacheType::INSTRUCTION && "I-cache is read-only");
+
     // Cross-line check
     u32 off = offset_of(addr);
     if (off + size > config_.line_size)
@@ -412,6 +416,8 @@ MemoryResult Cache::write_bytes(addr_t addr, const u8* bytes, u32 size)
             u32 latency = config_.hit_latency + config_.miss_penalty + coherence_latency;
             stats_.total_latency += latency;
 
+            if (on_evict_) on_evict_(line_addr_of(addr));
+
             log_write("MISS", latency);
             return {0, latency, true};
         }
@@ -435,7 +441,9 @@ MemoryResult Cache::write_bytes(addr_t addr, const u8* bytes, u32 size)
         return {0, latency, true};
     }
 
-    // Write-allocate path
+    // Write-allocate path. A write-through line is never dirty; the next
+    // level is updated below on every write
+    const bool mark_dirty = (config_.write_pol == WritePolicy::WRITE_BACK);
     auto found = find_line(addr);
     u32 latency;
     u8* dest;
@@ -448,7 +456,7 @@ MemoryResult Cache::write_bytes(addr_t addr, const u8* bytes, u32 size)
         found->meta->last_access = access_counter_;
         way_idx = static_cast<u32>(found->meta - sets_[index_of(addr)].data());
         dest = const_cast<u8*>(found->data);
-        found->meta->dirty = true;
+        found->meta->dirty |= mark_dirty;
     }
     else
     {
@@ -457,7 +465,7 @@ MemoryResult Cache::write_bytes(addr_t addr, const u8* bytes, u32 size)
         latency = config_.hit_latency + config_.miss_penalty;
         way_idx = static_cast<u32>(ref.meta - sets_[index_of(addr)].data());
         dest = ref.data;
-        ref.meta->dirty = true;
+        ref.meta->dirty = mark_dirty;
     }
 
     touch_way(index_of(addr), way_idx);
@@ -654,8 +662,10 @@ void Cache::invalidate(addr_t addr)
     auto found = find_line(addr);
     if (found)
     {
+        const addr_t la = found->meta->line_addr;
         found->meta->valid = false;
         found->meta->dirty = false;
+        if (on_evict_) on_evict_(la);
     }
 }
 
@@ -664,8 +674,10 @@ void Cache::invalidate_all()
     for (auto& set : sets_)
         for (auto& meta : set)
         {
+            const bool was_valid = meta.valid;
             meta.valid = false;
             meta.dirty = false;
+            if (was_valid && on_evict_) on_evict_(meta.line_addr);
         }
 }
 

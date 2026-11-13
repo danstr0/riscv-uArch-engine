@@ -105,6 +105,16 @@ public:
     [[nodiscard]] std::shared_ptr<MMIOBus>
     make_hart_bus(std::shared_ptr<Memory> downstream);
 
+    /**
+     * @brief Create the bus a hart fetches instructions through.
+     * @param downstream  The hart's L1 I-cache, its unified L1, or @c ram().
+     *
+     * Only RAM is mapped: device regions are not executable, so a fetch
+     * from one faults.
+     */
+    [[nodiscard]] std::shared_ptr<MMIOBus>
+    make_fetch_bus(std::shared_ptr<Memory> downstream);
+
     /// Connect hart @p hart's interrupt lines to @p csrs (which must
     /// outlive the platform's use).
     void connect_hart(u32 hart, CSRFile& csrs);

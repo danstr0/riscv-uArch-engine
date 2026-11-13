@@ -12,8 +12,9 @@
 
 namespace riscv {
 
-CPU::CPU(std::shared_ptr<Memory> memory)
+CPU::CPU(std::shared_ptr<Memory> memory, std::shared_ptr<Memory> imem)
     : memory_(std::move(memory))
+    , imem_(imem ? std::move(imem) : memory_)
     , executor_(*memory_)
 {
     assert(memory_ != nullptr && "CPU initialized with null memory backend");
@@ -52,7 +53,7 @@ bool CPU::step()
 
     // ── 1. Fetch ────────────────────────────────────────
     addr_t current_pc = executor_.pc();
-    auto fetch_result = memory_->read32(current_pc);
+    auto fetch_result = imem_->read32(current_pc);
 
     if (!fetch_result.ok)
     {
@@ -87,6 +88,9 @@ bool CPU::step()
 
     // Update PC
     executor_.set_pc(last_result_.next_pc);
+
+    if (last_result_.fence_i && on_fence_i_)
+        on_fence_i_();
 
     // ── 4. Post-execution state update ──────────────────
     if (last_result_.ebreak)

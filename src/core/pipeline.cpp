@@ -17,8 +17,10 @@ namespace riscv {
 
 // ── Construction / lifecycle ───────────────────────────────────────────
 
-PipelinedCPU::PipelinedCPU(std::shared_ptr<Memory> memory, PipelineConfig config)
+PipelinedCPU::PipelinedCPU(std::shared_ptr<Memory> memory, PipelineConfig config,
+                           std::shared_ptr<Memory> imem)
     : memory_(std::move(memory))
+    , imem_(imem ? std::move(imem) : memory_)
     , config_(config)
     , bht_(config.bht_size, 0)
 {
@@ -51,6 +53,15 @@ void PipelinedCPU::load_instruction(addr_t addr, u32 instruction)
         static_cast<u8>(instruction >> 24),
     };
     memory_->load(addr, bytes);
+}
+
+void PipelinedCPU::observe_remote_store(addr_t addr, u32 size) noexcept
+{
+    if (!reservation_.has_value()) return;
+
+    const u64 res = *reservation_;
+    if (u64{addr} < res + 4 && u64{addr} + size > res)
+        reservation_.reset();
 }
 
 bool PipelinedCPU::pipeline_empty() const noexcept
@@ -211,6 +222,7 @@ bool PipelinedCPU::tick()
                     if (reservation_.has_value() && reservation_.value() == addr)
                     {
                         memory_->write32(addr, mem_in.rs2_val);
+                        if (on_store_) on_store_(addr, 4);
                         wb_out.rd_val = 0; // success
                     }
                     else
@@ -256,6 +268,7 @@ bool PipelinedCPU::tick()
                     default: new_val = old_val; break;
                     }
                     memory_->write32(addr, new_val);
+                    if (on_store_) on_store_(addr, 4);
                     wb_out.rd_val = old_val;
 
                     if (trace_)
@@ -324,17 +337,20 @@ bool PipelinedCPU::tick()
                     wb_out.valid = false;
                     return fault_stop();
                 }
+                u32 store_size;
+                switch(mem_in.inst.op)
+                {
+                    case Op::SB:    store_size = 1; break;
+                    case Op::SH:    store_size = 2; break;
+                    case Op::SW:    store_size = 4; break;
+                    case Op::VSE32: store_size = vstate_.vl * 4; break;
+                    default:        store_size = 0; break;
+                }
+                if (on_store_) on_store_(addr, store_size);
+
                 if (reservation_.has_value())
                 {
                     addr_t res = reservation_.value();
-                    u32 store_size;
-                    switch(mem_in.inst.op)
-                    {
-                        case Op::SB: store_size = 1; break;
-                        case Op::SH: store_size = 2; break;
-                        case Op::SW: store_size = 4; break;
-                        default:     store_size = 0; break;
-                    }
                     if (addr < res + 4 && addr + store_size > res)
                     {
                         reservation_.reset();
@@ -576,6 +592,13 @@ bool PipelinedCPU::tick()
                 case Op::FENCE: case Op::ECALL: case Op::EBREAK:
                     break;
 
+                // ── FENCE.I ──────────────────────────────────
+                case Op::FENCE_I:
+                    if (on_fence_i_) on_fence_i_();
+                    flush_pipeline_ = true;
+                    flush_target_   = inst.pc + 4;
+                    break;
+
                 // ── CSR instructions ─────────────────────────
                 case Op::CSRRW:
                     exec_csr([&](u32) { return rs1; }, true);
@@ -680,7 +703,7 @@ bool PipelinedCPU::tick()
         auto& if_out = next[static_cast<int>(Stage::IF)];
         if (!halted_)
         {
-            auto r = memory_->read32(pc_);
+            auto r = imem_->read32(pc_);
             if (r.ok)
             {
                 if_out.valid    = true;

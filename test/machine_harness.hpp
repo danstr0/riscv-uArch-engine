@@ -43,9 +43,12 @@ enum class Model
     Cpu,              ///< Single-cycle CPU, no caches.
     Pipe,             ///< 5-stage pipeline, partial forwarding, no caches.
     PipeNoForward,    ///< 5-stage pipeline, no forwarding.
-    PipeCached,       ///< 5-stage pipeline behind L1 + L2.
+    PipeCached,       ///< 5-stage pipeline behind unified L1 + L2.
     MultiCore,        ///< MultiCoreCPU, no caches.
-    MultiCoreCached,  ///< MultiCoreCPU with private L1s, shared L2, MESI.
+    MultiCoreCached,  ///< MultiCoreCPU with private unified L1s, shared L2, MESI.
+    CpuSplit,         ///< Single-cycle CPU with split L1I / L1D, no L2.
+    PipeSplit,        ///< 5-stage pipeline with split L1I / L1D + L2.
+    MultiCoreSplit,   ///< MultiCoreCPU with private split L1s, shared L2, MESI.
 };
 
 inline const char* model_name(Model m)
@@ -58,6 +61,9 @@ inline const char* model_name(Model m)
         case Model::PipeCached:      return "pipeline+L1/L2";
         case Model::MultiCore:       return "multicore";
         case Model::MultiCoreCached: return "multicore+L1/L2";
+        case Model::CpuSplit:        return "cpu+L1I/L1D";
+        case Model::PipeSplit:       return "pipeline+L1I/L1D/L2";
+        case Model::MultiCoreSplit:  return "multicore+L1I/L1D/L2";
     }
     return "?";
 }
@@ -79,6 +85,8 @@ public:
     virtual bool step() = 0;
     /// Hart 0's view of memory (through its caches).
     [[nodiscard]] virtual Memory& view() = 0;
+    /// The memory a bus-mastering device should use.
+    [[nodiscard]] virtual std::shared_ptr<Memory> dma_memory() = 0;
 
     [[nodiscard]] bool all_halted() const
     {
@@ -169,6 +177,7 @@ public:
     void set_pc(u32, addr_t pc) override { sys_.core().set_pc(pc); }
     bool step() override { return sys_.step(); }
     Memory& view() override { return sys_.bus(); }
+    std::shared_ptr<Memory> dma_memory() override { return sys_.dma_memory(); }
 
 private:
     SingleCoreSystem<Core> sys_;
@@ -194,6 +203,7 @@ public:
     void set_pc(u32 h, addr_t pc) override { mc_.set_core_pc(h, pc); }
     bool step() override { return mc_.tick(); }
     Memory& view() override { return mc_.core(0).memory(); }
+    std::shared_ptr<Memory> dma_memory() override { return mc_.dma_memory(); }
 
 private:
     MultiCoreCPU mc_;
@@ -216,19 +226,29 @@ inline std::unique_ptr<Machine> make_machine(Model m, u32 harts = 1,
             sc.pipeline.forwarding = ForwardingPolicy::NONE;
             return std::make_unique<SingleMachine<PipelinedCPU>>(sc);
         case Model::PipeCached:
-            sc.l1 = small_l1();
-            sc.l2 = small_l2();
+            sc.l1d = small_l1();
+            sc.l2  = small_l2();
+            return std::make_unique<SingleMachine<PipelinedCPU>>(sc);
+        case Model::CpuSplit:
+            sc.l1d = small_l1();
+            sc.l1i = small_l1();
+            return std::make_unique<SingleMachine<CPU>>(sc);
+        case Model::PipeSplit:
+            sc.l1d = small_l1();
+            sc.l1i = small_l1();
+            sc.l2  = small_l2();
             return std::make_unique<SingleMachine<PipelinedCPU>>(sc);
         case Model::MultiCore:
         case Model::MultiCoreCached:
+        case Model::MultiCoreSplit:
         {
             MultiCoreConfig mc;
             mc.num_cores        = harts;
             mc.main_memory_size = static_cast<u32>(ram_size);
             mc.l3.size_bytes    = 0;
-            if (m == Model::MultiCoreCached) { mc.l1d = small_l1();
-                                               mc.l2  = small_l2(); }
-            else                             { mc.l1d.size_bytes = 0; }
+            if (m == Model::MultiCore)      { mc.l1d.size_bytes = 0; }
+            else                            { mc.l1d = small_l1(); mc.l2 = small_l2(); }
+            if (m == Model::MultiCoreSplit) { mc.l1i = small_l1(); }
             return std::make_unique<MultiMachine>(mc);
         }
     }
@@ -239,11 +259,18 @@ inline const std::vector<Model> kSingleHartModels =
 {
     Model::Cpu, Model::Pipe, Model::PipeNoForward, Model::PipeCached,
     Model::MultiCore, Model::MultiCoreCached,
+    Model::CpuSplit, Model::PipeSplit, Model::MultiCoreSplit,
 };
 
 inline const std::vector<Model> kMultiHartModels =
 {
-    Model::MultiCore, Model::MultiCoreCached
+    Model::MultiCore, Model::MultiCoreCached, Model::MultiCoreSplit,
+};
+
+/// Models with a separate L1 I-cache.
+inline const std::vector<Model> kSplitModels =
+{
+    Model::CpuSplit, Model::PipeSplit, Model::MultiCoreSplit,
 };
 
 /// Run @p body on each model, printing which model failed.
